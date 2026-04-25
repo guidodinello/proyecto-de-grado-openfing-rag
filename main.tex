@@ -1,0 +1,316 @@
+% Template LaTeX para Informes de Proyectos de Grado de Computación
+% InCo, Facultad de Ingeniería, Universidad de la República
+% 06/2023
+
+
+\documentclass{prgrado}
+\usepackage[colorinlistoftodos]{todonotes}
+\usepackage{siunitx}
+\usepackage{booktabs} 
+\usepackage{glossaries}
+\usepackage[utf8]{inputenc}
+\makeglossaries
+
+% título del proyecto (debe escribirse en minúscula, con excepción de la
+% letra inicial de la primera palabra y nombres propios)
+\title{Módulo de inteligencia artificial generativa basado en OpenFing}                   
+
+% autores
+\author{Diego Amorena, Guido Dinello}  
+
+% fecha de la defensa
+\date{\today}                                 
+
+\supervisor{Luis Chiruzzo}              
+\cosupervisor{Libertad Tansinni}
+
+% licencia creative commons del documento
+% opciones: by, by-sa, by-nd, by-nc, by-nc-sa y by-nc-nd
+% opción por defecto: by-nc-nd versión 4.0
+\cclicense{by}{4.0}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%links con colores 
+\hypersetup{
+  colorlinks   = true,
+  urlcolor     = blue,
+  linkcolor    = blue,
+  citecolor    = red
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% TODO: Pasar esto a un archivo aparte asi no jode.
+\newglossaryentry{prompt}
+{
+    name=consigna (prompt),
+    description={Instrucción o texto de entrada en lenguaje natural que se proporciona a un modelo de lenguaje para orientar su respuesta. Es el mecanismo fundamental de interacción con los modelos de lenguaje de gran escala}
+}
+
+\newglossaryentry{chunk}
+{
+    name=fragmento (chunk),
+    description={Segmento de texto de longitud controlada en el que se divide un documento extenso. Esta técnica permite procesar información dentro de los límites de memoria de los modelos de lenguaje}
+}
+
+\newglossaryentry{embedding}
+{
+    name=representación vectorial (embedding),
+    description={Codificación de texto en un vector numérico de alta dimensionalidad que captura relaciones semánticas. Permite realizar búsquedas por similitud de conceptos en lugar de coincidencias exactas de palabras}
+}
+
+\newglossaryentry{token}
+{
+    name=unidad léxica (token),
+    description={Unidad mínima de procesamiento en un modelo de lenguaje. Puede representar palabras, subpalabras o caracteres, dependiendo del algoritmo de tokenización}
+}
+
+\newglossaryentry{contexto}
+{
+    name=ventana de contexto,
+    description={Límite máximo de información (medido en unidades léxicas) que el modelo puede procesar de forma simultánea en una sola interacción}
+}
+
+\newglossaryentry{Inferencia}
+{
+    name=inferencia,
+    description={Fase en la que un modelo ya entrenado genera predicciones o respuestas ante nuevos datos de entrada}
+}
+
+\newglossaryentry{Fine-Tuning}
+{
+    name=ajuste fino (fine-tuning),
+    description={Proceso de especialización de un modelo preentrenado mediante un entrenamiento adicional con un conjunto de datos específico para una tarea o dominio particular}
+}
+
+\newglossaryentry{alucinación}
+{
+    name=alucinación,
+    description={Error semántico donde el modelo genera información que es gramaticalmente correcta pero factual o lógicamente falsa}
+}
+
+\newglossaryentry{Temperatura}
+{
+    name=temperatura,
+    description={Parámetro de configuración que regula el grado de aleatoriedad en la generación de texto. Valores bajos favorecen la precisión y valores altos la creatividad}
+}
+
+\newglossaryentry{API}
+{
+    name=interfaz de programación (API),
+    description={Siglas de \textit{Application Programming Interface}. Conjunto de protocolos que permite la comunicación y el intercambio de datos entre diferentes componentes de software}
+}
+
+\newglossaryentry{Vectordb}
+{
+    name=base de datos vectorial,
+    description={Sistema de almacenamiento especializado para gestionar vectores de alta dimensionalidad (\textit{embeddings}), permitiendo búsquedas de similitud semántica a gran escala}
+}
+
+\newglossaryentry{Transcripción}
+{
+    name=transcripción (ASR),
+    description={Proceso de conversión de señal de audio a texto escrito mediante reconocimiento automático de voz (\textit{Automatic Speech Recognition})}
+}
+
+\newglossaryentry{Accuracy}
+{
+    name=exactitud (accuracy),
+    description={Métrica que cuantifica la proporción de aciertos totales realizados por el modelo sobre el conjunto de pruebas}
+}
+
+\newglossaryentry{frontend}
+{
+    name=interfaz de usuario (front-end),
+    description={Capa de presentación de la aplicación con la que el usuario interactúa. Incluye el diseño visual y la lógica de cliente}
+}
+
+\newglossaryentry{backend}
+{
+    name=lógica de servidor (back-end),
+    description={Capa de acceso a datos y procesamiento lógico que se ejecuta en el servidor y da soporte a la interfaz de usuario}
+}
+
+% Conceptos que mantienen su nombre propio comercial
+\newglossaryentry{react}
+{
+    name=React,
+    description={Biblioteca de JavaScript para la construcción de interfaces de usuario basadas en componentes}
+}
+
+\newglossaryentry{nodejs}
+{
+    name=Node.js,
+    description={Entorno de ejecución de JavaScript en el servidor basado en el motor V8}
+}
+
+\newglossaryentry{OpenFing}
+{
+    name=OpenFing,
+    description={Plataforma educativa de la Facultad de Ingeniería (UdelaR) que brinda acceso abierto a grabaciones de cursos de grado}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Acrónimos (Siglas en inglés con expansión en español)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newacronym{llm}{LLM}{Modelo de Lenguaje de Gran Escala (\textit{Large Language Model})}
+\newacronym{rag}{RAG}{Generación Aumentada por Recuperación (\textit{Retrieval-Augmented Generation})}
+\newacronym{nlp}{PLN}{Procesamiento de Lenguaje Natural (conocido como \textit{NLP})}
+\newacronym{asr}{ASR}{Reconocimiento Automático de Voz (\textit{Automatic Speech Recognition})}
+\newacronym{ia}{IA}{Inteligencia Artificial}
+\newacronym{json}{JSON}{\textit{JavaScript Object Notation}}
+\newacronym{http}{HTTP}{\textit{Hypertext Transfer Protocol}}
+\newacronym{url}{URL}{\textit{Uniform Resource Locator}}
+\newacronym{csv}{CSV}{\textit{Comma-Separated Values}}
+\newacronym{ui}{IU}{Interfaz de Usuario (\textit{User Interface})}
+\newacronym{ux}{EX}{Experiencia de Usuario (\textit{User Experience})}
+% carátula
+
+\begin{document}
+
+\maketitle
+
+
+\frontmatter % numeración en romanos, capitulos sin numerar
+
+\todo[color=yellow, inline, list]{
+Cambios Realizados desde la versión anterior:
+
+    Se movio el Resumen a antes que lo agradecimientos. 
+    
+    Se refencia a la herramienta como el Asistente. 
+
+    
+    Dentro de: 
+        Resumen, ligeros detalles modificados.
+        Introducción: sin cambios.
+
+        
+    Marco Teórico: 
+Se añadió una intro al capitulo. 
+Se añadio referencias de Jurasky en Inteligencia artificial y Redes Neuronales
+
+
+              
+        Correciones realizadas en sección inteligencia artificial generativa.
+        
+    
+}
+\input{Nuestro/Capitulos/0-Resumen}
+
+
+\chapter*{Agradecimientos}
+
+Agradecer, siempre es bueno agradecer%.Agradecemos a nuestro supervisor Luis Chiruzzo por su guía y apoyo constante a lo largo de este proyecto. También extendemos nuestro agradecimiento a Libertad Tansinni, nuestra cosupervisora, por sus valiosas aportaciones y orientación.
+\printglossaries
+
+\mainmatter
+
+\input{Nuestro/Capitulos/1-Introduccion}
+\input{Nuestro/Capitulos/2-MarcoTeorico}
+\input{Nuestro/Capitulos/3-RequisitosDelSistema}
+\input{Nuestro/Capitulos/4-Arquitectura}
+\input{Nuestro/Capitulos/5-Implementacion}
+\input{Nuestro/Capitulos/6-Experimentacion}
+\input{Nuestro/Capitulos/7-TrabajoAFuturo}
+\input{Nuestro/Capitulos/8-Conclusiones}
+
+\bibliographystyle{apalike}
+\bibliography{referencias}
+
+\begin{appendix}
+\chapter{Anexo 1} 
+
+En este capitulo incluimos información relevante al proyecto que no se encotró un sitio apropiado para incluirlo dentro de la documentación principal.
+
+\section{Sección del Anexo}
+
+\subsection{Propmt Utilizada en la comunicación con el LLM Externo}
+La siguiente es la prompt que fue utilizada para la comunicación con el LLM externo. La misma incluye las técnicas de prompting mencionadas en \autoref{sec:prompt}.
+
+
+"Eres un asistente educativo especializado en responder preguntas sobre contenido académico.
+Tu objetivo es ser útil y educativo, proporcionando respuestas claras y naturales.
+
+INSTRUCCIONES:
+1. PRIORIZA el contexto proporcionado de las clases cuando esté disponible y sea relevante
+2. Si el contexto no contiene información completa pero tienes conocimiento general relevante, combina ambos de manera fluida y natural
+3. Usa el historial para mantener continuidad en la conversación
+4. NUNCA copies literalmente el formato del contexto (ej: 'Fragmento 1:', 'Contenido:')
+5. Integra la información de manera natural y conversacional
+6. Si mencionas información de clases específicas, hazlo de forma natural: 'En la clase de [materia] se explica que...'
+
+ESTILO DE RESPUESTA:
+- Respuestas conversacionales y naturales, como si fueras un profesor explicando
+- Evita estructuras artificiales como listas numeradas del contexto
+- Integra ejemplos y explicaciones de forma fluida
+- Mantén un tono educativo pero amigable
+- Responde siempre en español
+
+EJEMPLO MALO:
+'Fragmento 1: En la clase X se explica... Fragmento 2: Otra clase menciona...'
+
+EJEMPLO BUENO:
+'El algoritmo de ordenamiento burbuja es un método simple que funciona comparando elementos adyacentes... Como se explica en las clases de programación, el proceso se repite hasta que no hay más intercambios...' "
+
+
+\section{Ingeniería de Muestra} 
+
+\todo[color=yellow, inline]{ TODO: Cambiar a tercera persona.}
+\label{Experiencia_En_Ing_De_Muestra}
+
+Este ultimo 10 y 11 de octubre, tuvimos la oportunidad de presentar el proyecto. Durante el proceso logramos conocer distintas perspectivas de varias personas y de la posibilidad y potencial que tiene nuestro proyecto. 
+En esta sección tomamos la oportunidad para destacar 2 perspectivas hacia nuestra herramienta qué escuchamos.
+
+Una de estas proviene del estudiante que reside en interior del país quién no puede asistir la facultad. Se destaca el valor del proyecto como una herramienta de equidad. Estos estudiantes no tiene la posibilidad de asistir a la mayor parte de clases, generando una sensación de desconexión con con el curso. Las maneras "tradicionales" de consultar dudas, sea por foros o a otros estudiantes pueden no ser respondidas o no se respondidas a tiempo. Para este estudiante, la posibilidad de acceder a un chatbot especifico con los materiales de clase no sería simplemente una conveniencia, sino que también puede resultar vital para adaptarse al curso de manera efectiva y mantener un rendimiento académico acorde al de sus compañeros en Montevideo.
+
+La segunda opinión que queremos destacar es la de los estudiantes de la UDELAR que no asisten a la FING. Durante la pandemia, cuando el estudio presencial se imposibilito, los estudiantes se vieron forzados a seguir sus cursos de manera online. A partir de allí, las facultades comenzaron a subir varias de sus clases online. Se nos comentó que esta herramienta seria tremendamente útil también para estudiantes de otras facultades. 
+
+Lo único necesario para adoptar otras clases seria agregar un filtrado por facultad.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\linewidth]{./Nuestro/Otros_Documentos/Poster.pdf}
+    \caption{Poster presentado}
+    \label{fig:placeholder}
+\end{figure}
+
+
+\section{Estimaciones entregadas a URI}
+En este documento se presentarón estimaciones de lo que representaría para la FING transcribir las clases en OpenFing. Estas estimaciones aplicarían para cualquier clase nueva que se decida subir al sistema. 
+
+
+* Ahora mismo es un documento. EstimacionesParaOpenFing.tex *
+\todo[color=yellow,inline]{Diego: Estas estadisticas son de tamaño, velocidad de transcripción, velocidad en generar un embedding, esto podría ir dentro de la documentacion inicial.}
+\section{Manual de Usuario}
+En este documento se detalla el manual de usuario de la API desarrollada, los métodos expuestos y los parámetros de cada uno de esos métodos.
+
+Ahora mismo es un documento. $Manual_De_Usuario.tex$
+\section{Recursos}
+
+Repositorio: %en un futuro se tiene que hacer repositorio owner a la fing o crear una org del proyecto
+\url{https://gitlab.fing.edu.uy/diego.amorena/tesis}
+
+
+
+Tablero de Tareas: // en un futuro cambiarlo por un readonly link
+\url{https://trello.com/invite/b/67d23719de5ec54f6976dcf2/ATTI115d1f2970fa4f083c6468d14b435b5e71CFEFF9/backlog}
+
+
+
+\end{appendix}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\end{document}
+
+
+
+
+
+
+
+
+

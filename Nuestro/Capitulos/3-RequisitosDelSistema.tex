@@ -1,0 +1,177 @@
+\chapter{Requisitos del Sistema}
+\label{chapter:3-Requisitos del Sistema}
+
+En este capitulo se realizó un análisis requisitos y los requerimientos del sistema como a su vez los requisitos del presente proyecto. La sección se divide en requisitos funcionales y no funcionales del sistema como requisitos funcionales y no funcionales del proyecto. 
+
+
+\section{Requisitos del Sistema}
+\label{section:3-Requisitos del Sistema}
+
+En la siguiente sección se detallan los requisitos funcionales y no funcionales que el sistema.  
+
+\subsection{Requisitos No Funcionales}
+\label{subsection:3-Requisitos No Funcionales}
+
+Dentro de la sección de requisitos no funcionales se incluyen aspectos relacionados con la calidad, rendimiento, usabilidad y otras características que no están directamente relacionadas con las funcionalidades específicas del sistema.
+
+Resulta fundamental que todo el código publicado sea de código abierto. Esta decisión favorecería la participación activa de los estudiantes y evitaría que el sistema sea percibido como un producto exclusivo del grupo desarrollador. Se considera valioso que cualquier estudiante pueda estudiar, modificar y mejorar el código, así como colaborar en el mantenimiento y evolución de la plataforma. Dado el potencial y la complejidad del sistema, es deseable que el proyecto pase a constituirse como un recurso público de la comunidad estudiantil de la Facultad de Ingeniería. Esto contribuirá a mantenerlo vigente y en constante crecimiento a lo largo del tiempo. Asimismo, OpenFing, ampliamente utilizado por los estudiantes en la actualidad, también tuvo su origen como un proyecto de grado. Un enfoque de código cerrado dificultaría este proceso de apropiación colectiva. Contribuyendo con lo anteriormente mencionado, la mantenibilidad del código es crucial.  El código producido por debe ser de alta calidad y estar apropiadamente documentado para que cualquiera que quiera desarrollar sobre el mismo se adapte apropiadamente al proyecto.  
+
+Resulta fundamental que todo el código publicado sea de código abierto. Esta decisión favorecería la participación activa de los estudiantes y evitaría que el sistema sea percibido como un producto exclusivo del grupo desarrollador. Se considera valioso que cualquier estudiante pueda estudiar, modificar y mejorar el código, así como colaborar en el mantenimiento y evolución de la plataforma. Dado el potencial y la complejidad del sistema, es deseable que el proyecto pase a constituirse como un recurso público de la comunidad estudiantil de la Facultad de Ingeniería. Esto contribuirá a mantenerlo vigente y en constante crecimiento a lo largo del tiempo. Asimismo, OpenFing, ampliamente utilizado por los estudiantes en la actualidad, también tuvo su origen como un proyecto de grado. Un enfoque de código cerrado dificultaría este proceso de apropiación colectiva. Contribuyendo con lo anteriormente mencionado, la mantenibilidad del código es crucial. El código producido debe ser de alta calidad y estar apropiadamente documentado para que cualquiera que desee desarrollar sobre el mismo pueda adaptarse adecuadamente al proyecto.
+
+//desarrollar confiabilidad 
+
+//desarrollar trazabilidad
+En esta sección se detallan los requisitos no funcionales del sistema a desarrollar. Aquí se incluyen aspectos relacionados con la calidad, rendimiento, usabilidad y otras características que no están directamente relacionadas con las funcionalidades específicas del sistema.
+
+Resulta fundamental que todo el código publicado sea de código abierto. Esta decisión favorecería la participación activa de los estudiantes y evitaría que el sistema sea percibido como un producto exclusivo del grupo desarrollador. Se considera valioso que cualquier estudiante pueda estudiar, modificar y mejorar el código, así como colaborar en el mantenimiento y evolución de la plataforma. Dado el potencial y la complejidad del sistema, es deseable que el proyecto pase a constituirse como un recurso público de la comunidad estudiantil de la Facultad de Ingeniería. Esto contribuirá a mantenerlo vigente y en constante crecimiento a lo largo del tiempo. Asimismo, OpenFing, ampliamente utilizado por los estudiantes en la actualidad, también tuvo su origen como un proyecto de grado. Un enfoque de código cerrado dificultaría este proceso de apropiación colectiva. Contribuyendo con lo anteriormente mencionado, la mantenibilidad del código es crucial. El código producido debe ser de alta calidad y estar apropiadamente documentado para que cualquiera que desee desarrollar sobre el mismo pueda adaptarse adecuadamente al proyecto.
+
+
+\subsection{RNF1- Confiabilidad y Trazabilidad de Información}
+\label{subsection:3-RNF1- Confiabilidad y Trazabilidad de Información}
+\todo[inline,color=cyan]{Diego:añadir foto de ejemplo a lo que nos referimos.}
+
+
+\subsection{Requisitos Funcionales}
+Esta sección detalla las capacidades operativas y las funcionalidades específicas que el chatbot asistente pondrá a disposición de sus usuarios finales.
+
+El principal requisito funcional, y motivo del presente proyecto de grado, es el desarrollo de un chatbot interactivo basado en una arquitectura RAG. Esta funcionalidad permite que el asistente procese el corpus de transcripciones provenientes de OpenFing para ofrecer respuestas precisas y contextualizadas. El chatbot asistente no solo debe ser capaz de mantener un diálogo fluido, sino también integrar mecanismos de control sobre las fuentes utilizadas. Esto implica que, cuando la información solicitada no se encuentre en el repositorio específico, el sistema debe informar explícitamente al usuario que la respuesta se basa en el conocimiento general del modelo preentrenado y no en el material de las clases.
+
+La fiabilidad de las respuestas constituye un aspecto central del sistema. Teniendo esto en mente, cada respuesta generada a partir del repositorio deberá incluir referencias claras a las clases de donde se obtuvo la información, permitiendo al usuario verificar el origen del contenido consultado. Esto tiene el objetivo de fortalecer la confianza de los usuarios al sistema y de ayudar y agilizar la profundización de temas por el usuario final. 
+
+
+El contenido de OpenFING será nuestra base de conocimientos, por lo tanto, el sistema debe estar apropiadamente integrado con OpenFING. Esto implica ciertas funcionalidades que aseguran dinamismo y automatización a la hora de pasar el contenido de openFING a nuestro corpus. 
+
+El sistema debe de poder el chatbot asistente sintetizará el contenido de las clases grabadas, proporcionando a los estudiantes visiones generales coherentes que faciliten el repaso rápido de los temas. Esta capacidad de síntesis se ve potenciada por un sistema de búsqueda temática avanzada, el cual permite localizar conceptos específicos dentro del repositorio. Esta herramienta debe ser capaz de referenciar el instante exacto (timestamp) de los videos donde se aborda cada tema, permitiendo una navegación precisa a través del contenido audiovisual.
+
+Asimismo, el sistema deberá contar con una base de conocimientos dinámica y continuamente actualizable. Esto implica automatizar el proceso de incorporación de nuevo material mediante módulos encargados de descargar clases, generar transcripciones, crear embeddings e indexar la información para su posterior consulta. Del mismo modo, deberá disponer de un módulo generador de respuestas que utilice dicho conocimiento de forma eficiente y consistente.
+
+Finalmente, el sistema debe asegurar una cobertura integral del repositorio OpenFing, procesando la totalidad de las clases disponibles para garantizar que el conocimiento accesible sea exhaustivo. La arquitectura debe estar diseñada para ser extensible, permitiendo que la base de conocimientos crezca hacia otros proyectos como OpenUDELAR. De esta manera, el producto final se constituye como una herramienta centralizada que transforma el contenido de video en una base de datos textual consultable, resumible y totalmente trazable para el ámbito educativo.
+
+
+
+\subsection{RNF1: Investigación sobre Métodos de Búsqueda}
+\label{subsection:3-RNF1: Investigación sobre Métodos de Búsqueda}
+
+Analizar y comparar diferentes algoritmos y técnicas de búsqueda para determinar cuál ofrece mejores resultados en términos de precisión, relevancia y eficiencia en la recuperación de información.
+
+\subsection{RNF2: Estudio de Arquitecturas de Sistemas}
+\label{subsection:3-RNF2: Estudio de Arquitecturas de Sistemas}
+
+Investigar distintas arquitecturas de sistemas para identificar aquella que ofrezca el mejor rendimiento en el procesamiento y gestión de grandes volúmenes de datos y transcripciones, considerando aspectos de escalabilidad y eficiencia.
+
+\subsection{RNF3: Evaluación de Herramientas de Transcripción}
+\label{subsection:3-RNF3: Evaluación de Herramientas de Transcripción}
+
+Investigar y evaluar de manera exhaustiva la eficiencia y precisión de diferentes herramientas y tecnologías de transcripción automática (Automatic Speech Recognition, ASR) para convertir las clases grabadas en formato de texto estructurado y procesable. Es importante remarcar qué si bien las métricas en las cuales se evaluó cada uno de los modelos están disponibles en linea, el grupo decidió realizar una verificación para garantizar si las métricas obtenidas eran precisas.
+\\
+Para garantizar la selección de la herramienta más adecuada a la situación, se deberá realizar un proceso de evaluación que contemple los siguientes aspectos:
+\begin{itemize}
+    \item Análisis Cuantitativo
+    \item Análisis Cualitativo
+    \item Performarmance y Escálabilidad
+\end{itemize}
+
+Cabe destacar que el analisis de las herramientas \acrshort{asr} se realizará a pesar de que existen estudios y métricas publicadas al respecto. Los \acrshort{asr} son mayoritariamente entrenados en inglés y mucha de la literatura disponible se enfoca en este idioma.
+
+\subsubsection{Análisis Cuantitativo}
+\label{subsubsection:3-Análisis Cuantitativo}
+
+Para la evaluación de la calidad, el grupo se basa en cierta medida en estadísticas objetivas que señalizan cuán cercano es una transcripción realizada con respecto a la transcripción perfecta(\textit{ground-truth}), una en la cuál no hubo ningún error. Para ello se realizarán transcripciones manuales de referencia de un conjunto reducido de clases, las mismas servirán como base de comparación para evaluar la precisión de las herramientas \acrshort{asr} candidatas. La evaluación cuantitativa incluirá métricas estándar de la industria tales como:
+
+\begin{itemize}
+\item Word Error Rate: Calcula el número mínimo de inserciones, borrados y sustituciones de una palabra por otra, necesarios para transformar una frase en otra.\\
+$WER=\frac{S+W+D}{S+D+C}$
+Donde:
+\begin{itemize}
+    \item S es el número de substituciones realizadas,
+    \item D es el número de  realizadas,
+    \item I es el número de inserciones realizadas,
+    \item C es el número de palabras correctas.
+\end{itemize}
+
+\cite{ASR_Accuaracy}
+\todo[inline,color=cyan]{No logré encontrar un articulo que expliqué todas las estadísticas.}
+\item MER (Tasa de Error de Coincidencia): La tasa de error general, que combina sustituciones, eliminaciones e inserciones.
+
+\item WIL (Información de Palabra Perdida): Mide cuánto significado se pierde debido a errores (como sustituciones y eliminaciones).
+
+\item WIP (Información de Palabra Preservada): Lo opuesto a WIL; muestra cuánto de la información original de la palabra se mantuvo en la transcripción.
+
+\item CER (Tasa de Error de Carácter): El porcentaje de caracteres incorrectos (sustituciones, eliminaciones, inserciones) en comparación con el texto de referencia.
+    
+\end{itemize}
+
+\subsubsection{Análisis Cualitativo}
+\label{subsubsection:3-Análisis Cualitativo}
+
+
+Complementariamente, se realizará un análisis cualitativo de las transcripciones generadas por cada herramienta. Es importante complementar los datos y estadísticas descriptos en \autoref{subsubsection:3-Análisis Cualitativo} con un enfoque cualitativo que indique las posibles falencias que un \acrshort{asr} puede tener. 
+
+Los aspectos a evaluar son:
+\begin{itemize}
+    \item Nombres Propios o inventados, el ASR debe transcribir correctamente nobres propios de personas como también nombres inventados (ejemplos: FING, UdelaR, \Gls{OpenFing} etcetera).
+    \item Manejo de jerga académica: Precisión en la transcripción de términos especializados de diferentes áreas del conocimiento (ejemplos: Teorema de Bernulli, Teorema de Morgan, Ley de Ohm, etcetera).
+    \item Identificar la calidad a situaciones específicas, como podrian ser acentos muy marcados, sonidos de fondo intensos u otros factores que puedan afectar la precisión.
+    \item Uso de otros idiomas. Es común que utilizar palabras o conceptos que provienen del inglés u otros idiomas. También hay clases, workshops, y conferencias enteras realizadas en otros idiomas, como por ejemplo \cite{workshopOpenFing}. El comportamiento del ASR en estos casos debe ser conocido.
+    
+\end{itemize}
+
+
+\subsection{Evaluación de Performance y Escalabilidad}
+\label{subsection:3-Evaluación de Performance y Escalabilidad}
+
+
+Se analizará el rendimiento computacional de cada herramienta considerando. Considerando el volumen de contenideo a procesar, es fundamental que la herramienta seleccionada sea eficiente y escalable. Principalmente se deberá evaluar la velocidad de transcripcion en una unidad de tiempo determinada en un hardware especificó. 
+
+Algo importante a recalcar es que esté punto es especialmente importante en esta primera version del sistema. En esta primera version, buscamos transcribir todas las clases del repositorio \Gls{OpenFing}, si la herramienta quedá funcional posteriormente a esta etapa, el volumen de clases a transcribir bajaran, debido a que solo habría que transcribir las nuevas clases que se vayan subienda al repositorio. 
+
+\subsection{RNF4: Comparación de Modelos de Lenguaje de Gran Escala}
+\label{subsection:3-RNF4: Comparación de Modelos de Lenguaje de Gran Escala}
+
+
+Para seleccionar el modelo de lenguaje de gran escala (LLM) más adecuado que servirá como núcleo de procesamiento de lenguaje natural en nuestro sistema, se realizará una evaluación comparativa basada en criterios técnicos y operativos clave. Dado el papel fundamental que desempeñará el LLM en la funcionalidad y la experiencia del usuario, esta comparación es un paso crítico en la fase de diseño. La decisión final no está predefinida y se tomará únicamente tras analizar objetivamente el rendimiento de los candidatos (como GPT-4, Claude 3, Llama 3, entre otros) con respecto a los siguientes puntos:
+
+\begin{itemize}
+    \item \textbf{Calidad de la Respuesta: Extensión y Precisión.} Este es el criterio principal para medir la utilidad del modelo. Se evaluará no solo la exactitud factual y la coherencia lógica de las respuestas (precisión), sino también su completitud, nivel de detalle y capacidad para abordar todos los aspectos de una consulta compleja (extensión). Un modelo debe ser capaz de proporcionar respuestas que sean a la vez correctas e informativamente ricas para ser verdaderamente útil.
+    
+    \item \textbf{Tamaño de Contexto que se puede Otorgar.} El contexto, medido en tokens, determina la cantidad de información (como conversaciones previas, documentos de referencia o instrucciones detalladas) que el modelo puede procesar en una sola interacción. Un contexto más grande permite mantener conversaciones más largas y coherentes, así como analizar documentos extensos sin perder información crucial. Este punto es vital para garantizar la versatilidad y profundidad de las interacciones con el sistema.
+    
+    \item \textbf{Eficiencia de Costo y Número de Preguntas Gratuitas.} La sostenibilidad económica del proyecto es un requisito no funcional esencial. Se comparará el costo por solicitud o por token de cada modelo, así como cualquier límite de uso gratuito o tier inicial que ofrezcan los proveedores. Este análisis asegurará que la solución seleccionada no solo sea técnicamente superior, sino también económicamente viable para su implementación y escalabilidad a largo plazo.
+\end{itemize}
+
+La razón fundamental para analizar y comparar estos tres puntos específicos es lograr una decisión de diseño equilibrada. No se busca simplemente el modelo "más potente" en abstracto, sino el que ofrezca el mejor equilibrio entre capacidades de alto rendimiento (calidad y contexto) y viabilidad operativa (costo). Un modelo con una calidad de respuesta excelente pero un costo prohibitivo no sería sostenible, así como un modelo económico pero con respuestas pobres o un contexto limitado no cumpliría con los objetivos funcionales del sistema. Por lo tanto, esta evaluación multidimensional nos permitirá identificar el candidato que mejor se alinee con los requisitos técnicos y las restricciones prácticas de nuestro proyecto.
+
+\subsection{RNF5: Análisis de Requisitos de Infraestructura (Opcional)}
+\label{subsection:3-RNF5: Análisis de Requisitos de Infraestructura (Opcional)}
+
+Investigar los requisitos de hardware y presupuesto necesarios para poner el sistema en producción, incluyendo consideraciones sobre capacidad de procesamiento, almacenamiento y costos operativos.
+\subsection{RNF6: Exploración de Fine-Tuning de Modelos (Opcional)}
+\label{subsection:3-RNF6: Exploración de Fine-Tuning de Modelos (Opcional)}
+
+Investigar la viabilidad de realizar Supervised Fine-Tuning (SFT) sobre algún modelo de instrucción de código abierto para optimizar el rendimiento del sistema en tareas específicas del dominio educativo.
+
+
+\subsection{Requisitos Funcionales}
+\label{subsection:3-Requisitos Funcionales}
+
+
+\subsubsection{RF1: Desarrollo de un Chatbot Interactivo}
+\label{subsubsection:3-RF1: Desarrollo de un Chatbot Interactivo}
+
+Desarrollar un chatbot interactivo basado en el corpus actual de \Gls{OpenFing}. El chatbot deberá de referenciar y mostrar directamente las clases de \Gls{OpenFing}. E que utilice transcripciones de clases provenientes principalmente de \Gls{OpenFing}, con la capacidad de expandirse posteriormente al conjunto completo de videos del proyecto OpenUDELAR. El chatbot deberá implementar una arquitectura RAG (Retrieval-Augmented Generation) para proporcionar respuestas contextualizadas.
+\subsubsection{RF2: Generación Automática de Resúmenes}
+\label{subsubsection:3-RF2: Generación Automática de Resúmenes}
+
+Implementar una funcionalidad que permita generar resúmenes automáticos de las clases mediante tecnologías de procesamiento de lenguaje natural, proporcionando síntesis coherentes y precisas del contenido educativo.
+\subsubsection{RF3: Sistema de Búsqueda Temática Avanzada}
+\label{subsubsection:3-RF3: Sistema de Búsqueda Temática Avanzada}
+
+Desarrollar un sistema de búsqueda que permita a los usuarios localizar clases específicas que contengan temáticas particulares, con la capacidad de indicar el minuto exacto en el que se aborda cada tema dentro del contenido audiovisual.
+\subsubsection{RF4: Cobertura del Repositorio \Gls{OpenFing}}
+\label{subsubsection:3-RF4: Cobertura del Repositorio OpenFing}
+
+Garantizar que el sistema procese e integre la totalidad de las clases disponibles en el repositorio \Gls{OpenFing}, asegurando una cobertura completa del material educativo. 
+
+
+
+

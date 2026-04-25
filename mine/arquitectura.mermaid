@@ -1,0 +1,29 @@
+flowchart TD
+    OF[(OpenFing\nPlatform)] -->|URLs & metadata| SC[Scraper]
+    SC -->|video index| DL[Downloader]
+    DL -->|video files| TR[Transcriber\nWhisper]
+    TR -->|texto + timestamps| EMB[Embeddings\nMultilingual]
+    EMB -->|vectores| VDB[(PostgreSQL\n+ PGVector)]
+
+    subgraph Backend · FastAPI
+        GEN[Generator\nLangChain + Mistral]
+        VDB -->|chunks relevantes| GEN
+    end
+
+    subgraph Frontend · React + TS
+        UI[Chat UI]
+    end
+
+    USER([Estudiante]) -->|pregunta| UI
+    UI -->|JWT auth + query| GEN
+    GEN -->|respuesta + fuentes| UI
+    UI --> USER
+
+    style OF fill:#f5f5f5
+    style VDB fill:#dbeafe
+    style USER fill:#dcfce7
+
+
+El pipeline tiene dos fases:
+- **Ingesta** (fila superior): Scraper → Downloader → Transcriber → Embeddings → VectorDB — corre offline para indexar todo el contenido de OpenFing.
+- **Consulta** (fila inferior): el estudiante envía una pregunta → Generator recupera chunks relevantes → el LLM genera una respuesta fundamentada con referencias a las clases fuente → se retorna a la UI.

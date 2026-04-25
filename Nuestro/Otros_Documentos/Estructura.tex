@@ -1,0 +1,359 @@
+% Template LaTeX para Informes de Proyectos de Grado de Computación
+% InCo, Facultad de Ingeniería, Universidad de la República
+% 06/2023
+
+\documentclass{../../prgrado}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Datos del Proyecto:
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% título del proyecto (debe escribirse en minúscula, con excepción de la
+% letra inicial de la primera palabra y nombres propios)
+\title{Modulo Generativo basado en \Gls{OpenFing}.}                   
+
+% autores
+\author{Diego Amorena, Guido Dinello}  
+
+% fecha de la defensa
+\date{\today}                                 
+
+% supervisor
+\supervisor{Luis Chiruzzo}                
+
+% cosupervisor (comentar si no tiene)
+\cosupervisor{Libertad Tansinni}
+
+% licencia creative commons del documento
+% opciones: by, by-sa, by-nd, by-nc, by-nc-sa y by-nc-nd
+% opción por defecto: by-nc-nd versión 4.0
+\cclicense{by}{4.0}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%links con colores 
+\hypersetup{
+  colorlinks   = true,
+  urlcolor     = blue,
+  linkcolor    = blue,
+  citecolor    = red
+}
+
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Parte inicial
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\frontmatter % numeración en romanos, capitulos sin numerar
+
+% carátula
+\maketitle
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% agradecimientos
+\chapter*{Agradecimientos}
+
+Agradecer, siempre es bueno agradecer.
+%\textcolor<2>{orange}{Agradecimientos a Libertad Tansinni y Luis Chiruzzo}
+
+
+
+\chapter*{Resumen}
+\begin{itemize}
+    \item Una breve mención del estado del arte. Donde mencionaremos que las herramientas de inteligencia artificial se han vuelto esenciales en muchos ámbitos tanto profesionales como educativos.
+    \item La falencias que tiene estas herramientas, que no siempre usan fuentes confiables y tienden a alucinaciones. 
+    \item La necesidad, potencial y el valor de una herramienta, confiable y especifica, que apoye al estudiante de la FING en su aprendizaje durante su carrera educativa por la facultad.
+    \item ¿Que debería incluir una herramienta como la mencionada?
+    Mencionar que debería de:
+    \begin{itemize}
+        \item Debe incluir una base vectorial con los cursos de \Gls{OpenFing}.
+        \item Debe incluir un generador de embeddings, tanto para prompts como para chunks/cursos.
+        \item Debe incluir un generador una búsqueda de recuperación contextual.
+        \item Debe incluir una generación de respuestas a partir de prompts.
+    \end{itemize}
+
+    \item ¿Como evaluaríamos si la herramienta cumple lo especificado?
+    \begin{itemize}
+        \item Debe responder coherentemente en base a los cursos de \gls{OpenFing}.
+        \item Debe referenciar al contexto  utilizado. Para verificar la respuesta o profundizar en el tema. 
+        \item Debe dejar en claro que no se encontró el contexto requerido cuando es el caso.
+    \end{itemize}
+\end{itemize}
+
+
+\hfill \break
+\keywords{A decidir}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% índice
+\tableofcontents
+\newpage
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Parte central
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\mainmatter %numeración en arábicos, numerar capítulos 
+
+% introducción
+\chapter{Introducción}
+
+En la introducción se deberá:
+\begin{itemize}
+    \item  Explayar en el Estado del Arte.
+    \item Explicar algunas en detalle algunas de las posibles falencias o problemas que se generar al utilizar modelos que no fueron entrenados con contenido educativo o que no fueron entrenados con contenido local/regional. 
+    Ejemplo de problemas: nombres, enfoque o Convenciones, distintos que nosotros(Udelar o Uruguay) podamos usar comparado a un ámbito internacional. 
+    Exceso de confianza por los modelos a sus respuesta. 
+    Ejemplo: Un casó de valor puede ser que el Metodo Simplex(Introducción a la Investigación Operativa) se da de manera distinta.
+    \item Motivación del proyecto. Mencionar potencial y valor que le añadiría a los estudiantes. 
+    \item Definición de una herramienta RAG
+    \item Mencionar los dos Proyectos previos que realizaron en WEBIR.
+    \item Se deberá detallar el scope del proyecto, el alcance que nos propusimos. Se deberá detallar cada uno de los parámetros de entrada y de los parámetros que se investigaron y evaluaron para llegar a un mejor resultado.
+    \item Se deberá detallar en base a que evaluamos un modelo y en que nos basaremos para fundamentar que un resultado sea mejor o peor que otro.
+    \item  Mencionar el procesos que se llevó a cabo.
+    \item Mencionar si el desarrollo de dicha herramienta fue exitoso.
+\end{itemize}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+% antecedentes
+\chapter{Revisión de antecedentes}
+
+Acá se pueden revisar casos uruguayos de herramientas RAG. 
+En caso de no encontrar ningún caso uruguayo, se podrán detallar casos educativos similares.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\chapter{Marco Teórico}
+
+Aquí se explicaran cada uno de los conceptos utilizados en el documento.
+
+\section{Conceptos Generales}
+Conceptos necesarios generales que se precisan para entender el proyecto.
+\subsection{Tokenizacion}
+\subsection{Modelo de Lenguaje}
+\subsection{Red Neuronal}
+\subsection{Red Neuronal de Aprendizaje Profundo}
+\subsection{Grandes Modelos de Lenguage}
+\
+\subsection{Promt}
+\subsection{Embbeding}
+\subsection{Chunks}
+
+\subsection{Retrieval-Augmented Generation(RAG)}
+
+\section{Estadísticas de Evaluación}
+Acá se definirá cada una de las estadísticas que se utilizaran posteriormente en Evaluación/Experimentación.
+\subsection{Word Error Rate}
+\subsection{Word Error Rate}
+
+\section{Antecedentes Relevantes}
+
+\subsubsection{OpenFing}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\chapter{Desarrollo}
+Aquí se mencionará procesos que no entran dentro del producto final pero fueron necesarios para el desarrollo de la misma. 
+
+\section{Scraping de OpenFing}
+Descripción de lo que involucra este proceso.
+
+\subsection{Problemas encontrados}
+Acá se puede incluir los errores que se encontraron durante el scraping del proceso. 
+
+Por ejemplo:
+
+La mayoría de videos siguen esta estructura, pero no todos.\\
+\url{https://open.fing.edu.uy/media/Acronimo del curso/Acronimo del curso_Numero_de_Clase.mp4}
+
+El proceso de scraping se hizo ligeramente más largo para evitar este problema de buscar video en urls equivocados.
+
+\subsection{Mejoras Implementadas}
+
+Aquí se detallaran las mejoras que recibió el proceso a partir de los problemas. 
+Por ejemplo: 
+
+Se empezó a ingresar a cada una de las paginas de los videos, y no solo a la pagina del curso.
+\subsection{Mejoras Posibles}
+Aquí se detallaran las mejoras pendientes.
+Por ejemplo: 
+Cambiar el método de la descarga dependiendo de si el host es youtube o \gls{openfing}.
+
+\section{Transcripción de clases}
+
+Descripción de lo que involucra este proceso.
+\subsection{Problemas encontrados}
+El modelos de whisper python es:
+    Muy lento.
+    Repite el texto anterior cuando encuentra silencio. 
+    Problemas de implementación en Docker cuando no se tiene disponible una GPU (pythorch).
+\subsection{Mejoras Implementadas}
+Cambio de modelos a whisper.cpp y faster-whisper. Si se transforma el video a otros formatos se puede eliminar el video y transcribir mar rápido. 
+\subsection{Mejoras Posibles}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\chapter{Tecnologías}
+Aquí se detallaran las tecnologías que se decidieron utilizar como también aquellas que fueron descartadas.
+\section{Tecnologías Utilizadas}
+
+Se tendrá un listado de las tecnologías seleccionadas. Sumado con una breve descripción de que son y para que se utilizaron dentro del proyecto.
+\subsection{Lenguajes}
+\subsection{Método de Transcripción}
+\subsection{Generador de embbedings}
+\subsection{Base de datos vectorial}
+\subsection{Generador de respuestas}
+\subsection{Frontend}
+\section{Tecnologías Descartadas}
+
+Se tendrá un listado de las tecnologías utilizadas pero descartadas durante el proceso de desarrollo o previo al mismo con el motivo por el cual se terminaron descartando.  
+
+\subsection{Lenguajes}
+\subsection{Método de Transcripción}
+\subsection{Base de datos vectorial}
+\subsection{Generador de embbedings}
+\subsection{Frontend}
+
+
+\chapter{Arquitectura}
+Aquí se tendrá un diagrama uml de la arquitectura final del proyecto.
+\section{Diseño}
+Aqui se digramará la arquitectura y se incluira una  breve descripcion en lo necesario. 
+\section{Decisiones de Arquitectura}
+Aquí se explicaran algunas de las decisiones que se tomaron acerca de la arquitectura del proyecto. 
+\subsection{¿Arquitecturas Descartadas?Opcional}
+Aquí se puede explicar por que se descartaron ciertas arquitecturas que fueron candidatas.
+
+
+\chapter{Funcionalidades realizadas}
+En esta sección se discutirá cada una de las funcionalidades realizadas. 
+\section{Scraping de OpenFing}
+En esta sección se discutirá las funcionalidades que no llegaron a hacer que entran dentro del scope
+\subsection{Funcionalidades no culminadas}
+\section{Descargado de Clases}
+\section{Transcription}
+\section{Generator}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% experimentación
+
+
+\chapter{Experimentación}
+Aquí se detalla las experimentaciones que se realizaron. 
+Involucra definición de cada uno de los parámetros de entrada y \gls{contexto} de donde se utilizaría en nuestro proyecto. 
+
+\section{Modelos de Transcripción}
+Benchmarks para los modelos de transcripción.
+\subsection{Método de Evaluación}
+Para esta sección se transcribieron ciertas clases y en base a dichas transcripciones se evaluaron los modelos. Ademas se comparo el tiempo de ejecución de la transcripción de distintos modelos y distintas librerías. 
+
+\subsection{Modelos}
+\subsubsection{Resultados Modelo Tiny}
+\subsubsection{Resultados Modelo Base}
+\subsubsection{Resultados Modelo Small}
+\subsubsection{Resultados Modelo Medium}
+\subsubsection{Resultados Modelo Large}
+\subsection{OpenAI-Whiper}
+\subsection{Whisper.cpp}
+\subsection{faster-whisper}
+\subsection{Visualización}
+Gráfica de los modelos y librerias que compara las estadisticas motradas de manera visual.
+
+\subsection{Conclusiones}
+Evaluación de resultados de las metricas y del tiempo. 
+
+
+
+\section{Recuperación de Búsqueda}
+\subsection{Resultados}
+Anexo a ejemplo.
+
+\subsection{Conclusiones}
+
+\section{Modelos de Generación}
+Anexo a ejemplo.
+
+
+\subsection{Conclusiones}
+
+\subsection{Métricas}
+\subsection{Resultados}
+Análisis de las respuestas
+Cuantitativo y Cualitativo.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%conclusiones
+\chapter{Conclusiones y Trabajo Futuro}
+
+Se mencionara como concluyo el proyecto.
+Se mencionara como mejorar el proyecto.
+Se mencionara como mejorar el proceso de desarrollo.
+Se mencionara que hubiesemos cambiado si empezásemos de 0.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Parte final
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+{ % inicio backmatter
+
+\backmatter % no numerar capítulos 
+
+% referencias bibliográficas
+
+\newpage
+\bibliographystyle{apacite}
+\bibliography{referencias}
+
+} % fin backmatter
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% anexos
+\begin{appendix}
+\chapter{Organizacion}
+\section{Recursos Utilizados}
+\subsection{Repositorio}
+\url{https://gitlab.fing.edu.uy/diego.amorena/tesis}
+\end{appendix}
+\begin{appendix}
+
+\chapter{Anexos de herramienta}
+\section{Manual de Usuario}
+
+\section{Métodos expuestos}
+
+\section{Testing Realizados}
+\section{¿Known Bugs?}
+
+\subsection{Tablero de Tareas}
+\url{https://trello.com/invite/b/67d23719de5ec54f6976dcf2/ATTI115d1f2970fa4f083c6468d14b435b5e71CFEFF9/backlog}
+\end{appendix}
+\begin{appendix}
+\chapter{Resultados}
+Aquí se incluyen resultados varios
+\end{appendix}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\end{document}

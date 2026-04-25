@@ -1,0 +1,617 @@
+\chapter{Anexo IV-Manual de Usuario}
+\label{chapter:A-3-Manual de Usuario}
+\thispagestyle{empty}
+
+\newpage
+\tableofcontents
+\newpage
+
+\section{Introducción}
+\label{section:A-3-Introducción}
+
+
+Este manual describe el uso de la \Gls{api} de servicios en la plataforma, un sistema diseñado para gestionar cursos, lecciones, transcripciones y conversaciones mediante inteligencia artificial. La \Gls{api} proporciona funcionalidades de scraping, generación de respuestas mediante RAG (Retrieval-Augmented Generation), transcripción de contenido y gestión de usuarios.
+
+
+
+\subsection{URL Base}
+\label{subsection:A-3-URL Base}
+
+Todos los endpoints de la \Gls{api} utilizan la siguiente \acrshort{url} base:
+
+\begin{lstlisting}[language=bash]
+http://localhost:8000
+\end{lstlisting}
+
+\section{Códigos de Estado HTTP}
+\label{section:A-3-Códigos de Estado HTTP}
+
+La \Gls{api} utiliza códigos de estado\acrshort{http} estándar:
+
+\begin{table}[h]
+\centering
+\begin{tabular}{|c|l|p{7cm}|}
+\hline
+\textbf{Código} & \textbf{Estado} & \textbf{Descripción} \\
+\hline
+200 & OK & Solicitud exitosa \\
+\hline
+201 & Created & Recurso creado exitosamente \\
+\hline
+400 & Bad Request & Solicitud mal formada o parámetros inválidos \\
+\hline
+401 & Unauthorized & Autenticación requerida o \gls{token} inválido \\
+\hline
+403 & Forbidden & Sin permisos para acceder al recurso \\
+\hline
+404 & Not Found & Recurso no encontrado \\
+\hline
+500 & Internal Server Error & Error interno del servidor \\
+\hline
+\end{tabular}
+\caption{Códigos de estado \acrshort{http} comunes}
+\end{table}
+
+\section[Métodos de la api]{Métodos de la \Gls{api}}
+\label{Métodos de la api}
+
+Esta sección describe todos los métodos disponibles en la \Gls{api}, organizados por categoría funcional.
+
+\subsection{Autenticación}
+\label{subsection:A-3-Autenticación}
+
+Para utilizar los endpoints protegidos, debe incluir el \gls{token} de acceso en el encabezado:
+
+\begin{lstlisting}[language=bash]
+curl -X GET http://localhost:8000/endpoint \
+  -H "Authorization: Bearer YOUR_ACCESS_TOKEN"
+\end{lstlisting}
+
+\subsubsection{Health Check}
+\label{Health Check}
+
+\textbf{Endpoint:} \texttt{GET /health}
+
+\textbf{Autenticación:} No requerida
+
+\textbf{Descripción:} Verifica que el servicio está activo y funcionando correctamente.
+
+\textbf{Códigos de Respuesta:}
+\begin{itemize}
+    \item \texttt{200}: Successful Response
+\end{itemize}
+
+\textbf{Ejemplo:}
+
+\begin{lstlisting}[language=bash]
+curl -X GET http://localhost:8000/health
+\end{lstlisting}
+
+\subsubsection{Registro de usuario}
+\label{subsubsection:A-3-Registro de usuario}
+
+\textbf{Endpoint:} \texttt{POST /register}
+
+\textbf{Autenticación:} No requerida
+
+\textbf{Descripción:} Crea una nueva cuenta de usuario con email, nombre de usuario y contraseña. Todos los campos son obligatorios y el username/email deben ser únicos.
+
+\textbf{Códigos de Respuesta:}
+\begin{itemize}
+    \item \texttt{201}: Successful Response
+    \item \texttt{422}: Validation Error
+\end{itemize}
+
+\textbf{Ejemplo:}
+
+\begin{lstlisting}[language=bash]
+curl -X POST http://localhost:8000/register \
+  -H "Content-Type: application/json" \
+  -d '{
+    "email": "usuario@example.com",
+    "username": "mi_usuario",
+    "password": "mi_password_seguro"
+  }'
+\end{lstlisting}
+
+\subsubsection{Inicio de sesión}
+\label{subsubsection:Inicio de sesión}
+
+\textbf{Endpoint:} \texttt{POST /login}
+
+\textbf{Autenticación:} No requerida
+
+\textbf{Descripción:} Inicia sesión con username/password para recibir un \gls{token} JWT de acceso para solicitudes autenticadas.
+
+\textbf{Códigos de Respuesta:}
+\begin{itemize}
+    \item \texttt{200}: Successful Response
+    \item \texttt{422}: Validation Error
+\end{itemize}
+
+\textbf{Ejemplo:}
+
+\begin{lstlisting}[language=bash]
+curl -X POST http://localhost:8000/login \
+  -H "Content-Type: application/json" \
+  -d '{
+    "username": "mi_usuario",
+    "password": "mi_password_seguro"
+  }'
+\end{lstlisting}
+
+\textbf{Respuesta esperada:}
+
+\begin{lstlisting}[language=json]
+{
+  "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
+  "refresh_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
+  "token_type": "bearer"
+}
+\end{lstlisting}
+
+\subsubsection{Renovación de token}
+\label{subsubsection:Renovación de token}
+
+\textbf{Endpoint:} \texttt{POST /refresh}
+
+\textbf{Autenticación:} No requerida (utiliza refresh \gls{token})
+
+\textbf{Descripción:} Genera un nuevo \gls{token} de acceso a partir del refresh \gls{token}.
+
+\textbf{Códigos de Respuesta:}
+\begin{itemize}
+    \item \texttt{200}: Successful Response
+    \item \texttt{422}: Validation Error
+\end{itemize}
+
+\textbf{Ejemplo:}
+
+\begin{lstlisting}[language=bash]
+curl -X POST http://localhost:8000/refresh \
+  -H "Content-Type: application/json" \
+  -d '{
+    "refresh_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+  }'
+\end{lstlisting}
+
+\subsection{Servicios de Scraper}
+\label{subsection:A-3-Servicios de Scraper}
+
+\subsubsection{Sincronizar todos los cursos}
+\label{subsubsection:A-3-Sincronizar todos los cursos}
+
+\textbf{Endpoint:} \texttt{POST /v1/services/scraper/sync-all}
+
+\textbf{Autenticación:} Requerida
+
+\textbf{Descripción:} Realiza scraping de todos los cursos y lecciones desde \Gls{OpenFing} y los sincroniza con la base de datos.
+
+\textbf{Códigos de Respuesta:}
+\begin{itemize}
+    \item \texttt{200}: Successful Response
+\end{itemize}
+
+\textbf{Ejemplo:}
+
+\begin{lstlisting}[language=bash]
+curl -X POST http://localhost:8000/v1/services/scraper/sync-all \
+  -H "Authorization: Bearer YOUR_ACCESS_TOKEN"
+\end{lstlisting}
+
+\subsubsection{Sincronizar un curso específico}
+\label{subsubsection:A-3-Sincronizar un curso específico}
+
+\textbf{Endpoint:} \texttt{POST /v1/services/scraper/sync-course/\{course\_code\}}
+
+\textbf{Autenticación:} Requerida
+
+\textbf{Parámetros de ruta:}
+\begin{itemize}
+    \item \texttt{course\_code} (string, requerido): Código del curso a sincronizar
+\end{itemize}
+
+\textbf{Descripción:} Realiza scraping de un curso específico y sus lecciones desde \Gls{OpenFing}.
+
+\textbf{Códigos de Respuesta:}
+\begin{itemize}
+    \item \texttt{200}: Successful Response
+    \item \texttt{422}: Validation Error
+\end{itemize}
+
+\textbf{Ejemplo:}
+
+\begin{lstlisting}[language=bash]
+curl -X POST http://localhost:8000/v1/services/scraper/sync-course/PROG1 \
+  -H "Authorization: Bearer YOUR_ACCESS_TOKEN"
+\end{lstlisting}
+
+\subsection{Servicios de Generación (Chat IA)}
+\label{subsection:A-3-Servicios de Generación (Chat IA)}
+
+\subsubsection{Enviar mensaje al chat}
+\label{subsubsection:A-3-Enviar mensaje al chat}
+
+\textbf{Endpoint:} \texttt{POST /v1/services/generator/chat}
+
+\textbf{Autenticación:} Requerida
+
+\textbf{Descripción:} Procesa un mensaje de chat utilizando RAG (Retrieval-Augmented Generation). Soporta usuarios anónimos (efímeros), usuarios JWT y usuarios con \Gls{api} key.
+
+\textbf{Códigos de Respuesta:}
+\begin{itemize}
+    \item \texttt{200}: Successful Response
+    \item \texttt{422}: Validation Error
+\end{itemize}
+
+\textbf{Ejemplo:}
+
+\begin{lstlisting}[language=bash]
+DATA='{
+    "message": "Explícame qué es una variable en programación",
+    "conversation_id": 1,
+    "course_code": "PROG1"
+  }'
+curl -X POST http://localhost:8000/v1/services/generator/chat \
+  -H "Authorization: Bearer YOUR_ACCESS_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d "\$DATA"
+\end{lstlisting}
+
+\subsubsection{Enviar feedback sobre un mensaje}
+\label{subsubsection:A-3-Enviar feedback sobre un mensaje}
+
+\textbf{Endpoint:} \texttt{POST /v1/services/generator/message/\{message\_id\}/feedback}
+
+\textbf{Autenticación:} Requerida
+
+\textbf{Parámetros de ruta:}
+\begin{itemize}
+    \item \texttt{message\_id} (integer, requerido): ID del mensaje
+\end{itemize}
+
+\textbf{Descripción:} Permite al usuario proporcionar feedback sobre un mensaje del sistema.
+
+\textbf{Códigos de Respuesta:}
+\begin{itemize}
+    \item \texttt{200}: Successful Response
+    \item \texttt{422}: Validation Error
+\end{itemize}
+
+\textbf{Ejemplo:}
+
+\begin{lstlisting}[language=json]
+curl -X POST http://localhost:8000/v1/services/generator/message/123/feedback \
+  -H "Authorization: Bearer YOUR_ACCESS_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "rating": 5,
+    "comment": "Respuesta muy {\'u}til y clara"
+  }'
+\end{lstlisting}
+
+\subsection{Servicios de Transcripción}
+\label{subsection:A-3-Servicios de Transcripción}
+
+
+\subsubsection{Crear o actualizar transcripción}
+\label{subsubsection:A-3-Crear o actualizar transcripción}
+
+\textbf{Endpoint:} \texttt{POST /v1/services/transcriber/transcribe}
+
+\textbf{Autenticación:} Requerida
+
+\textbf{Descripción:} Crea o actualiza la transcripción de una lección específica de un curso.
+
+\textbf{Códigos de Respuesta:}
+\begin{itemize}
+    \item \texttt{201}: Successful Response
+    \item \texttt{422}: Validation Error
+\end{itemize}
+
+\textbf{Ejemplo:}
+
+\begin{lstlisting}[language=bash]
+curl -X POST http://localhost:8000/v1/services/transcriber/transcribe \
+  -H "Authorization: Bearer YOUR_ACCESS_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "course_code": "PROG1",
+    "lesson_number": 1,
+    "model_size": "medium"
+  }'
+\end{lstlisting}
+
+\subsubsection{Listar transcripciones}
+\label{subsubsection:A-3-Listar transcripciones}
+
+\textbf{Endpoint:} \texttt{GET /transcriptions}
+
+\textbf{Autenticación:} Requerida
+
+\textbf{Parámetros de consulta:}
+\begin{itemize}
+    \item \texttt{course\_code} (opcional): Filtrar por código de curso
+\end{itemize}
+
+\textbf{Descripción:} Lista todas las transcripciones disponibles con filtrado opcional.
+
+\textbf{Códigos de Respuesta:}
+\begin{itemize}
+    \item \texttt{200}: Successful Response
+    \item \texttt{422}: Validation Error
+\end{itemize}
+
+\textbf{Ejemplo:}
+
+\begin{lstlisting}[language=bash]
+# Listar todas las transcripciones
+curl -X GET http://localhost:8000/transcriptions \
+  -H "Authorization: Bearer YOUR_ACCESS_TOKEN"
+
+# Filtrar por curso
+curl -X GET "http://localhost:8000/transcriptions?course_code=PROG1" \
+  -H "Authorization: Bearer YOUR_ACCESS_TOKEN"
+\end{lstlisting}
+
+\subsection{Gestión de Conversaciones}
+\label{subsection:A-3-Gestión de Conversaciones}
+
+\subsubsection{Crear una conversación}
+\label{subsubsection:A-3-Crear una conversación}
+
+\textbf{Endpoint:} \texttt{POST /conversations}
+
+\textbf{Autenticación:} Requerida
+
+\textbf{Descripción:} Crea una nueva conversación para el usuario autenticado.
+
+\textbf{Códigos de Respuesta:}
+\begin{itemize}
+    \item \texttt{201}: Successful Response
+    \item \texttt{422}: Validation Error
+\end{itemize}
+
+\textbf{Ejemplo:}
+
+\begin{lstlisting}[language=json]
+curl -X POST http://localhost:8000/conversations \
+  -H "Authorization: Bearer YOUR_ACCESS_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "title": "Dudas sobre Programaci{\'o}n 1"
+  }'
+\end{lstlisting}
+
+\subsubsection{Listar conversaciones}
+\label{subsubsection:A-3-Listar conversaciones}
+
+\textbf{Endpoint:} \texttt{GET /conversations}
+
+\textbf{Autenticación:} Requerida
+
+\textbf{Parámetros de consulta:}
+\begin{itemize}
+    \item \texttt{limit} (integer, opcional): Límite de resultados por página
+    \item \texttt{offset} (integer, opcional): Desplazamiento para paginación
+\end{itemize}
+
+\textbf{Descripción:} Recupera una lista paginada de conversaciones del usuario.
+
+\textbf{Códigos de Respuesta:}
+\begin{itemize}
+    \item \texttt{200}: Successful Response
+    \item \texttt{422}: Validation Error
+\end{itemize}
+
+\textbf{Ejemplo:}
+
+\# Sin paginación
+\begin{lstlisting}[language=bash]
+curl -X GET http://localhost:8000/conversations \
+  -H "Authorization: Bearer YOUR_ACCESS_TOKEN"
+\end{lstlisting}
+\# Con paginación
+\begin{lstlisting}[language=bash]
+curl -X GET "http://localhost:8000/conversations?limit=10&offset=0" \
+  -H "Authorization: Bearer YOUR_ACCESS_TOKEN"
+\end{lstlisting}
+
+\subsubsection{Obtener mensajes de una conversación}
+\label{subsubsection:A-3-Obtener mensajes de una conversación}
+
+\textbf{Endpoint:} \texttt{GET /conversations/\{conversation\_id\}/messages}
+
+\textbf{Autenticación:} Requerida
+
+\textbf{Parámetros de ruta:}
+\begin{itemize}
+    \item \texttt{conversation\_id} (integer, requerido): ID de la conversación
+\end{itemize}
+
+\textbf{Descripción:} Recupera todos los mensajes de una conversación específica del usuario.
+
+\textbf{Códigos de Respuesta:}
+\begin{itemize}
+    \item \texttt{200}: Successful Response
+    \item \texttt{422}: Validation Error
+\end{itemize}
+
+\textbf{Ejemplo:}
+
+\begin{lstlisting}[language=bash]
+curl -X GET http://localhost:8000/conversations/1/messages \
+  -H "Authorization: Bearer YOUR_ACCESS_TOKEN"
+\end{lstlisting}
+
+\subsubsection{Renombrar una conversación}
+\label{subsubsection:A-3-Renombrar una conversación}
+
+\textbf{Endpoint:} \texttt{PATCH /conversations/\{conversation\_id\}}
+
+\textbf{Autenticación:} Requerida
+
+\textbf{Parámetros de ruta:}
+\begin{itemize}
+    \item \texttt{conversation\_id} (integer, requerido): ID de la conversación
+\end{itemize}
+
+\textbf{Descripción:} Cambia el nombre de una conversación.
+
+\textbf{Códigos de Respuesta:}
+\begin{itemize}
+    \item \texttt{200}: Successful Response
+    \item \texttt{422}: Validation Error
+\end{itemize}
+
+\textbf{Ejemplo:}
+
+\begin{lstlisting}[language=bash]
+curl -X PATCH http://localhost:8000/conversations/1 \
+  -H "Authorization: Bearer YOUR_ACCESS_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "title": "Nuevo nombre de la conversación"
+  }'
+\end{lstlisting}
+
+\subsubsection{Eliminar una conversación}
+\label{subsubsection:A-3-Eliminar una conversación}
+
+\textbf{Endpoint:} \texttt{DELETE /conversations/\{conversation\_id\}}
+
+\textbf{Autenticación:} Requerida
+
+\textbf{Parámetros de ruta:}
+\begin{itemize}
+    \item \texttt{conversation\_id} (integer, requerido): ID de la conversación
+\end{itemize}
+
+\textbf{Descripción:} Elimina una conversación propiedad del usuario autenticado.
+
+\textbf{Códigos de Respuesta:}
+\begin{itemize}
+    \item \texttt{204}: Successful Response
+    \item \texttt{422}: Validation Error
+\end{itemize}
+
+\textbf{Ejemplo:}
+
+\begin{lstlisting}[language=bash]
+curl -X DELETE http://localhost:8000/conversations/1 \
+  -H "Authorization: Bearer YOUR_ACCESS_TOKEN"
+\end{lstlisting}
+
+\subsection{Gestión de Cursos}
+\label{subsection:A-3-Gestión de Cursos}
+
+\subsubsection{Obtener información de un curso}
+\label{subsubsection:A-3-Obtener información de un curso}
+
+\textbf{Endpoint:} \texttt{GET /courses/\{course\_code\}}
+
+\textbf{Autenticación:} Requerida
+
+\textbf{Parámetros de ruta:}
+\begin{itemize}
+    \item \texttt{course\_code} (string, requerido): Código del curso
+\end{itemize}
+
+\textbf{Descripción:} Recupera la información del curso especificado por su código.
+
+\textbf{Códigos de Respuesta:}
+\begin{itemize}
+    \item \texttt{200}: Successful Response
+\end{itemize}
+
+\textbf{Ejemplo:}
+
+\begin{lstlisting}[language=bash]
+curl -X GET http://localhost:8000/courses/PROG1 \
+  -H "Authorization: Bearer YOUR_ACCESS_TOKEN"
+\end{lstlisting}
+
+\subsubsection{Obtener lecciones de un curso}
+\label{subsubsection:A-3-Obtener lecciones de un curso}
+
+\textbf{Endpoint:} \texttt{GET /courses/\{course\_code\}/lessons}
+
+\textbf{Autenticación:} Requerida
+
+\textbf{Parámetros de ruta:}
+\begin{itemize}
+    \item \texttt{course\_code} (string, requerido): Código del curso
+\end{itemize}
+
+\textbf{Descripción:} Recupera todas las lecciones de un curso específico.
+
+\textbf{Códigos de Respuesta:}
+\begin{itemize}
+    \item \texttt{200}: Successful Response
+    \item \texttt{422}: Validation Error
+\end{itemize}
+
+\textbf{Ejemplo:}
+
+\begin{lstlisting}[language=bash]
+curl -X GET http://localhost:8000/courses/PROG1/lessons \
+  -H "Authorization: Bearer YOUR_ACCESS_TOKEN"
+\end{lstlisting}
+
+\subsubsection{Obtener transcripción de una lección}
+\label{subsubsection:A-3-Obtener transcripción de una lección}
+
+\textbf{Endpoint:} \texttt{GET /courses/\{course\_code\}/lessons/\{lesson\_number\}}
+
+\textbf{Autenticación:} Requerida
+
+\textbf{Parámetros de ruta:}
+\begin{itemize}
+    \item \texttt{course\_code} (string, requerido): Código del curso
+    \item \texttt{lesson\_number} (integer, requerido): Número de lección
+\end{itemize}
+
+\textbf{Parámetros de consulta:}
+\begin{itemize}
+    \item \texttt{model\_size} (opcional): Tamaño del modelo de transcripción
+\end{itemize}
+
+\textbf{Descripción:} Recupera la transcripción de una lección específica de un curso.
+
+\textbf{Códigos de Respuesta:}
+\begin{itemize}
+    \item \texttt{200}: Successful Response
+    \item \texttt{422}: Validation Error
+\end{itemize}
+
+\textbf{Ejemplo:}
+
+\begin{lstlisting}[language=bash]
+curl -X GET "http://localhost:8000/courses/PROG1/lessons/1?model_size=medium" \
+  -H "Authorization: Bearer YOUR_ACCESS_TOKEN"
+\end{lstlisting}
+
+\subsection{Gestión de Usuario}
+\label{subsection:A-3-Gestión de Usuario}
+
+\subsubsection{Obtener perfil de usuario}
+\label{subsubsection:A-3-Obtener perfil de usuario}
+
+\textbf{Endpoint:} \texttt{GET /users/me}
+
+\textbf{Autenticación:} Requerida
+
+\textbf{Descripción:} Recupera la información del perfil del usuario autenticado actualmente.
+
+\textbf{Códigos de Respuesta:}
+\begin{itemize}
+    \item \texttt{200}: Successful Response
+\end{itemize}
+
+\textbf{Ejemplo:}
+
+\begin{lstlisting}[language=bash]
+curl -X GET http://localhost:8000/users/me \
+  -H "Authorization: Bearer YOUR_ACCESS_TOKEN"
+\end{lstlisting}
+
