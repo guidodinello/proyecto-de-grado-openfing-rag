@@ -1,7 +1,6 @@
 \chapter{Arquitectura y Diseño}
 \label{chapter:4-Arquitectura y Diseño}
-En este próximo capítulo se describe la arquitectura realizada a alto nivel. En este capítulo se detalla y se explica la arquitectura final del producto. 
-El capítulo se separa entre las secciones de arquitectura del frontend y backend.
+En este capítulo se describe la arquitectura del sistema, detallando los componentes del \gls{frontend} y del \gls{backend} y la forma en que se relacionan para conformar el producto final.
 
 \section{Arquitectura}
 \label{section:4-2-Arquitectura}
@@ -9,7 +8,7 @@ La sección está divida por \gls{frontend} y \gls{backend}.
 
 \subsection[Frontend]{Frontend}
 \label{subsection:4-2-frontend}
-El \gls{frontend} está compuesto por 
+El \gls{frontend} está compuesto por una \acrfull{spa} desarrollada en React con TypeScript, empaquetada con Vite. La interfaz expone una vista principal de chat donde el estudiante puede formular preguntas en lenguaje natural, visualizar las respuestas generadas y consultar las fuentes correspondientes a las clases referenciadas. El estado global se gestiona con Zustand \cite{zustand} y la comunicación con el \gls{backend} se realiza mediante TanStack React Query \cite{tanstack-query} y Axios \cite{axios}, empleando autenticación mediante \acrshort{jwt}. La estructura de componentes se ilustra en la \autoref{fig:Arquitectura_Frontend}.
 
 \begin{figure}[htbp]
     \centering
@@ -31,25 +30,33 @@ El \gls{frontend} está compuesto por
 
 \subsection[Componentes del Backend]{Componentes del backend}
 \label{subsection:4-2-Componentes del backend}
-
 El \gls{backend} del sistema se estructura en módulos especializados que operan de forma independiente pero coordinada, siguiendo principios de arquitectura de microservicios. Cada componente tiene una responsabilidad claramente delimitada dentro del pipeline de procesamiento, desde la adquisición de contenido hasta la generación de respuestas contextualizadas. Esta separación modular facilita el mantenimiento, testing y escalabilidad del sistema. A continuación se detallan los cinco componentes principales que conforman la arquitectura \gls{backend}.
-\subsection{Scrapper}
-\label{subsection:5-Scrapper}
 
+\subsection{Scrapper}
+\label{subsection:4-Scrapper}
 Componente encargado de la extracción automatizada de metadatos desde la plataforma \Gls{OpenFing}. Realiza web scrapping para identificar la estructura jerárquica de cursos, subcursos y clases individuales. Su función principal es construir un índice completo que mapea cada recurso de video con su ubicación específica dentro del catálogo académico, extrayendo URLs, títulos y relaciones contextuales entre contenidos. Esta información estructurada sirve como base para los procesos posteriores del pipeline.
 
 \subsubsection{Modulo de Descargas}
-\label{subsubsection:5-Modulo de Descargas}
-Módulo responsable de la descarga persistente de contenido multimedia desde \Gls{OpenFing}. Implementa estrategias de descarga robustas con manejo de re intentos, validación de integridad y gestión eficiente de almacenamiento. Opera sobre los metadatos provistos por el Scrapper, recuperando los archivos de video y organizándolos según la taxonomía del catálogo. Incluye mecanismos de rate limiting y optimización de ancho de banda para minimizar el impacto sobre la infraestructura fuente.
+\label{subsubsection:4-Modulo de Descargas}
+Módulo responsable de la descarga del audio de las clases de \Gls{OpenFing}. A partir de los metadatos provistos por el Scrapper, utiliza yt-dlp para extraer el audio en el mejor formato disponible y lo almacena organizándolo según la taxonomía del catálogo, con el esquema \texttt{\{código\_curso\}/\{código\_curso\}\_\{número\_clase\}}. Implementa reintentos automáticos ante fallos de red y omite los archivos ya descargados para evitar trabajo redundante. El audio extraído constituye la entrada del módulo de transcripción.
 
 \subsubsection{Modulo Transcriptor de Videos}
-\label{subsubsection:5-Modulo Transcriptor de Videos}
-Componente de procesamiento de audio que convierte el contenido hablado de los videos en texto estructurado. Utiliza Whisper, el modelo de reconocimiento de voz de OpenAI, para generar transcripciones precisas con marcas temporales. Este módulo maneja la segmentación de audio extenso, normalización de formato y post-procesamiento de texto. Las transcripciones resultantes constituyen la base textual sobre la cual se construye el sistema de recuperación de información y generación de respuestas.
+\label{subsubsection:4-Modulo Transcriptor de Videos}
+Componente de procesamiento de audio que convierte el contenido hablado de las clases en texto estructurado. Utiliza \texttt{faster-whisper}, una reimplementación del modelo Whisper de OpenAI sobre CTranslate2, para generar transcripciones con marcas temporales a nivel de palabra. El módulo aplica detección de actividad de voz para filtrar silencios e inicializa la transcripción con un \gls{prompt} de dominio que incluye terminología de ingeniería y español rioplatense, mejorando la precisión en el contexto académico de \Gls{OpenFing}. Las transcripciones resultantes constituyen la base textual sobre la cual se construye el sistema de recuperación de información.
 
 \subsubsection{Modulo Generador de Respuestas}
-\label{subsubsection:5-Generator}
-Orquestador de la interacción con modelos de lenguaje grandes (LLMs). Recibe las consultas de usuarios, construye el \gls{contexto} relevante mediante recuperación de información desde las transcripciones, y formula prompts optimizados para el \acrshort{llm} seleccionado. Gestiona la comunicación con diferentes proveedores de modelos (Mistral, OpenAI, etc.), implementa estrategias de \gls{prompt} engineering y procesa las respuestas generadas antes de devolverlas al \gls{frontend}. Actúa como capa de abstracción que permite cambiar entre diferentes LLMs manteniendo una interfaz consistente.
+\label{subsubsection:4-Generator}
+Orquestador de la interacción con modelos de lenguaje. Expone la \acrshort{api} \acrshort{http} con la que se comunica el \gls{frontend} y gestiona el ciclo completo de cada consulta: recupera los fragmentos de transcripción más relevantes desde la base de datos vectorial, construye el contexto y el historial de conversación, y formula el \gls{prompt} final para el \acrshort{llm} mediante cadenas LangChain. Se integra con dos proveedores de modelos: HuggingFace Inference API para inferencia remota y Ollama para ejecución local. Actúa como capa de abstracción que permite cambiar de proveedor o modelo sin modificar la lógica de recuperación ni la interfaz hacia el \gls{frontend}.
 
 \subsubsection{Shared}
-\label{subsubsection:5-Shared}
+\label{subsubsection:4-Shared}
 Módulo transversal que encapsula funcionalidades comunes utilizadas por múltiples componentes. Incluye utilidades genéricas como manejo de configuración, logging centralizado, gestión de errores, helpers de validación de datos y clases base reutilizables. Su propósito es evitar duplicación de código y establecer convenciones compartidas que garanticen consistencia en toda la aplicación. Facilita la evolución del sistema al centralizar cambios en funcionalidades core.
+
+
+\subsection{Base de Datos}
+\label{subsection:4-Base de Datos}
+El sistema utiliza PostgreSQL como único motor de base de datos, extendido con pgvector \cite{pgvector} para el almacenamiento y consulta de embeddings. Esta decisión responde a dos motivaciones principales.
+
+La primera es la cohesión del modelo de datos. Los modelos relacionales del sistema, cursos, lecciones, transcripciones y el historial de conversaciones, ya residen en PostgreSQL. Incorporar pgvector permite mantener la persistencia vectorial dentro del mismo motor, evitando la complejidad operativa de administrar un servicio de base de datos adicional y aprovechando las mismas garantías de transaccionalidad y consistencia.
+
+La segunda motivación es la simplicidad operativa. Alternativas como \acrshort{faiss} \cite{douze2024faiss} mantienen el índice en memoria \acrshort{ram} y requieren serialización y carga manual para persistirlo en disco, lo que implica gestionar un estado externo a la base de datos relacional. pgvector, al integrarse directamente con PostgreSQL, persiste los vectores con las mismas garantías transaccionales que el resto de los datos del sistema y soporta inserciones estándar mediante \acrshort{sql} sin infraestructura adicional. Esta propiedad resulta especialmente relevante en relación con el requisito de extensibilidad descrito en la \autoref{subsection:3-Requisitos No Funcionales}: el sistema debe permitir incorporar nuevas clases de \Gls{OpenFing} de forma automatizada y, en el mediano plazo, escalar hacia otras fuentes como OpenUDELAR, reutilizando los mismos módulos de procesamiento sin reprocesar el corpus completo.

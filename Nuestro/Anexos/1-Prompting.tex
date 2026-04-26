@@ -1,8 +1,11 @@
 
-\chapter{Anexo II-Propmting}
-\label{chapter:A-1-Anexo II-Propmting}.
-Utilizada en la comunicación con el \acrshort{llm} Externo.
-La siguiente es la \gls{prompt} que fue utilizada para la comunicación con el \acrshort{llm} externo. La misma incluye las técnicas de prompting mencionadas en \autoref{subsection:2-prompt}.
+\chapter{Anexo II-Prompting}
+\label{chapter:A-1-Anexo II-Prompting}
+En este anexo se incluyen los prompts del sistema utilizados en el proyecto. El primero corresponde al prompt del asistente educativo, utilizado en la comunicación con el \acrshort{llm} externo. El segundo corresponde al prompt de dominio empleado durante la transcripción automática con Whisper.
+
+\section{Prompt del asistente educativo}
+\label{section:A-1-prompt-asistente}
+La siguiente es la \gls{prompt} utilizada para la comunicación con el \acrshort{llm} externo. Incluye las técnicas de prompting mencionadas en \autoref{subsection:2-prompt}.
 
 \begin{itshape}
 "Eres un asistente educativo especializado en responder preguntas sobre contenido académico.
@@ -30,3 +33,15 @@ EJEMPLO BUENO:
 'El algoritmo de ordenamiento burbuja es un método simple que funciona comparando elementos adyacentes... Como se explica en las clases de programación, el proceso se repite hasta que no hay más intercambios...' "
 \end{itshape}
 
+\section{Prompt de dominio para transcripción}
+\label{section:A-1-prompt-transcripcion}
+El siguiente prompt se pasa como contexto inicial al modelo Whisper antes de comenzar la transcripción. Su función es orientar al modelo hacia el vocabulario y el estilo lingüístico esperado en las clases de la facultad, mejorando la precisión en el reconocimiento de terminología técnica y del español rioplatense.
+
+\begin{itshape}
+"Esta es una clase de la Facultad de Ingeniería de la Universidad de la República (UDELAR), Uruguay.
+El contenido incluye terminología técnica de ingeniería, conceptos académicos, algoritmos,
+programación, matemáticas, física y ciencias de la computación.
+Se utilizan términos técnicos en español rioplatense y ocasionalmente en inglés.
+Pueden mencionarse tecnologías, frameworks, lenguajes de programación,
+conceptos de inteligencia artificial, machine learning, estructuras de datos y algoritmos."
+\end{itshape}

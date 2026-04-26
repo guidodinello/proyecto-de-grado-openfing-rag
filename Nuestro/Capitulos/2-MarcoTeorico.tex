@@ -172,61 +172,49 @@ than potentially hallucinated content"}
 \subsection[Retrieval-Augmented Generation]{\acrlong{rag}}
 \label{subsection:2-Retrieval-Augmented Generation}
 
-\todo[color=cyan,inline]{Revisar}
-\cite{lewis2020retrieval}
-Para mitigar las alucinaciones una de las estrategias posibles es \acrlong{rag}. Está estrategia consiste en dos etapas.
-\begin{itemize}
-    \item \textbf{Retrival}
-    \item \textbf{Generation}
-\end{itemize}
+Para mitigar las alucinaciones, una de las estrategias más efectivas es \acrlong{rag} \cite{lewis2020retrieval}. A diferencia de los LLMs convencionales, que generan respuestas exclusivamente a partir del conocimiento almacenado en sus parámetros durante el entrenamiento, los sistemas RAG complementan la generación con información recuperada dinámicamente de una base de conocimiento externa. Esto asegura que las respuestas estén fundamentadas en fuentes verificables en lugar del conocimiento potencialmente desactualizado o incorrecto del modelo \cite{Hallucinations_in_LLMs}.
+
+La arquitectura RAG se estructura en dos etapas que operan en secuencia ante cada consulta del usuario: una etapa de \textit{recuperación} y una etapa de \textit{generación}. \cite{gao2023retrieval} identifican tres paradigmas evolutivos en RAG: \textit{Naive RAG}, \textit{Advanced RAG} y \textit{Modular RAG}, cada uno incorporando técnicas progresivamente más sofisticadas. El presente proyecto implementa el paradigma \textit{Naive RAG}: recuperación vectorial directa seguida de generación con contexto, sin etapas adicionales de re-ranking ni expansión de consulta.
+
+TODO: agregar cita a book paper 28415328-bf92-47c0-88ae-6a2087b5b724
+
+\subsubsection{Recuperación}
+\label{subsubsection:2-Retrieval}
+
+La etapa de recuperación tiene como objetivo identificar los fragmentos de texto más relevantes dentro de la base de conocimiento para una consulta dada. Para lograrlo, tanto la consulta del usuario como los documentos del corpus son representados como vectores numéricos en un espacio de alta dimensionalidad mediante modelos de \gls{embedding}. La similitud semántica entre dos textos se mide como la proximidad entre sus vectores (típicamente mediante similitud del coseno o producto interno) lo que permite recuperar fragmentos semánticamente relacionados con la consulta incluso cuando no comparten vocabulario exacto.
+
+Los documentos son indexados de antemano: cada \gls{chunk} del corpus se convierte en su representación vectorial y se almacena en una \gls{Vectordb}. Ante una consulta, el sistema convierte la pregunta del usuario en su vector correspondiente y recupera los $k$ fragmentos más cercanos en el índice. Estos fragmentos constituyen el contexto que se provee al modelo generador.
+
+\subsubsection{Generación}
+\label{subsubsection:2-Generation}
+
+La etapa de generación recibe como entrada la consulta original del usuario junto con los fragmentos recuperados en la etapa anterior. Esta información se estructura en un \gls{prompt} que instruye al modelo de lenguaje a responder la pregunta utilizando el contexto provisto como fuente primaria, en lugar de depender exclusivamente de su conocimiento paramétrico.
+
+Este mecanismo reduce significativamente la probabilidad de alucinaciones: el modelo opera sobre información concreta y verificable extraída del corpus, en lugar de reconstruir respuestas desde su memoria de entrenamiento. Adicionalmente, al exponer las fuentes utilizadas junto con la respuesta, el sistema permite al usuario verificar el origen de la información y profundizar en los temas de interés directamente en la fuente original.
+
+%% Para mi la seccion de RAG con lo de arriba ya esta bien para el marco teorico
+
+% RAG (Retrieval-Augmented Generation)
+% Concepto y arquitectura fundamental
+
+% Combinación de recuperación de información y generación de lenguaje
+% Componentes: retriever (recuperador) y generator (generador)
+% Diferencia con modelos puramente generativos
 
 
-\subsubsection{Retrival}
-\subsection{Retrieval en RAG}
+% Pipeline técnico
 
-El componente de recuperación constituye el fundamento del paradigma RAG, responsable de identificar y seleccionar documentos relevantes desde una base de conocimiento externa que contextualicen la generación del modelo de lenguaje. Este proceso transforma consultas en representaciones vectoriales y realiza búsquedas de similitud en espacios de alta dimensionalidad para localizar información pertinente.
-
-% La arquitectura RAG original, propuesta por \cite{lewis2020retrieval}, emplea un enfoque de memoria dual donde la memoria paramétrica reside en un modelo seq2seq preentrenado, mientras que la memoria no paramétrica se implementa mediante un índice vectorial denso de Wikipedia. Este diseño permite que el modelo acceda dinámicamente a conocimiento externo durante la generación, superando las limitaciones inherentes al almacenamiento de conocimiento únicamente en parámetros del modelo.
-
-% El método de Dense Passage Retrieval (DPR), desarrollado por \cite{karpukhin2020dense}, revolucionó la recuperación de información al demostrar que las representaciones densas aprendidas pueden superar significativamente a los métodos tradicionales basados en representaciones dispersas como TF-IDF o BM25. DPR utiliza un marco de codificador dual que aprende embeddings desde un número limitado de pares pregunta-pasaje, logrando mejoras de 9\%-19\% en precisión de recuperación top-20 comparado con sistemas Lucene-BM25 \cite{karpukhin2020dense}. El sistema emplea dos codificadores BERT independientes: uno para consultas y otro para pasajes, optimizados mediante aprendizaje contrastivo para maximizar la similitud entre pares relevantes.
-
-% La eficiencia computacional del retrieval se logra mediante técnicas de búsqueda de producto interno máximo (MIPS) sobre los embeddings densos, utilizando estructuras de datos especializadas como FAISS \cite{gao2023retrieval}. Este enfoque permite realizar búsquedas semánticas a gran escala en millones de documentos con latencias aceptables para aplicaciones en tiempo real.
-
-% \cite{gao2023retrieval} identifican tres paradigmas evolutivos en RAG: Naive RAG, Advanced RAG y Modular RAG, cada uno incorporando técnicas progresivamente más sofisticadas en el proceso de recuperación. Las técnicas avanzadas incluyen query expansion, re-ranking de documentos recuperados mediante modelos cross-encoder, y estrategias híbridas que combinan recuperación densa y dispersa para maximizar tanto recall como precisión.
+% Proceso de indexación y embeddings vectoriales
+% Mecanismos de búsqueda semántica (dense retrieval vs sparse retrieval)
+% Integración entre documentos recuperados y \gls{prompt} del LLM
 
 
-\subsubsection{Generations}
- \todo[inline,color=cyan]{esto es solo un punteo por ahora}
-RAG (Retrieval-Augmented Generation)
+% Bases de datos vectoriales
 
-Concepto y arquitectura fundamental
+% Tecnologías comunes (FAISS, Pinecone, Weaviate, Chroma)
+% Estrategias de chunking (segmentación de documentos)
+% Métodos de \gls{embedding} (OpenAI, Sentence Transformers, etc.)
 
-Combinación de recuperación de información y generación de lenguaje
-Componentes: retriever (recuperador) y generator (generador)
-Diferencia con modelos puramente generativos
-
-
-Pipeline técnico
-
-Proceso de indexación y embeddings vectoriales
-Mecanismos de búsqueda semántica (dense retrieval vs sparse retrieval)
-Integración entre documentos recuperados y \gls{prompt} del LLM
-
-
-Bases de datos vectoriales
-
-Tecnologías comunes (FAISS, Pinecone, Weaviate, Chroma)
-Estrategias de chunking (segmentación de documentos)
-Métodos de \gls{embedding} (OpenAI, Sentence Transformers, etc.)
-
-
-
-
-
-\subsubsection{Retrival}
-\label{subaubsection:2-Retrival}
-\subsubsection{Generation}
-\label{subaubsection:2-Generation}
 
 
 
@@ -257,18 +245,8 @@ Limitaciones técnicas
 
 }
 \cite{radford2022robust}
-
-
-
-
-
-
-
-
-
-
 \cite{ASR_Accuaracy}
-
+\
 
 \section{Plataformas Análogas}
 \label{section:2-Plataformas Análogas}
@@ -283,3 +261,8 @@ En está sección se detallan algunas de las herramientas y modulos que funciona
 Una de las herramientas a destacar, es \textit{FINGChat}, desarrollada por Ignacio Sastre y Espacio de Orientación y Consulta, para un Proyecto de Grado de este año. Como el presente proyecto, la herramienta \textit{FINGChat} está pensada para el apoyo de los estudiantes de la FING. La misma funciona de 
 
 \todo[color=cyan]{Todavia falta expandir}
+
+%% REMINDER
+% agregar algun proyecto de RAG, hay muchos sistemas de documentacion interna que lo usan.
+% OpenUDELAR
+\subsection{OpenUdelar}

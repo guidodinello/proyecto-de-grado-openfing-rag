@@ -16,44 +16,63 @@ Se deberá detallar en base a qué evaluamos un modelo / un resultado como mejor
 
 --Lo Siguiente ya estaba escrito--
 
-El acceso a información confiable y relevante es un desafío constante para los estudiantes universitarios. Aunque las grabaciones de clase pueden ser una herramienta útil, presentan varias limitaciones: su consumo es lento, pueden contener problemas de audio que dificultan la comprensión, y en muchos casos, solo una fracción del contenido resulta realmente valiosa. Además, la información presentada en clase puede quedar desactualizada con el tiempo, lo que genera confusión y dificulta el aprendizaje efectivo.
+El acceso a información confiable y relevante es un desafío constante para los estudiantes universitarios. Las grabaciones de clase son una herramienta valiosa, pero presentan limitaciones concretas: su consumo es lento, la búsqueda de un concepto puntual obliga a revisar extensos videos, y la calidad del audio puede dificultar la comprensión. En paralelo, los modelos de lenguaje de gran escala (LLMs) de propósito general están ampliamente disponibles y son capaces de responder preguntas con aparente precisión; sin embargo, presentan una tendencia conocida a la alucinación, generando afirmaciones incorrectas con una seguridad que puede inducir en el usuario una falsa confianza. Este riesgo se agrava en un contexto educativo, donde una respuesta incorrecta puede consolidar conceptos erróneos en el estudiante.
 
-Este trabajo de tesis se centra en el desarrollo de un producto basado en el fine-tuning de un modelo de lenguaje (LLM) con contenido educativo específico de una facultad, utilizando como fuente principal las grabaciones de las clases. El objetivo es ofrecer a los estudiantes una herramienta en formato de pregunta-respuesta que les permita acceder rápidamente a información precisa y relevante, directamente basada en sus propias clases.
-
-La implementación de esta solución no solo agiliza el proceso de aprendizaje, sino que también proporciona un medio más eficiente para digerir la información. Los estudiantes podrán realizar consultas en tiempo real sobre el contenido de sus cursos, sin necesidad de revisar extensos videos o depender de fuentes externas cuya fiabilidad puede ser incierta. De esta manera, se garantiza que el conocimiento adquirido provenga de una fuente validada y alineada con el plan de estudios de la facultad.
-
-Este enfoque representa un avance significativo en la optimización del aprendizaje, brindando a los estudiantes una alternativa moderna y efectiva para complementar su formación académica.
+El presente proyecto de grado aborda esta problemática mediante el desarrollo de un asistente de inteligencia artificial generativa orientado a estudiantes de la Facultad de Ingeniería (FING) de la Universidad de la República (UdelaR). El sistema se basa en la arquitectura de Generación Aumentada por Recuperación (\acrshort{rag}), utilizando como base de conocimiento las transcripciones automáticas del contenido educativo de \Gls{OpenFing} — plataforma que concentra más de 5000 horas de clases grabadas de la FING. A diferencia de los LLMs de propósito general, el asistente ancla sus respuestas en el material de los cursos y expone explícitamente las fuentes utilizadas, incluyendo el instante exacto del video de donde proviene cada fragmento de información.
 
 \section{Objetivos del Proyecto}
 \label{section:1-Objetivos del Proyecto}
 
+El objetivo general del proyecto es diseñar, implementar y evaluar un asistente
+de inteligencia artificial generativa para estudiantes, basado en
+arquitectura RAG sobre el contenido educativo de OpenFing, con énfasis en la
+fiabilidad y trazabilidad de las respuestas.
+
+Los objetivos específicos son:
+
+\begin{enumerate}
+    \item Diseñar e implementar un pipeline automatizado para la extracción,
+    descarga, transcripción e indexación del contenido de OpenFing.
+
+    \item Evaluar herramientas de reconocimiento automático de voz (\acrshort{asr})
+    para determinar cuál ofrece la mejor relación entre precisión de transcripción
+    y costo computacional en el contexto del español académico rioplatense.
+
+    \item Implementar un chatbot conversacional basado en RAG que responda
+    consultas de los estudiantes fundamentando cada respuesta en los segmentos
+    de clase recuperados, con referencia al curso, lección e instante exacto del
+    video.
+
+    \item Evaluar la calidad del pipeline RAG mediante experimentos de pregunta-respuesta
+    sobre el corpus de transcripciones.
+
+    \item Desarrollar el sistema como software de código abierto, con arquitectura
+    mantenible y extensible hacia otras bases de conocimiento académico.
+\end{enumerate}
 
 \section{Resultados Obtenidos}
 \label{section:1-Resultados Obtenidos}
 
+\section{Conclusiones Resumidas}
+\label{section:1-Conclusiones Resumidas}
+
+%TODO: completar al final del informe, cuando estén los resultados finales.
 
 \section{Organización del Documento}
 \label{section:1-Organización del Documento}
 
-El proximo documento se estructura de la siguiente manera:
+El presente documento se estructura de la siguiente manera:
 
-\autoref{chapter:2-Marco Teórico} 
-En este capítulo se presenta una revisión del estado del arte, los conceptos teóricos relevantes que sustentan el desarrollo del proyecto y una descripción para familiarizar al lector con OpenFing.
+\textbf{\autoref{chapter:2-Marco Teórico}} presenta una revisión del estado del arte y los conceptos teóricos que sustentan el proyecto: IA generativa, LLMs, arquitectura RAG, reconocimiento automático de voz y las plataformas relacionadas, incluyendo una descripción de \Gls{OpenFing}.
 
-\autoref{chapter:3-Requisitos del Sistema} 
-En este capítulo se formalizan los requisitos funcionales y no funcionales del sistema propuesto. 
+\textbf{\autoref{chapter:3-Requisitos del Sistema}} formaliza los requisitos funcionales y no funcionales del sistema, así como los requisitos del proyecto que guiaron las decisiones de diseño.
 
-\autoref{chapter:4-Arquitura y Diseño} 
-En este capítulo se expone la arquitectura general del sistema y el diseño detallado de sus componentes. Se presentan diagramas de arquitectura y flujos de datos.
+\textbf{\autoref{chapter:4-Arquitectura y Diseño}} expone la arquitectura general del sistema y el diseño detallado de sus componentes, acompañado de diagramas de arquitectura y flujos de datos.
 
-\autoref{chapter:5-Implementación} 
-En este capítulo se describe las  implementación del sistema, las tecnologías utilizadas y sus expectativas.
+\textbf{\autoref{chapter:5-Implementación}} describe la implementación del sistema y las tecnologías utilizadas en cada componente del stack.
 
-\autoref{chapter:6-Experimentación} 
-En este capítulo se presentan los experimentos realizados para evaluar el desempeño del sistema. Se describen los conjuntos de datos utilizados, las métricas de evaluación, y los resultados obtenidos. 
+\textbf{\autoref{chapter:6-Experimentación}} presenta los experimentos realizados para evaluar el desempeño del sistema: evaluación de herramientas de transcripción y evaluación del pipeline RAG mediante experimentos de pregunta-respuesta.
 
-\autoref{chapter:7-Trabajo a futuro} 
-En este capítulo se exploran las posibles direcciones futuras mejoras del sistema. 
+\textbf{\autoref{chapter:7-Trabajo a futuro}} explora las posibles extensiones y mejoras del sistema a futuro.
 
-\autoref{chapter:8-Conclusiones} 
-En este capítulo se resumen los principales hallazgos del proyecto y se reflexiona sobre el cumplimiento de los objetivos planteados. 
+\textbf{\autoref{chapter:8-Conclusiones}} resume los principales hallazgos del proyecto y reflexiona sobre el cumplimiento de los objetivos planteados.

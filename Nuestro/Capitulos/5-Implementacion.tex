@@ -1,112 +1,111 @@
 \chapter{Implementación}
 \label{chapter:5-Implementación}
-En esta sección se detallan las distintas tecnologías, herramientas y software de terceros que se utilizaron. Se describe precisamente como, donde utilizamos dichas tecnologías y el porqué se eligieron. 
+En este capítulo se detallan las tecnologías, herramientas y software de terceros utilizados en el proyecto. Se describe cómo y dónde se emplea cada uno, así como la justificación de su elección.
 
 \section{Tecnologías y Lenguajes}
 \label{section:5-Tecnologías y Lenguajes}
 
-En la sección se incluye las tecnologías empleadas tanto en el proceso de desarrollo como en el producto final publicado. Es importante destacar que se optó por utilizar exclusivamente tecnologías de código abierto (Open Source) y gratuitas. Esta decisión es debido a dos objetivos fundamentales:
-En primer lugar, garantizar que el producto sea mantenible y sostenible en el futuro sin impedimentos económicos que comprometan la continuidad del proyecto.
-En segundo lugar, aprovechar herramientas populares, ampliamente adoptadas y por un buen numero de desarrolladores. Asegurando la disponibilidad de una base extensa de desarrolladores capacitados en estas tecnologías y facilita la incorporación de nuevos colaboradores al proyecto.
+Para el desarrollo del sistema se optó por utilizar exclusivamente tecnologías de código abierto y gratuitas. Esta decisión responde a dos objetivos fundamentales. En primer lugar, garantizar que el producto sea mantenible y sostenible sin impedimentos económicos que comprometan la continuidad del proyecto. En segundo lugar, aprovechar herramientas ampliamente adoptadas que aseguren la disponibilidad de una base extensa de desarrolladores capacitados y faciliten la incorporación de nuevos colaboradores.
 
-\subsection[Frontend]{Frontend}
+\subsection{Frontend}
 \label{subsection:5-frontend}
-Aquí nos expandimos acerca de las tecnologías utilizadas del lado cliente.
 \begin{itemize}
 
-\item \textbf{React}: Biblioteca de JavaScript para construir interfaces de usuario interactivas. \Gls{react} es código abierto y es de los frameworks más utilizados para el desarrollo de código del lado cliente, con un de 74,5\% de apreciación según \cite{React_JS_Coderhouse}. \Gls{react} destaca en rendimiento y agiliza la velocidad de desarrollo.
+\item \textbf{React}: Biblioteca de JavaScript para construir interfaces de usuario interactivas. Es código abierto y uno de los frameworks más utilizados para el desarrollo del lado cliente. Destaca en rendimiento y agiliza la velocidad de desarrollo.\cite{react}
 
-\cite{react}
+\item \textbf{TypeScript}: Superconjunto de JavaScript que añade tipado estático. Facilita la detección de errores en tiempo de desarrollo, agiliza el mantenimiento del código y permite aprovechar el modo estricto para mayor seguridad de tipos.\cite{typescript}
 
-\item \textbf{TypeScript}: Añade tipado estático a Javascript. Facilita la detección de errores durante el desarrollo. Agiliza el desarrollo y facilita el mantenimiento del código.
+\item \textbf{Vite}: Herramienta de construcción y servidor de desarrollo para aplicaciones web modernas. Ofrece tiempos de inicio y reconstrucción extremadamente rápidos gracias al uso de módulos ES nativos y procesamiento bajo demanda.\cite{vite}
 
-\cite{typescript}
-\item \textbf{TailwindCSS}: Framework de CSS. Permite personalizar la interfaz de usuario fácilmente sin necesidad de crear archivos archivos css aparte para definir clases.
+\item \textbf{pnpm}: Gestor de paquetes para Node.js que reduce el espacio en disco y acelera la instalación mediante un almacén de paquetes centralizado con enlaces simbólicos.\cite{pnpm}
 
-\cite{tailwind}
+\item \textbf{TailwindCSS}: Framework de CSS utilitario que permite personalizar la interfaz directamente en el marcado HTML, sin necesidad de archivos de estilos separados.\cite{tailwind}
 
-\item \textbf{Json Web token (JWT)}:
-Estándar para autenticación en aplicaciones web. Permite transmitir información de usuario de forma segura desde el lado cliente a el servidor. Esto se muestra en la figura \autoref{fig:JWT}
+\item \textbf{shadcn/ui}: Colección de componentes de interfaz reutilizables construidos sobre Radix UI y TailwindCSS. A diferencia de una biblioteca tradicional, los componentes se generan directamente en el código fuente del proyecto, permitiendo personalizarlos sin restricciones.\cite{shadcn-ui}
+
+\item \textbf{Radix UI}: Biblioteca de primitivas de interfaz accesibles y sin estilos predefinidos, utilizada como base por shadcn/ui. Provee comportamientos complejos como diálogos, menús desplegables y \textit{tooltips} con accesibilidad incorporada.\cite{radix-ui}
+
+\item \textbf{Zustand}: Biblioteca de gestión de estado global para React. Provee una API minimalista basada en hooks que simplifica el manejo del estado de la aplicación.\cite{zustand}
+
+\item \textbf{TanStack Query}: Biblioteca para gestionar el estado asíncrono del servidor, el caché de datos y la sincronización con el backend en aplicaciones React.\cite{tanstack-query}
+
+\item \textbf{Axios}: Cliente HTTP basado en promesas para el navegador y Node.js. Se utiliza para realizar las peticiones a la API del backend.\cite{axios}
+
+\item \textbf{JSON Web Token (JWT)}: Estándar para autenticación en aplicaciones web. Permite transmitir información de usuario de forma segura entre cliente y servidor, como se ilustra en la \autoref{fig:JWT}.\cite{jwt}
 
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=\linewidth]{Nuestro/Imagenes/Arquitectura/JSW.drawio.png}
     
-    \caption{Diagrama de Funcionalidad de Json Web token. Ilustración propia.}
+    \caption{Diagrama de funcionalidad de JSON Web Token. Ilustración propia.}
     \label{fig:JWT}
 \end{figure}
+
+
+\item \textbf{llm-ui}: Biblioteca de React especializada en renderizar respuestas de LLMs en tiempo real. Gestiona el streaming de tokens, el renderizado progresivo de Markdown y el resaltado de sintaxis en bloques de código a medida que llegan los fragmentos del modelo.\cite{llm-ui}
+
+\item \textbf{Sentry}: Plataforma de monitoreo de errores en tiempo real. Captura excepciones y trazas de pila del frontend y las reporta para facilitar el diagnóstico y resolución de problemas en producción.\cite{sentry}
+
 \end{itemize}
-
-\cite{jwt}
-
 
 \subsection{Entorno}
 \label{subsection:5-Entorno}
 \begin{itemize}
-    \item \textbf{Docker}: Plataforma de contenedorización que empaqueta aplicaciones y sus dependencias en contenedores aislados. Garantiza que el software funcione de manera consistente en cualquier entorno, desde desarrollo hasta producción.
-    \cite{docker}
-    
-    \item \textbf{UV}: Gestor de paquetes y entornos virtuales para Python extremadamente rápido, escrito en Rust. Sirve como reemplazo moderno de pip y venv, acelerando significativamente la instalación de dependencias.
-    \cite{uv}
+    \item \textbf{Docker}: Plataforma de contenedorización que empaqueta aplicaciones y sus dependencias en contenedores aislados. Garantiza que el software funcione de manera consistente en cualquier entorno, desde desarrollo hasta producción.\cite{docker}
+
+    \item \textbf{UV}: Gestor de paquetes y entornos virtuales para Python extremadamente rápido, escrito en Rust. Sirve como reemplazo moderno de pip y venv, acelerando significativamente la instalación de dependencias.\cite{uv}
+
+    \item \textbf{Uvicorn}: Servidor ASGI (\textit{Asynchronous Server Gateway Interface}) para Python. Ejecuta la aplicación FastAPI y gestiona las conexiones HTTP y WebSocket de forma asíncrona con alta concurrencia.\cite{uvicorn}
 \end{itemize}
 
-\subsection[Backend]{\Gls{backend}}
+\subsection{Backend}
 \label{subsection:5-backend}
 \begin{itemize}
-    \item \textbf{Python}: Lenguaje de programación interpretado, de alto nivel y multipropósito. Es conocido por su sintaxis clara y legible, y es ampliamente utilizado en ciencia de datos y automatización.
-    
-    \cite{python}
-    
-    \item \textbf{FastAPI}: Framework web moderno para Python que permite crear APIs REST de alto rendimiento. Incluye validación automática de datos, documentación interactiva generada automáticamente y soporte nativo para operaciones asíncronas.
-    \cite{fastapi}
+    \item \textbf{Python}: Lenguaje de programación interpretado, de alto nivel y multipropósito. Es conocido por su sintaxis clara y legible, lo que reduce la barrera de entrada para nuevos colaboradores y va en línea con el objetivo del proyecto de facilitar la incorporación de desarrolladores al sistema. Además, es ampliamente utilizado en ciencia de datos, inteligencia artificial y desarrollo web.\cite{python}
+
+    \item \textbf{FastAPI}: Framework web moderno para Python que permite crear APIs REST de alto rendimiento. Incluye validación automática de datos, documentación interactiva generada automáticamente y soporte nativo para operaciones asíncronas.\cite{fastapi}
+
+    \item \textbf{SQLAlchemy y Alembic}: SQLAlchemy es el ORM (\textit{Object-Relational Mapper}) utilizado para interactuar con la base de datos mediante modelos Python, en su versión 2.0 con soporte nativo para operaciones asíncronas.\cite{sqlalchemy} Alembic gestiona las migraciones de esquema de forma incremental y versionada.\cite{alembic}
+
+    \item \textbf{Prefect}: Plataforma de orquestación de workflows. Se utiliza para coordinar el pipeline de procesamiento (scraping, descarga, transcripción e indexación), definiendo dependencias entre tareas, habilitando reintentos automáticos ante fallos y facilitando el monitoreo de ejecuciones.\cite{prefect}
+
+    \item \textbf{yt-dlp}: Herramienta de línea de comandos para la descarga de audio y video. Se utiliza en el módulo de descargas para extraer el audio de las clases de OpenFing en el mejor formato disponible, con soporte para reintentos automáticos ante fallos de red.\cite{yt-dlp}
+
+    \item \textbf{BeautifulSoup4 y aiohttp}: BeautifulSoup4 permite analizar y extraer información de documentos HTML, y se utiliza en el módulo de scraping para identificar la estructura jerárquica de cursos y clases en el catálogo de OpenFing.\cite{beautifulsoup4} aiohttp provee un cliente HTTP asíncrono que permite realizar múltiples peticiones de forma concurrente, acelerando significativamente el proceso de extracción de metadatos.\cite{aiohttp}
+
+    \item \textbf{LangChain}: Framework de desarrollo para aplicaciones con LLMs. Se utiliza mediante la interfaz LCEL (\textit{LangChain Expression Language}) para componer cadenas del tipo \texttt{prompt | llm}, integrando la gestión del historial de conversación, la recuperación de \gls{contexto} y la generación de respuestas en un pipeline declarativo.\cite{langchain}
 \end{itemize}
+
+
+\subsection{Modelos de Embeddings}
+\label{subsection:5-Embeddings}
+
+Para la representación vectorial del texto se utilizan modelos de embeddings de la biblioteca \textit{sentence-transformers} a través de la integración de LangChain con HuggingFace. Se configuraron dos modelos alternativos. El primero es \textbf{all-MiniLM-L6-v2}, utilizado por defecto, que produce vectores de 384 dimensiones y ofrece una buena relación entre calidad semántica y eficiencia computacional. El segundo es \textbf{multilingual-e5-base}, una alternativa multilingüe que produce vectores de 768 dimensiones, especialmente adecuada para el corpus de OpenFing dado su contenido en español con terminología técnica en inglés. Ambos modelos se cargan con normalización de embeddings habilitada y de forma \textit{lazy} con acceso concurrente seguro.
 
 \subsection{Base de Datos}
 \label{subsection:5-Base de Datos}
 \begin{itemize}
-    \item \textbf{PostgreSQL}: Sistema de gestión de bases de datos relacionales de código abierto, robusto y con soporte para características avanzadas como transacciones ACID, índices complejos y extensiones personalizadas.
-    \cite{postgresql}
-    
-    \item \textbf{PGVector}: Extensión de PostgreSQL que añade soporte para almacenar y consultar vectores de embeddings. Permite realizar búsquedas de similitud semántica, fundamental para aplicaciones de inteligencia artificial y búsqueda vectorial.
-    
-    
+    \item \textbf{PostgreSQL}: Sistema de gestión de bases de datos relacionales de código abierto, robusto y con soporte para características avanzadas como transacciones ACID, índices complejos y extensiones personalizadas.\cite{postgresql}
 
+    \item \textbf{PGVector}: Extensión de PostgreSQL que añade soporte para almacenar y consultar vectores de embeddings.\cite{pgvector} Permite realizar búsquedas de similitud semántica directamente sobre la base de datos relacional existente, sin necesidad de mantener un almacén vectorial separado.
 \end{itemize}
 
-LangChain:
-Framework de desarrollo para aplicaciones con LLMs. Proporciona abstracciones modulares (chains, agents, memory) que facilitan la orquestación de prompts, integración con APIs externas, gestión de \gls{contexto} conversacional y construcción de pipelines complejos mediante componentes reutilizables y composables.
-\cite{langchain}
-
-
-Multilingual Embeddings:
-Representaciones vectoriales que mapean texto de múltiples idiomas a un espacio semántico compartido. Permiten comparación cross-lingual y transferencia de conocimiento entre lenguas mediante técnicas como alineación de espacios vectoriales o entrenamiento con corpus paralelos.
 \subsection{Herramienta Audio a Texto}
 \label{subsection:5-1-Transcriber}
-\begin{itemize}
-    \item {Whisper}
-\end{itemize}
+
+Para la transcripción automática del audio de las clases se utiliza \textbf{faster-whisper}\cite{faster_whisper}, una reimplementación del modelo Whisper de OpenAI\cite{radford2022robust} optimizada mediante CTranslate2. Esta versión reduce significativamente el consumo de memoria y acelera la inferencia respecto a la implementación original, manteniendo la misma calidad de transcripción.
+
+Whisper es un modelo \textit{encoder-decoder} basado en la arquitectura Transformer, entrenado con supervisión débil sobre más de 680.000 horas de audio multilingüe. Ofrece varios tamaños de modelo (tiny, base, small, medium, large y turbo) que permiten ajustar la relación entre precisión y costo computacional según los recursos disponibles. El modelo por defecto en el entorno de desarrollo es \textit{tiny}, mientras que para la evaluación experimental se utilizaron modelos de mayor tamaño.
+
+Para el corpus de OpenFing se configuró la transcripción con los siguientes parámetros relevantes. El filtro de \acrlong{vad} (\acrshort{vad}) descarta segmentos de silencio y ruido de fondo antes de la transcripción. Los timestamps a nivel de palabra permiten mapear cada fragmento de texto al instante correspondiente del video, habilitando la función de citación con minuto exacto. Un prompt de dominio inicial indica al modelo el contexto de la clase: se trata de una clase de la Facultad de Ingeniería de la Universidad de la República, con terminología técnica de ingeniería, algoritmos, programación, matemática y ciencias de la computación, expresada en español rioplatense con términos técnicos ocasionalmente en inglés (ver \autoref{section:A-1-prompt-transcripcion}).
+
 \subsection{LLM}
 \label{subsection:5-LLM}
-LLM
 
+El modelo de lenguaje principal utilizado en el sistema es \textbf{Meta-Llama-3.1-8B-Instruct}\cite{hf_llama31_8b_instruct}, desarrollado por Meta AI. Se trata de un modelo de 8 mil millones de parámetros de la familia Llama 3.1, optimizado para tareas de instrucción y conversación. Se seleccionó por su rendimiento competitivo en comprensión y generación de texto en español, con requerimientos de hardware moderados.
 
-\todo[inline,color=cyan]{Aca pensamos dejar estadiscticas de las herramientas}
-\begin{itemize}
-\item \textbf{Mistral}:
-Familia de modelos de lenguaje de código abierto desarrollados por Mistral AI. Destacan por su eficiencia computacional mediante arquitecturas optimizadas (Grouped-Query Attention, Sliding Window Attention) que logran rendimiento competitivo con modelos más grandes, manteniendo menores requisitos de hardware y latencia reducida.
+El sistema soporta dos modos de despliegue del LLM. En producción se utiliza la \textbf{HuggingFace Inference API}\cite{huggingface_inference_api}, que permite acceder al modelo a través de una API REST sin necesidad de gestionar infraestructura GPU propia. Para desarrollo y pruebas locales se puede optar por utilizar \textbf{Ollama}\cite{ollama}, que ejecuta modelos cuantizados directamente en la máquina del desarrollador.
 
-\item \textbf{Meta}:
+Los parámetros de inferencia configurados incluyen una temperatura de 0,1 para respuestas deterministas, valores de \textit{top\_p} de 0,9 y \textit{top\_k} de 10 para controlar la diversidad del muestreo, un máximo de 2.048 tokens de salida y una penalización de repetición de 1,05 para evitar respuestas redundantes.
 
-\item \textbf{LangChain}:
-Framework de desarrollo para aplicaciones con LLMs. Proporciona abstracciones modulares (chains, agents, memory) que facilitan la orquestación de prompts, integración con APIs externas, gestión de \gls{contexto} conversacional y construcción de pipelines complejos mediante componentes reutilizables y composables.
-
-\item \textbf{Multilingual Embeddings}:
-Representaciones vectoriales que mapean texto de múltiples idiomas a un espacio semántico compartido. Permiten comparación cross-lingual y transferencia de conocimiento entre lenguas mediante técnicas como alineación de espacios vectoriales o entrenamiento con corpus paralelos.
-
-MultilingualA5Basic
-all-mini-LM-v2
-
-    
-\end{itemize}
-
-FastAPI: Proporciona los endpoints \acrshort{http} para exponer los servicios del backend, permitiendo la integración de modelos de inteligencia artificial en la arquitectura mediante APIs eficientes y bien documentadas.
+Durante el desarrollo del proyecto se evaluaron también \textbf{Qwen2.5-72B-Instruct}\cite{hf_qwen25_72b_instruct} como alternativa de mayor capacidad, y \textbf{Mistral-7B-Instruct-v0.3}\cite{hf_mistral_7b_instruct_v03} como modelo del prototipo inicial. La selección del modelo definitivo se fundamenta en la investigación comparativa documentada en el capítulo de Requisitos del Proyecto.

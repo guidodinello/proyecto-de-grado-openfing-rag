@@ -45,7 +45,7 @@
 % TODO: Pasar esto a un archivo aparte asi no jode.
 \newglossaryentry{prompt}
 {
-    name=consigna (prompt),
+    name=instrucción (prompt),
     description={Instrucción o texto de entrada en lenguaje natural que se proporciona a un modelo de lenguaje para orientar su respuesta. Es el mecanismo fundamental de interacción con los modelos de lenguaje de gran escala}
 }
 
@@ -168,6 +168,7 @@ comunicación entre componentes a través de HTTP. Los servicios que siguen este
 \newacronym{rag}{RAG}{Generación Aumentada por Recuperación (\textit{Retrieval-Augmented Generation})}
 \newacronym{nlp}{PLN}{Procesamiento de Lenguaje Natural (conocido como \textit{NLP})}
 \newacronym{asr}{ASR}{Reconocimiento Automático de Voz (\textit{Automatic Speech Recognition})}
+\newacronym{vad}{VAD}{Detección de Actividad de Voz (\textit{Voice Activity Detection})}
 \newacronym{ia}{IA}{Inteligencia Artificial}
 \newacronym{json}{JSON}{\textit{JavaScript Object Notation}}
 \newacronym{http}{HTTP}{\textit{Hypertext Transfer Protocol}}
@@ -176,8 +177,13 @@ comunicación entre componentes a través de HTTP. Los servicios que siguen este
 \newacronym{ui}{IU}{Interfaz de Usuario (\textit{User Interface})}
 \newacronym{ux}{EX}{Experiencia de Usuario (\textit{User Experience})}
 \newacronym{gpu}{GPU}{Graphics Processing Unit}
+\newacronym{ram}{RAM}{Random Access Memory}
 \newacronym{vram}{VRAM}{Video Random Access Memory}
+\newacronym{api}{API}{Application Programming Interface}
+\newacronym{spa}{SPA}{Single Page Application}
+\newacronym{jwt}{JWT}{JSON Web Token}
 \newacronym{faiss}{FAISS}{Facebook AI Similarity Search}
+\newacronym{sql}{SQL}{Structured Query Language}
 % carátula
 
 \begin{document}
@@ -211,7 +217,7 @@ Se añadio referencias de Jurasky en Inteligencia artificial y Redes Neuronales
     
 }
 \todo[color=cyan, inline, ]{
-Preguntas: Que hacer con Caracter Error Rate?
+Preguntas: Que hacer con Caracter Error Rate? No encontre ningún paper o libro academico que explique 
 Donde Van Las alternativas de Whisper 
 Que entra en Requisitos Proyecto (RNF, RF) y Requisitos Sistemas (RNF,RF).
 
@@ -230,7 +236,6 @@ Todo:
         Modelo de lenguaje y LLMS, revisar, esta bien pero re redactar
         Explicación de como los LLMS alucinan y por que alucinan menos en cosos
         Hacer part e RAG, generation y retrieval 
-
         buscar paper e ignacio sastre, armar os parrafos overview
         hacer parrafo e ASR, un parrafo por herramienta
         buscar plataforma analoga, alguna famosa
@@ -257,15 +262,21 @@ Todo:
         Añadir parrafos. 
             MultilingualA5Basic
             all-mini-LM-v2
+        Añadir secciòn LLM:
+            "Qwen/Qwen2.5-72B-Instruct"
     Experitacion: 
         Añadir numero de palabras a 6.1
         Añadir todos los modelos a la tabla.
         Escribir razonamiento de porque una transcripcion 100 porciento precisa no es buena. Referenciar paper de antes. 
         Cosas de nombres propios decidir como anda. Como anda con mal audio. 
-        Pregunta Respuesta - Base de Datos reducida y total.
-
-        
+        Pregunta Respuesta - Base de Datos reducida y total.     
 }
+\todo[inline,color=white]{
+ Drafteo de temas:
+ 
+}
+
+
 \input{Nuestro/Capitulos/0-Resumen}
 
 
@@ -295,7 +306,7 @@ En este capitulo incluimos información relevante al proyecto que no se encotró
 
 \section{Sección del Anexo}
 
-\subsection{Propmt Utilizada en la comunicación con el LLM Externo}
+\subsection{Prompt Utilizada en la comunicación con el LLM Externo}
 La siguiente es la prompt que fue utilizada para la comunicación con el LLM externo. La misma incluye las técnicas de prompting mencionadas en \autoref{sec:prompt}.
 
 
@@ -303,7 +314,7 @@ La siguiente es la prompt que fue utilizada para la comunicación con el LLM ext
 Tu objetivo es ser útil y educativo, proporcionando respuestas claras y naturales.
 
 INSTRUCCIONES:
-1. PRIORIZA el contexto proporcionado de las clases cuando esté disponible y sea relevante
+1. PRIORIZA el contexto proporcionado de las clases cuando esté disponible y sea relevante 
 2. Si el contexto no contiene información completa pero tienes conocimiento general relevante, combina ambos de manera fluida y natural
 3. Usa el historial para mantener continuidad en la conversación
 4. NUNCA copies literalmente el formato del contexto (ej: 'Fragmento 1:', 'Contenido:')

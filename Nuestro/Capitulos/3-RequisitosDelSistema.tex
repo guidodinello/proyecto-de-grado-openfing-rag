@@ -12,7 +12,7 @@ En la siguiente sección se detallan los requisitos funcionales y no funcionales
 \label{subsection:3-Requisitos No Funcionales}
 
 Dentro de la sección de requisitos no funcionales se incluyen aspectos relacionados con la calidad, rendimiento, usabilidad y otras características que no están directamente relacionadas con las funcionalidades específicas del sistema.
-\\
+\medskip
 
 Resulta fundamental que todo el código publicado sea de código abierto. Se busca evitar que el sistema sea percibido como un producto exclusivo del grupo desarrollador. El objetivo es que el chatbot asistente permanezca como un recurso público de la comunidad estudiantil de la Facultad de Ingeniería, como hoy es percibido OpenFING. Dado el potencial y la complejidad del sistema se considera valioso que cualquier estudiante pueda estudiar, modificar y mejorar el código, así como colaborar en el mantenimiento y evolución de la plataforma. El grupo ve posible el desarrollo de una comunidad a través del código abierto de este proyecto.
 
@@ -33,7 +33,7 @@ OpenFING. Proyectos como OpenUDELAR representan un caso de extensión natural: e
 
 \subsection{Requisitos Funcionales}
 Esta sección detalla las capacidades operativas y las funcionalidades específicas que el chatbot asistente pondrá a disposición de sus usuarios finales.
-\\
+\medskip
 
 El principal requisito funcional, y motivo del presente proyecto de grado, es el desarrollo de un chatbot interactivo basado en una arquitectura RAG, con el corpus de OpenFING. Esta funcionalidad permite que el asistente procese el corpus de transcripciones provenientes de OpenFING para ofrecer respuestas precisas y contextualizadas. El chatbot asistente no solo debe ser capaz de mantener un diálogo fluido, sino también integrar mecanismos de control sobre las fuentes utilizadas. Relacionado a la confiabilidad del sistema, cuando la información solicitada no se encuentre en el repositorio específico, el sistema debe informar explícitamente al usuario que la respuesta se basa en el conocimiento general del modelo preentrenado y no en el material de las clases.
 
@@ -145,7 +145,7 @@ Se analizará el rendimiento computacional de las herramientas de transcripción
 \label{subsection:3-RNF6: Evaluación de Herramientas de Transcripción}
 
 Investigar y evaluar de manera exhaustiva la eficiencia y precisión de diferentes herramientas y tecnologías de transcripción automática (Automatic Speech Recognition, ASR) para convertir las clases grabadas en formato de texto estructurado y procesable. Es importante remarcar qué si bien las métricas en las cuales se evaluó cada uno de los modelos están disponibles en linea, el grupo decidió realizar una verificación para garantizar si las métricas obtenidas eran precisas.
-\\
+\medskip
 Para garantizar la selección de la herramienta más adecuada a la situación, se deberá realizar un proceso de evaluación que contemple los siguientes aspectos:
 \begin{itemize}
     \item Análisis Cuantitativo
@@ -161,18 +161,20 @@ Cabe destacar que el analisis de las herramientas \acrshort{asr} se realizará a
 Para la evaluación de la calidad, el grupo se basa en cierta medida en estadísticas objetivas que señalizan cuán cercano es una transcripción realizada con respecto a la transcripción perfecta(\textit{ground-truth}), una en la cuál no hubo ningún error. Para ello se realizarán transcripciones manuales de referencia de un conjunto reducido de clases, las mismas servirán como base de comparación para evaluar la precisión de las herramientas \acrshort{asr} candidatas. La evaluación cuantitativa incluirá métricas estándar de la industria tales como:
 
 \begin{itemize}
-\item Word Error Rate: Calcula el número mínimo de inserciones, borrados y sustituciones de una palabra por otra, necesarios para transformar una frase en otra.\\
-$WER=\frac{S+I+D}{S+D+C}$
+\item Word Error Rate: Calcula el número mínimo de inserciones, borrados y sustituciones de una palabra por otra, necesarios para transformar una frase en otra.
+\medskip
+
+$WER=\frac{S+I+D}{N}$
 Donde:
 \begin{itemize}
     \item S es el número de substituciones realizadas,
     \item D es el número de eliminaciones realizadas,
     \item I es el número de inserciones realizadas,
     \item C es el número de palabras correctas.
+    \item N es el total de palabras.
 \end{itemize}
 
 \cite{ASR_Accuaracy}
-\todo[inline,color=cyan]{No logré encontrar un articulo que expliqué todas las estadísticas.}
 \item MER (Tasa de Error de Coincidencia): La tasa de error general, que combina sustituciones, eliminaciones e inserciones.
 
 \item WIL (Información de Palabra Perdida): Mide cuánto significado se pierde debido a errores (como sustituciones y eliminaciones).
