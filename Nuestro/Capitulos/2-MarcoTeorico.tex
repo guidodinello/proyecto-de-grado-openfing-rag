@@ -1,6 +1,5 @@
 \chapter{Marco Teórico}
 \label{chapter:2-Marco Teórico} 
-\todo[inline,color=cyan]{TODO: verificar y Cambiar todas las fuentes a Articulos cientificos}
 
 En el marco teórico se amplía el contexto actual mencionado previamente, se explican algunos de los conceptos relevantes y necesarios para un apropiado entendimiento del proyecto y también se evalúan algunos proyectos similares al mismo en los que el grupo tomó inspiración en ciertas cuestiones. 
 
@@ -16,7 +15,6 @@ Actualmente la plataforma no solo se utiliza para repasar las clases presenciale
 El grupo aspira a que el proyecto de grado actual pueda aportar de manera similar a lo que \Gls{OpenFing} aportó a la facultad, e impactó las carreras universitarias de muchos estudiantes. 
 
 \cite{OpenFing}
-\todo[inline]{Todo: arreglar problema con las referencias, este problema aparece en todas las referencias}
 
 \section{Conceptos Generales}
 \label{section:2-Conceptos Generales}
@@ -37,18 +35,16 @@ Anteriormente, el procesamiento de lenguaje natural se realizaba mayormente con 
 
 \cite{InteligenciaArificialGenerativa}
 
-\todo[inline]{ TODO: Seccion de NLP}
+\subsection{Procesamiento de Lenguaje Natural}
+\label{subsection:2-NLP}
 
 \subsection{Red Neuronal}
 \label{subsection:2-Red Neuronal}
 
-Una red neuronal es una estructura algorítmica inspirada en el funcionamiento del cerebro humano, compuesta por nodos (neuronas artificiales) interconectados en capas. Estas redes \"aprenden\" patrones complejos a través del ajuste iterativo de pesos matemáticos durante el entrenamiento. Cuando una red neuronal tiene múltiples capas ocultas, se denomina red neuronal profunda (deep neural network), y es la base de técnicas como el deep learning, que permite el procesamiento de datos a gran escala, como en los LLM.
+Una red neuronal es una estructura algorítmica inspirada en el funcionamiento del cerebro humano, compuesta por nodos (neuronas artificiales) interconectados en capas. Estas redes \textit{\" aprenden \"} patrones complejos a través del ajuste iterativo de pesos matemáticos durante el entrenamiento. Cuando una red neuronal tiene múltiples capas ocultas, se denomina red neuronal profunda (deep neural network), y es la base de técnicas como el deep learning, que permite el procesamiento de datos a gran escala, como en los LLM. En su libro \cite{Goodfellow-et-al-2016}, explica el concepto de deeplearning. 
 
-\todo[inline]{Jurasky explica que es red neuronal, goodwill explica qué es deeplearning.}
 
 \cite{Jurafsky2023} 
-
-\cite{Goodfellow-et-al-2016}
 
 
 \subsection{Tokenización}
@@ -74,25 +70,31 @@ Además, los LLMs presentan arquitecturas significativamente más sofisticadas, 
 \subsection{Segmentos}
 \label{subsection:2-Segmentos}
 
-Los textos utilizados por los LLMs pueden ser de cualquier largo, pero
-textos largos no son convenientes debido a que son más complejos de procesar que textos más cortos. Por eso los textos con los que los LLMs se entrenan se dividen en secciones más pequeñas, favoreciendo un procesamiento de texto más efectivo sin que se pierdan detalles importantes de la información provista.
+En el contexto de los sistemas \acrshort{rag}, la segmentación del corpus responde a dos necesidades concretas. En primer lugar, los LLMs presentan una ventana de contexto acotada: la cantidad de texto que puede incluirse en un único \gls{prompt} es limitada, por lo que no es posible inyectar documentos completos como contexto de recuperación. En segundo lugar, fragmentos más pequeños y cohesivos mejoran la granularidad de la recuperación: al indexar unidades de texto más acotadas, el sistema puede identificar con mayor precisión qué porción del corpus responde a una consulta dada, en lugar de recuperar documentos enteros de los cuales solo una fracción es relevante.
 
-\cite{chunks} 
+\cite{chunks}
 
-
-El cómo generar estas secciones individuales se determina a partir de la estrategia de \textit{chunking} (fragmentación, en español) utilizada, y a cada sección individual se le denomina como \textit{\gls{chunk}}.
+El modo en que se generan estas secciones individuales queda determinado por la estrategia de \textit{chunking} (fragmentación) utilizada, y a cada sección individual se le denomina \textit{\gls{chunk}}.
 
 \subsubsection{Segmentos Semánticos}
-\label{subaubsection:2-Semantic Chunks}
-\label{subsection:2-Semantic Chunks}
-\todo[inline,color=cyan]{alargar}
+\label{subsubsection:2-Semantic Chunks}
 
+El \textit{chunking} semántico segmenta el texto en función del contenido temático de cada fragmento. El objetivo es que cada \gls{chunk} capture una idea o argumento completo, evitando dividir oraciones o conceptos relacionados en fragmentos distintos. Este enfoque produce segmentos semánticamente cohesivos, lo que puede mejorar la relevancia de los resultados recuperados. Su principal desventaja es el mayor costo computacional necesario para determinar los límites de cada segmento.
 
-Hay diferentes tipos de estrategias de chunking.
-La estrategia utilizada en este proyecto se la llama Chunking semántico. Dicha estrategia busca segmentar el contenido en función del tema o idea principal abordada en cada porción de texto. Se intenta  preservar coherencia semántica en cada uno de los chunks y evitar la división de oraciones o ideas relacionadas en chunks distintos. \cite{Jurafsky2023}
+\cite{Jurafsky2023}
 
-\subsection[Prompt]{\Gls{prompt}}
+\subsubsection{Segmentos Recursivos}
+\label{subsubsection:2-Recursive Chunks}
+
+La estrategia de \textit{Recursive Character Splitting} divide el texto aplicando iterativamente una lista ordenada de separadores. El algoritmo intenta primero los separadores de mayor jerarquía estructural ---saltos de párrafo, saltos de línea, signos de puntuación oracional--- y, si el fragmento resultante sigue excediendo el tamaño máximo, continúa aplicando separadores de menor jerarquía hasta alcanzar el límite deseado. Esto garantiza que los cortes respeten la estructura natural del texto siempre que sea posible.
+
+En el presente proyecto se utiliza esta estrategia con un tamaño de \gls{chunk} de 1200 caracteres y una superposición (\textit{overlap}) de 200 caracteres entre fragmentos consecutivos. La superposición preserva el contexto en los límites entre chunks, evitando que una idea que cruza un corte quede truncada en ambos fragmentos. Los separadores fueron adaptados al español académico e incluyen conectores discursivos frecuentes en el habla de clase, tales como \textit{``entonces''}, \textit{``por lo tanto''} e \textit{``es decir''}. Adicionalmente, cada chunk retiene metadatos de temporalización que mapean su contenido a los instantes de inicio y fin correspondientes en el video original, lo que permite citar la fuente con el minuto exacto.
+
+\cite{chunks}
+
+\subsection[Prompt]{Consigna (prompt) }
 \label{subsection:2-prompt}
+\todo[inline]{cambiar fuentes, ordenar escritura.}
 
 En el \gls{contexto} de LLMs, se conoce como \textit{\gls{prompt}} a la instrucción o pregunta del usuario al modelo. La estructura específica de un \gls{prompt} afecta significativamente la respuesta del modelo.
 
@@ -105,7 +107,7 @@ Los siguientes son ejemplos sacados del mismo articulo.
     \centering
     \includegraphics[width=0.8\linewidth]{Nuestro/Imagenes/Figuras_De_Articulos/que_es_un_prompt_infografia.png}
     
-    \caption{Ejemplo de \gls{prompt}}
+    \caption{Ejemplo de \gls{prompt}. Ilustración de Basso.}
     \label{fig:2-2-5-que_es_un_prompt_infografia}
 \end{figure}
 
@@ -152,12 +154,17 @@ Las alucinaciones ocurren principalmente por tres factores: primero, los LLMs so
 En las figuras \ref{fig:2-2-7-Hallucinations_in_LLMs1} y \ref{fig:2-2-7-Hallucinations_in_LLMs2} se muestra un ejemplo famoso de una \gls{alucinación} de un GPT-3. En el caso, el modelo alucina la existencia de un caso, \textit{Varghese v. China Southern Airlines} judicial que nunca ocurrio. Dicha información incorrecta fue presentada en corte como si fuera verdadera. Al confrontar al modelo con la veracidad de la información, el modelo reafirmo que lo presentado era cierto y que el caso \textit{Varghese v. China Southern Airlines} existió.  
 \cite{Hallucination_Abogado}
 
-Este es un ejemplo que resalta la motivación del proyecto actual. No solo deseamos que nuestro sistema no sea propenso a alucinaciones, sino que tampoco es deseado que los estudiantes confien ciegamente en la informacion producida. 
+Este es un ejemplo que resalta la motivación del proyecto actual. No solo deseamos que nuestro sistema no sea propenso a alucinaciones, sino que tampoco es deseado que los estudiantes confien ciegamente en la información producida. 
 
-Para reducir las alucinaciones, el enfoque \acrshort{rag} se considera una solucion efectiva.
+Para reducir las alucinaciones, el enfoque \acrshort{rag} se considera una solución efectiva.
+
 \cite{Hallucinations_in_LLMs}
 
-\todo[color=cyan,inline]{En el articulo se habla de causas, como RAG es una posible solucion etc, no se si se deberia referenciar varias veces.}
+\todo[color=cyan,inline]{En el articulo se habla de causas, como RAG es una posible solucion etc, no se si se deberia referenciar varias veces. "Retrieval-Augmented Generation (RAG): RAG inte-
+grates information from trusted knowledge bases into
+the LLM’s generation process. This ensures that the
+model’s outputs are based on factual information rather
+than potentially hallucinated content"}
 
 
 
@@ -167,7 +174,7 @@ Para reducir las alucinaciones, el enfoque \acrshort{rag} se considera una soluc
 
 \todo[color=cyan,inline]{Revisar}
 \cite{lewis2020retrieval}
-Para mitigar las alucionaciones una de las estrategias posibles es \acrlong{rag}. Está estrategia consiste en dos estabas.
+Para mitigar las alucinaciones una de las estrategias posibles es \acrlong{rag}. Está estrategia consiste en dos etapas.
 \begin{itemize}
     \item \textbf{Retrival}
     \item \textbf{Generation}
@@ -220,8 +227,14 @@ Métodos de \gls{embedding} (OpenAI, Sentence Transformers, etc.)
 \label{subaubsection:2-Retrival}
 \subsubsection{Generation}
 \label{subaubsection:2-Generation}
-\subsection{Automatic Speach Recognition}
+
+
+
+\subsection{Automatic Speech Recognition}
 \label{subsection:2-Automatic Speach Recognition}
+
+
+
 \subsubsection{Whisper}
 \label{subsection:2-Whisper}
 \todo[inline,color=cyan]{Modelo basado en transformer encoder-decoder
