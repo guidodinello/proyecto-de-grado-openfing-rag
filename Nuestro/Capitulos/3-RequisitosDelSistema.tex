@@ -102,12 +102,12 @@ El paradigma de \textit{self-hosting} consiste en ejecutar el modelo mediante in
 
 La principal desventaja que el grupo identifica es el: 
 \begin{enumerate}
-\item \textbf{Requerimientos de Hardware:} Ejecutar un modelo especializado de gran tamaño implica una (\acrshort{gpu} de alta gama) cuyo costo de adquisición y mantenimiento energético es elevado.
+\item \textbf{Requerimientos de Hardware:} Ejecutar un modelo especializado de gran tamaño implica una o varias \acrshort{gpu}s de alta gama cuyo costo de adquisición y mantenimiento energético es elevado. 
 \end{enumerate}
 
-\cite{kaplan2020scalingTamanoporsobretodo} afirma que el tamaño del modelo es esencial por sobre otros parámetros, como la arquitectura de las capas o el tamaño del corpus de entrenamiento, sugiriendo que es preferible un modelo mayor no entrenado a un modelo pequeño altamente entrenado. Sin embargo, dentro de la alternativa \textbf{\textit{self-hosting}}, estaremos limitados en cuanto al tamaño de modelo a ejecutar.
+\cite{kaplan2020scalingTamanoporsobretodo} afirma que el tamaño del modelo es esencial por sobre otros parámetros, como la arquitectura de las capas o el tamaño del corpus de entrenamiento, sugiriendo que es preferible un modelo mayor no entrenado a un modelo pequeño altamente entrenado. Sin embargo, dentro de la alternativa \textbf{\textit{self-hosting}}, estaremos limitados en cuanto al tamaño de modelo a ejecutar, .
 
-En contraposición, el trabajo de \cite{jiang2023mistral} propone el modelo \textit{\textbf{Mistral 7B}} como una alternativa compacta y eficiente, planteando una visión multidimensional:
+En contraposición, el trabajo de \cite{jiang2023mistral} propone el modelo \textit{\textbf{Mistral 7B} como una alternativa compacta y eficiente, planteando una visión multidimensional:
 
 \begin{quote}
 \textit{“Our work on Mistral 7B demonstrates that language models may compress knowledge more than what was previously thought. This opens up interesting perspectives: the field has so far put the emphasis on scaling laws in 2 dimensions (directly associating model capabilities to training cost...); the problem is rather 3 dimensional (model capabilities, training cost, inference cost), and much remains to be explored to obtain the best performance with the smallest possible model.”} \cite{jiang2023mistral}
