@@ -114,6 +114,8 @@ El modelo \textit{small} ofrece una alternativa de menor costo computacional per
 
 Para la transcripción del corpus se utilizó la biblioteca \textit{faster-whisper} en lugar de la implementación original de Whisper provista por OpenAI. La diferencia central radica en el motor de inferencia: \textit{faster-whisper} emplea CTranslate2, un motor optimizado para la ejecución de modelos transformer que reduce el consumo de memoria y el tiempo de procesamiento sin modificar la arquitectura del modelo subyacente. En la práctica, esto se traduce en una reducción del tiempo de transcripción de entre dos y cuatro veces respecto a la implementación original, manteniendo resultados equivalentes en las métricas de error. Esta eficiencia es especialmente relevante dado que el corpus completo de OpenFing comprende 4.339 clases, un volumen que haría inviable el procesamiento con herramientas de menor rendimiento.
 
+\includegraphics[]{}
+
 \section{Modelo de Vectorización}
 \label{section:6-Modelo de Vectorización}
 
@@ -125,23 +127,83 @@ El modelo de vectorización determina la calidad de la representación semántic
 \subsection{Modelos}
 \label{subsection:6-Modelos}
 
-Los modelos de lenguaje evaluados en los experimentos de pregunta-respuesta son \textit{meta-llama/Meta-Llama-3.1-8B-Instruct} (Llama~3.1~8B, de Meta) como modelo principal, y \textit{Qwen/Qwen2.5-72B-Instruct} como alternativa de mayor capacidad. El modelo \textit{mistralai/Mistral-7B-Instruct-v0.3} fue evaluado en etapas previas del proyecto pero descartado en favor de Llama~3.1~8B por su menor desempeño en el dominio académico en español.
+El modelo de lenguaje principal evaluado en los experimentos de pregunta-respuesta es \textit{meta-llama/Meta-Llama-3.1-8B-Instruct} (Llama~3.1~8B, de Meta). Durante el desarrollo se consideraron también los modelos \textit{mistralai/Mistral-7B-Instruct-v0.3} y \textit{Qwen/Qwen2.5-72B-Instruct}, tal como se detalla en el \autoref{chapter:5-Implementación}. Mistral fue descartado por su menor desempeño en el dominio académico en español, mientras que Qwen, si bien produjo respuestas de mayor fluidez, implicaba un incremento en costo computacional desproporcionado respecto a la mejora observada.
+
+\subsection{Conjunto de Preguntas de Evaluación}
+\label{subsection:6-QA-Preguntas}
+
+Para evaluar el comportamiento del sistema se diseñaron 24 consultas clasificadas según la relación entre la pregunta y el contenido del contexto recuperado por el sistema:
+
+\begin{itemize}
+  \item \textbf{Están}: la respuesta aparece explícitamente en el contexto provisto.
+  \item \textbf{Se pueden derivar}: la respuesta no aparece de forma explícita pero puede inferirse del contexto.
+  \item \textbf{No están}: la pregunta es temáticamente afín al dominio pero la respuesta no se encuentra en el corpus.
+  \item \textbf{No tienen nada que ver}: la pregunta carece de relación con el dominio académico de OpenFing.
+\end{itemize}
+
+Adicionalmente, las preguntas con corpus completo se evaluaron en dos condiciones: con un prompt de sistema \textbf{Tipo~1}, cuya instrucción ante contexto insuficiente indica al modelo combinar el material recuperado con su conocimiento general de forma fluida, y con un prompt \textbf{Tipo~2}, que reemplaza esa instrucción por una indicación explícita de reconocer cuando el material recuperado no es suficiente para responder la consulta. Las preguntas con corpus restringido a una única lección se procesaron únicamente con el Tipo~2. La \autoref{table:preguntas_evaluacion} presenta las preguntas únicas organizadas por categoría.
+
+\begin{table}[H]
+\centering
+\footnotesize
+\begin{tabular}{c p{8.0cm} p{2.2cm} p{2.2cm}}
+\toprule
+\textbf{\#} & \textbf{Pregunta} & \textbf{Categoría} & \textbf{Corpus} \\
+\midrule
+\multicolumn{4}{l}{\textit{Corpus completo (evaluado con Tipo~1 y Tipo~2)}} \\
+\midrule
+1 & ¿Por qué resurgen los métodos de redes neuronales según las transcripciones? & Están & Completo \\
+2 & ¿Podría la mejora de la traducción automática llevar a una disminución en la demanda de traductores humanos? & Están & Completo \\
+3 & ¿Quiénes son los pioneros de las redes neuronales conocidos como la ``mafia canadiense''? & Se pueden derivar & Completo \\
+4 & ¿Qué impacto ha tenido el PLN en la industria financiera? & Se pueden derivar & Completo \\
+5 & ¿Cómo afecta la escasez de datos al desarrollo de sistemas de PLN para lenguas minoritarias? & Se pueden derivar & Completo \\
+6 & ¿Cuál es la tasa de precisión de los sistemas de traducción automática frente a traductores humanos? & No están & Completo \\
+7 & ¿Cuál es la receta tradicional de la paella valenciana? & No tienen nada que ver & Completo \\
+8 & ¿Cuántos planetas habitables se han descubierto en la Vía Láctea? & No tienen nada que ver & Completo \\
+\midrule
+\multicolumn{4}{l}{\textit{Corpus restringido a una lección (Tipo~2)}} \\
+\midrule
+9  & ¿Cómo se obtiene la función NOT usando únicamente la operación NAND? & Están & Arq. Comp., clase~5 \\
+10 & ¿Puede la finalización repentina de un proceso devolver un sistema en estado inseguro a un estado seguro? & Están & Sist. Op., clase~25 \\
+11 & ¿Cómo cambia la aceleración en la máquina de Atwood al sustituir una polea real por una ideal? & Están & Física~1, clase~16 \\
+12 & ¿Qué ocurre con una pelota lanzada sin cumplir la condición de rodadura sobre una superficie sin rozamiento? & Están & Física~1, clase~16 \\
+13 & ¿Qué procedimiento experimental permite verificar la inercialidad de un sistema de referencia? & Están & Física~1, clase~5 \\
+14 & ¿Cómo se usa la diagonalización de una matriz simétrica para obtener la forma estándar de una función cuadrática? & Están & Alg. Lineal 2, clase~22 \\
+15 & ¿Qué relación existe entre la multiplicidad geométrica de un valor propio y la forma canónica de Jordan? & Están & Alg. Lineal 2, clase~8 \\
+16 & ¿En qué año comenzó a dictarse el curso de forma virtual debido a la pandemia? & Se pueden derivar & Arq. Comp., clase~1 \\
+\bottomrule
+\end{tabular}
+\caption{Preguntas de evaluación del sistema de pregunta-respuesta organizadas por categoría.}
+\label{table:preguntas_evaluacion}
+\end{table}
 
 \subsection{Resultados}
 \label{subsection:6-QA-Resultados}
 
-Los experimentos de pregunta-respuesta se realizaron sobre el corpus completo de transcripciones indexadas. Se formularon preguntas de distintas características para evaluar el comportamiento del sistema ante consultas directas de concepto, preguntas que requieren integrar información de múltiples fragmentos, y consultas fuera del dominio del corpus. Las consultas fueron procesadas por el pipeline RAG con los siguientes parámetros, recuperando $k=4$ fragmentos por consulta, con un historial de conversación limitado a 4.000 tokens y utilizando el modelo de generación \textit{meta-llama/Meta-Llama-3.1-8B-Instruct}.
+Los experimentos se realizaron con $k=4$ fragmentos recuperados por consulta, historial de conversación de hasta 4.000 tokens y el modelo \textit{meta-llama/Meta-Llama-3.1-8B-Instruct}, según los parámetros descritos en la \autoref{subsection:6-Modelos}. La evaluación fue cualitativa, dado que no se contó con un conjunto de respuestas de referencia sobre el corpus de OpenFing.
 
-La evaluación del componente conversacional se realizó de forma cualitativa. En las consultas directas de concepto, el sistema produjo respuestas coherentes con el material de los cursos, incluyendo referencias explícitas al curso, lección e instante del video de donde proviene cada fragmento. En las preguntas que requerían integrar información dispersa, la calidad de la respuesta dependió de la proximidad semántica de los fragmentos recuperados: cuando los cuatro fragmentos recuperados abordaban el mismo concepto desde distintos ángulos, el sistema sintetizó la información de forma adecuada. En consultas fuera del dominio, el sistema reconoció la ausencia de información relevante en el contexto recuperado y limitó su respuesta a lo disponible, evitando generar contenido no fundamentado.
+\subsubsection{Efecto del tipo de prompt ante consultas fuera de dominio}
 
-Como alternativa de mayor capacidad, se evaluó el modelo \textit{Qwen/Qwen2.5-72B-Instruct} sobre el mismo conjunto de consultas. Las respuestas del modelo Qwen mostraron mayor fluidez y riqueza en la elaboración de explicaciones, aunque con un tiempo de respuesta notablemente mayor dado su tamaño. Ambos modelos mostraron comportamiento adecuado en el dominio del español académico.
+El contraste más claro entre las dos variantes de prompt se observó en el Grupo B. Con el prompt Tipo~1, el sistema respondió a la consulta sobre la paella valenciana y sobre planetas habitables sin advertir que la información solicitada no formaba parte del corpus. En su lugar, recuperó fragmentos vagamente relacionados (una mención incidental a una ``receta'' en una clase de Microprocesadores, o las leyes de Kepler en una clase de Física) y construyó respuestas que incorporaron datos de entrenamiento del modelo no presentes en el material de los cursos. Con el prompt Tipo~2, el sistema reconoció en ambos casos que la consulta no correspondía al dominio de OpenFing. Este resultado pone de manifiesto que la instrucción explícita en el prompt del sistema es determinante para que el modelo reconozca los límites de su base de conocimiento.
+
+\subsubsection{Respuestas a consultas en dominio}
+
+Para las preguntas del Grupo A, ambos tipos de prompt produjeron respuestas sustancialmente correctas ancladas en el material de los cursos, con referencias explícitas al curso, la lección y el instante del video de origen. Las preguntas cuya respuesta se encontraba directamente en las transcripciones, como la referida al resurgimiento de las redes neuronales, obtuvieron respuestas precisas y bien fundamentadas en los fragmentos recuperados. Las preguntas cuya respuesta requería información no cubierta en el corpus, como la tasa numérica de precisión de los sistemas de traducción automática, llevaron al modelo a complementar los fragmentos recuperados con conocimiento de entrenamiento externo al fragmento recuperado; con el Tipo~1 esto ocurrió sin señalamiento alguno, mientras que con el Tipo~2 el sistema indicó en varios casos que el dato específico no aparecía en el material de clase.
+
+\subsubsection{Respuestas con corpus restringido}
+
+Las preguntas del Grupo C revelaron una limitación adicional: aun cuando el corpus estaba restringido a una única clase y la consulta era directamente sobre su contenido, el modelo frecuentemente extendió su respuesta con conocimiento de entrenamiento más allá de lo estrictamente presente en los fragmentos recuperados, sin señalarlo de forma consistente. Esto fue especialmente notable en preguntas de alto contenido técnico, como las de álgebra lineal y sistemas operativos. La consulta sobre el año de inicio del dictado virtual constituyó un caso de éxito en que el sistema dedujo correctamente la información a partir del contexto disponible.
+
+\subsubsection{Evaluación con modelo alternativo}
+
+Como alternativa de mayor capacidad, se evaluó el modelo \textit{Qwen/Qwen2.5-72B-Instruct} sobre el mismo conjunto de consultas. Las respuestas mostraron mayor fluidez y riqueza en la elaboración de explicaciones, aunque con un tiempo de respuesta notablemente mayor. Ambos modelos mostraron comportamiento adecuado en el dominio del español académico.
 
 \subsection{Conclusión}
 \label{subsection:6-QA-Conclusión}
 
-Los experimentos de pregunta-respuesta permiten concluir que el pipeline RAG implementado cumple su función principal: anclar las respuestas del sistema en el material de los cursos de \Gls{OpenFing} y exponer las fuentes utilizadas. El modelo Llama~3.1~8B demostró ser suficiente para el dominio académico en español, con un equilibrio adecuado entre calidad de respuesta y costo de inferencia.
+Los experimentos de pregunta-respuesta permiten concluir que el pipeline RAG implementado cumple su función principal al anclar las respuestas del sistema en el material de los cursos de \Gls{OpenFing} y exponer las fuentes utilizadas. El modelo Llama~3.1~8B demostró ser suficiente para el dominio académico en español, con un equilibrio adecuado entre calidad de respuesta y costo de inferencia.
 
-La principal limitación identificada es la dependencia de la calidad de la transcripción: fragmentos con errores de transcripción pueden introducir ruido en el contexto recuperado, lo que ocasionalmente afecta la precisión de la respuesta. Esta limitación es consistente con las métricas de WER obtenidas en la evaluación de transcripción y refuerza la relevancia de utilizar un modelo de transcripción de alta precisión.
+La principal limitación identificada es la dependencia de la calidad de la transcripción, dado que fragmentos con errores pueden introducir ruido en el contexto recuperado y afectar ocasionalmente la precisión de la respuesta. Esta limitación es consistente con las métricas de WER obtenidas en la evaluación de transcripción y refuerza la relevancia de utilizar un modelo con buena precisión.
 
 La ausencia de una evaluación cuantitativa sistemática del componente conversacional, mediante métricas automáticas de calidad de respuesta o evaluación humana estructurada, constituye la principal área pendiente de la evaluación experimental. Una evaluación de este tipo requeriría la construcción de un conjunto de pares pregunta-respuesta de referencia sobre el corpus de \Gls{OpenFing}, lo que queda planteado como trabajo a futuro. % TODO: agregar en Cap. 7
 
