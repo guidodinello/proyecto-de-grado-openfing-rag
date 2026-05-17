@@ -1,8 +1,7 @@
 \chapter{Experimentación}
 \label{chapter:6-Experimentación}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-En este capitulo se presenta los análisis que hemos adelantados en secciones previas. 
+En este capítulo se presentan los experimentos realizados para evaluar el desempeño del sistema, cuyos criterios de evaluación se establecieron en los capítulos anteriores.
 
 \section{Evaluación de Métodos de Transcripción}
 \label{section:6-Evaluación de Métodos de Transcripción}
@@ -27,12 +26,10 @@ Para comparar el desempeño de los modelos de reconocimiento automático de voz 
 
 
 
-% Remember to include \usepackage{float} and \usepackage{siunitx} in your preamble
 \begin{table}[H]
 \centering
 
 
-\label{table:whisper_evaluation}
 \begin{tabular}{l l l S[table-format=1.3] S[table-format=1.3] S[table-format=1.3] S[table-format=1.3] S[table-format=1.3]}
 \toprule
 \textbf{Modelo} & \textbf{Conjunto de Prueba} & \textbf{Idioma} & \textbf{WER} & \textbf{MER} & \textbf{WIL} & \textbf{WIP} & \textbf{CER} \\
@@ -72,7 +69,7 @@ medium & Pnl-2   & ad & 0.086 & 0.085 & 0.120 & 0.879 & 0.052 \\
 \bottomrule
 \end{tabular}
 \caption{Resultados de evaluación de modelos Whisper en tareas de transcripción de contenido académico en español. Se reportan métricas de error para autodetección de idioma (ad) y especificación explícita de español (es).}
-
+\label{table:whisper_evaluation}
 \end{table}
 
 
@@ -84,6 +81,8 @@ Los resultados evidencian diferencias significativas en el desempeño de los tre
 En contraste, el modelo \textit{small} presenta tasas de error sustancialmente superiores, con WER de 0.150 en Clase 1 (consistente entre ambas estrategias de detección de idioma) y un rango de 0.139 a 0.234 en Clase 2. Notablemente, en esta última clase, la especificación de español resulta en una degradación significativa del desempeño (WER de 0.234), contrario a la tendencia observada en el modelo \textit{medium}.
 
 El modelo \textit{base} exhibe el peor desempeño general, con WER de 0.203 en Clase 1, indicando que modelos de menor capacidad acumulan mayor proporción de errores en la transcripción.
+
+Los resultados en las clases del curso de Procesamiento de Lenguaje Natural (Pnl-1 y Pnl-2) confirman las tendencias observadas en Computación 1. El modelo \textit{medium} alcanza una WER de 0.051 en Pnl-1 (idéntica entre ambas estrategias de detección) y de 0.042 en Pnl-2 con especificación explícita del idioma, resultados equivalentes a los obtenidos en el conjunto Comp1. El modelo \textit{small} mantiene una WER de 0.150 en Pnl-1 y oscila entre 0.139 y 0.234 en Pnl-2 según la estrategia de idioma empleada, replicando el comportamiento observado en Computación 1. La consistencia de los resultados a través de dos cursos con estilos pedagógicos distintos respalda la solidez del modelo \textit{medium} como opción de transcripción para el corpus de OpenFing.
 
 \subsection{Análisis Cualitativo}
 
@@ -104,23 +103,33 @@ Durante la evaluación se identificó una fuente recurrente de discrepancia: las
 Desde la perspectiva de la aplicación propuesta en este trabajo, donde las transcripciónes alimentan un sistema de recuperación de información (RAG) diseñado para generar respuestas en un asistente conversacional, la omisión de muletillas puede considerarse beneficiosa. Estos elementos lingüísticos no contribuyen contenido semántico significativo y su eliminación reduce el ruido en los documentos indexados, potencialmente mejorando la calidad de las respuestas generadas. Una cuantificación sistemática de este fenómeno constituye una línea de mejora futura para optimizar aún más el procesamiento.
 
 \subsection{Conclusión}
+\label{subsection:6-1-Conclusión}
 
+Los resultados obtenidos permiten establecer que el modelo Whisper \textit{medium} con especificación explícita del idioma español es el más adecuado para la transcripción del corpus de OpenFing. Alcanza una WER promedio inferior a 0.05 en todos los conjuntos de prueba evaluados, lo que equivale a menos de cinco errores por cada cien palabras. Esta precisión es suficiente para que los segmentos generados sean útiles como fuente de conocimiento en el pipeline RAG: los fragmentos recuperados contienen información semánticamente correcta, incluso cuando presentan errores menores de transcripción.
 
-\label{subsection:6-3-Métricas}
-\subsection{Resultados}
-\label{subsection:6-3-Resultados}
+El modelo \textit{small} ofrece una alternativa de menor costo computacional pero con una WER entre dos y cuatro veces mayor, lo que puede degradar la calidad de los segmentos indexados y, por extensión, la relevancia de las respuestas generadas. El modelo \textit{base} no resulta adecuado para este dominio. En consecuencia, el sistema utiliza el modelo \textit{medium} como configuración de producción.
 
-\subsection{Por que utilizamos faster whisper y whisper cpp.}
+\subsection{Justificación de faster-whisper}
+\label{subsection:6-1-faster-whisper}
+
+Para la transcripción del corpus se utilizó la biblioteca \textit{faster-whisper} en lugar de la implementación original de Whisper provista por OpenAI. La diferencia central radica en el motor de inferencia: \textit{faster-whisper} emplea CTranslate2, un motor optimizado para la ejecución de modelos transformer que reduce el consumo de memoria y el tiempo de procesamiento sin modificar la arquitectura del modelo subyacente. En la práctica, esto se traduce en una reducción del tiempo de transcripción de entre dos y cuatro veces respecto a la implementación original, manteniendo resultados equivalentes en las métricas de error. Esta eficiencia es especialmente relevante dado que el corpus completo de OpenFing comprende 4.339 clases, un volumen que haría inviable el procesamiento con herramientas de menor rendimiento.
 
 \section{Modelo de Vectorización}
-
+\label{section:6-Modelo de Vectorización}
 
 \section{Pregunta Respuesta}
+\label{section:6-Pregunta Respuesta}
 
 \subsection{Modelos}
-Mistral y Meta
+\label{subsection:6-Modelos}
+
+Los modelos de lenguaje evaluados en los experimentos de pregunta-respuesta son \textit{meta-llama/Meta-Llama-3.1-8B-Instruct} (Llama~3.1~8B, de Meta) como modelo principal, y \textit{Qwen/Qwen2.5-72B-Instruct} como alternativa de mayor capacidad. El modelo \textit{mistralai/Mistral-7B-Instruct-v0.3} fue evaluado en etapas previas del proyecto pero descartado en favor de Llama~3.1~8B por su menor desempeño en el dominio académico en español.
+
 \subsection{Resultados}
+\label{subsection:6-QA-Resultados}
+
 \subsection{Conclusión}
+\label{subsection:6-QA-Conclusión}
 
 
 

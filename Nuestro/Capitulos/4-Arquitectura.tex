@@ -12,16 +12,8 @@ El \gls{frontend} está compuesto por una \acrfull{spa} desarrollada en React co
 
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=\linewidth]{Nuestro/Imagenes/Arquitectura/Backend.drawio.png}
-    
-    \caption{Diagrama UML de los componentes del \gls{backend}. Ilustración propia.}
-    \label{fig:Arquitectura_Backend}
-\end{figure}
-
-\begin{figure}[htbp]
-    \centering
     \includegraphics[width=\linewidth]{Nuestro/Imagenes/Arquitectura/Frontend.png}
-    
+
     \caption{Diagrama UML de los componentes \gls{frontend}. Ilustración propia.}
     \label{fig:Arquitectura_Frontend}
 \end{figure}
@@ -30,6 +22,14 @@ El \gls{frontend} está compuesto por una \acrfull{spa} desarrollada en React co
 
 \subsection[Componentes del Backend]{Componentes del backend}
 \label{subsection:4-2-Componentes del backend}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\linewidth]{Nuestro/Imagenes/Arquitectura/Backend.drawio.png}
+
+    \caption{Diagrama UML de los componentes del \gls{backend}. Ilustración propia.}
+    \label{fig:Arquitectura_Backend}
+\end{figure}
 El \gls{backend} del sistema se estructura en módulos especializados que operan de forma independiente pero coordinada, siguiendo principios de arquitectura de microservicios. Cada componente tiene una responsabilidad claramente delimitada dentro del pipeline de procesamiento, desde la adquisición de contenido hasta la generación de respuestas contextualizadas. Esta separación modular facilita el mantenimiento, testing y escalabilidad del sistema. A continuación se detallan los cinco componentes principales que conforman la arquitectura \gls{backend}.
 
 \subsection{Scrapper}

@@ -117,7 +117,7 @@ En el contexto del presente proyecto, los \glspl{chunk} extraídos de las transc
 \subsection{Alucinaciones en Modelos de Lenguaje}
 \label{subsection:2-Alucinaciones en Modelos de Lenguaje}
 
-Las alucinaciones en modelos de lenguaje grandes (LLMs) representan un desafío crítico en aplicaciones que requieren precisión factual. Una alucinación es cuando un modelo de lenguange produce contenido plausible pero incorrecto, inconsistente o enteramente fabricado. Los modelos de lenguaje presentan dicho contendo con confianza, lo que induce a los usuarios a creer en la veracidad de la información. 
+Las alucinaciones en modelos de lenguaje grandes (LLMs) representan un desafío crítico en aplicaciones que requieren precisión factual. Una alucinación es cuando un modelo de lenguaje produce contenido plausible pero incorrecto, inconsistente o enteramente fabricado. Los modelos de lenguaje presentan dicho contendo con confianza, lo que induce a los usuarios a creer en la veracidad de la información. 
 
 Entre las principales causas identificadas en la literatura se encuentran: primero, los LLMs son modelos probabilísticos entrenados para predecir texto verosímil, no necesariamente verídico; segundo, la información en sus parámetros puede estar desactualizada o ser incompleta; tercero, durante situaciones de incertidumbre, el modelo tiende a completar patrones lingüísticos coherentes sin validación factual \cite{Hallucinations_in_LLMs}.
 
@@ -139,8 +139,7 @@ Entre las principales causas identificadas en la literatura se encuentran: prime
 \end{figure}
 
 
-En las figuras \ref{fig:2-2-7-Hallucinations_in_LLMs1} y \ref{fig:2-2-7-Hallucinations_in_LLMs2} se muestra un ejemplo famoso de una \gls{alucinación} de ChatGPT. En el caso, el modelo alucina la existencia de un caso, \textit{Varghese v. China Southern Airlines} judicial que nunca ocurrio. Dicha información incorrecta fue presentada en corte como si fuera verdadera. Al confrontar al modelo con la veracidad de la información, el modelo reafirmo que lo presentado era cierto y que el caso \textit{Varghese v. China Southern Airlines} existió.  
-\cite{Hallucination_Abogado}
+En las figuras \ref{fig:2-2-7-Hallucinations_in_LLMs1} y \ref{fig:2-2-7-Hallucinations_in_LLMs2} se muestra un ejemplo famoso de una \gls{alucinación} de ChatGPT. En el caso, el modelo alucina la existencia de un caso, \textit{Varghese v. China Southern Airlines} judicial que nunca ocurrió. Dicha información incorrecta fue presentada en corte como si fuera verdadera. Al confrontar al modelo con la veracidad de la información, el modelo reafirmó que lo presentado era cierto y que el caso \textit{Varghese v. China Southern Airlines} existió \cite{Hallucination_Abogado}.
 
 Este es un ejemplo que resalta la motivación del proyecto actual. No solo deseamos que nuestro sistema no sea propenso a alucinaciones, sino que tampoco es deseado que los estudiantes confien ciegamente en la información producida. 
 
