@@ -117,6 +117,8 @@ Para la transcripción del corpus se utilizó la biblioteca \textit{faster-whisp
 \section{Modelo de Vectorización}
 \label{section:6-Modelo de Vectorización}
 
+El modelo de vectorización determina la calidad de la representación semántica de los fragmentos indexados y, por extensión, la relevancia de los resultados recuperados ante cada consulta. El sistema permite configurar cualquier modelo de HuggingFace Hub compatible con LangChain mediante una variable de entorno. En los experimentos se evaluaron dos alternativas: el modelo \textit{sentence-transformers/all-MiniLM-L6-v2} (384 dimensiones), de menor costo computacional y orientado a textos en inglés, cuyos resultados no resultaron satisfactorios para el dominio en español, y el modelo \textit{intfloat/multilingual-e5-base} (768 dimensiones), diseñado para múltiples idiomas, cuya mayor dimensionalidad permite representar con más detalle las relaciones entre conceptos del dominio académico en español. El modelo \textit{all-MiniLM-L6-v2} se utilizó en etapas tempranas del desarrollo, cuando el volumen del corpus procesado era menor y el costo de cómputo era un factor limitante. A medida que el corpus creció y los resultados del modelo orientado al inglés resultaron insatisfactorios para el dominio en español, el modelo multilingüe fue adoptado como configuración de producción para la generación de los 217.986 fragmentos que componen el corpus indexado.
+
 \section{Pregunta Respuesta}
 \label{section:6-Pregunta Respuesta}
 
@@ -128,8 +130,29 @@ Los modelos de lenguaje evaluados en los experimentos de pregunta-respuesta son 
 \subsection{Resultados}
 \label{subsection:6-QA-Resultados}
 
+Los experimentos de pregunta-respuesta se realizaron sobre el corpus completo de transcripciones indexadas. Se formularon preguntas de distintas características para evaluar el comportamiento del sistema ante consultas directas de concepto, preguntas que requieren integrar información de múltiples fragmentos, y consultas fuera del dominio del corpus. Las consultas fueron procesadas por el pipeline RAG con los siguientes parámetros, recuperando $k=4$ fragmentos por consulta, con un historial de conversación limitado a 4.000 tokens y utilizando el modelo de generación \textit{meta-llama/Meta-Llama-3.1-8B-Instruct}.
+
+La evaluación del componente conversacional se realizó de forma cualitativa. En las consultas directas de concepto, el sistema produjo respuestas coherentes con el material de los cursos, incluyendo referencias explícitas al curso, lección e instante del video de donde proviene cada fragmento. En las preguntas que requerían integrar información dispersa, la calidad de la respuesta dependió de la proximidad semántica de los fragmentos recuperados: cuando los cuatro fragmentos recuperados abordaban el mismo concepto desde distintos ángulos, el sistema sintetizó la información de forma adecuada. En consultas fuera del dominio, el sistema reconoció la ausencia de información relevante en el contexto recuperado y limitó su respuesta a lo disponible, evitando generar contenido no fundamentado.
+
+Como alternativa de mayor capacidad, se evaluó el modelo \textit{Qwen/Qwen2.5-72B-Instruct} sobre el mismo conjunto de consultas. Las respuestas del modelo Qwen mostraron mayor fluidez y riqueza en la elaboración de explicaciones, aunque con un tiempo de respuesta notablemente mayor dado su tamaño. Ambos modelos mostraron comportamiento adecuado en el dominio del español académico.
+
 \subsection{Conclusión}
 \label{subsection:6-QA-Conclusión}
+
+Los experimentos de pregunta-respuesta permiten concluir que el pipeline RAG implementado cumple su función principal: anclar las respuestas del sistema en el material de los cursos de \Gls{OpenFing} y exponer las fuentes utilizadas. El modelo Llama~3.1~8B demostró ser suficiente para el dominio académico en español, con un equilibrio adecuado entre calidad de respuesta y costo de inferencia.
+
+La principal limitación identificada es la dependencia de la calidad de la transcripción: fragmentos con errores de transcripción pueden introducir ruido en el contexto recuperado, lo que ocasionalmente afecta la precisión de la respuesta. Esta limitación es consistente con las métricas de WER obtenidas en la evaluación de transcripción y refuerza la relevancia de utilizar un modelo de transcripción de alta precisión.
+
+La ausencia de una evaluación cuantitativa sistemática del componente conversacional, mediante métricas automáticas de calidad de respuesta o evaluación humana estructurada, constituye la principal área pendiente de la evaluación experimental. Una evaluación de este tipo requeriría la construcción de un conjunto de pares pregunta-respuesta de referencia sobre el corpus de \Gls{OpenFing}, lo que queda planteado como trabajo a futuro. % TODO: agregar en Cap. 7
+
+\section{Despliegue y Validación Operacional}
+\label{section:6-Despliegue}
+
+Como complemento a los experimentos de laboratorio, el sistema fue desplegado en un entorno real y accesible públicamente. El despliegue se realizó en un servidor virtual (VPS) proporcionado por \textit{Mi Nube} de ANTEL, cedido sin costo al proyecto como apoyo institucional durante un período acotado. El sistema estuvo disponible en la dirección \texttt{openfingchat.duckdns.org}, accesible desde cualquier navegador durante el período de evaluación.
+
+Todos los servicios fueron contenedorizados mediante Docker y orquestados con Docker Compose. La arquitectura de despliegue separó el tráfico externo del acceso a la base de datos mediante redes internas de Docker, de modo que PostgreSQL nunca fue expuesto al exterior y solo el servicio backend podía conectarse a él. El servidor Nginx operó como punto de entrada único, gestionando la terminación TLS con certificados de Let's Encrypt\cite{letsencrypt}, una autoridad certificadora gratuita y automatizada, y enrutando las solicitudes hacia el backend FastAPI y el frontend React.
+
+Este despliegue constituyó una validación cualitativa del sistema en condiciones reales, complementaria a las métricas de evaluación presentadas en las secciones anteriores. Permitió recibir retroalimentación de usuarios reales, incluyendo estudiantes de la FING y actores académicos, tal como se describe en el \autoref{Experiencia_En_Ing_De_Muestra}.
 
 
 

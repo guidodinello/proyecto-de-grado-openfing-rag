@@ -142,8 +142,6 @@ El \textit{chunking} semántico segmenta el texto en función del contenido tem�
 
 La estrategia de \textit{Recursive Character Splitting} divide el texto aplicando iterativamente una lista ordenada de separadores \cite{langchain}. El algoritmo intenta primero los separadores de mayor jerarquía estructural, como saltos de párrafo, saltos de línea y signos de puntuación oracional, y si el fragmento resultante sigue excediendo el tamaño máximo, continúa aplicando separadores de menor jerarquía hasta alcanzar el límite deseado. Esto garantiza que los cortes respeten la estructura natural del texto siempre que sea posible. Una variante de este enfoque incluye además una superposición entre fragmentos consecutivos, de modo que el contexto en los límites de cada segmento no quede truncado abruptamente.
 
-\todo[color=cyan,inline]{Diego: En implementación se debería mencionar que se terminó utilizando chunking recursivos debido al alto costo computacional}
-
 
 
 \subsection[Retrieval-Augmented Generation]{Generación Aumentada por Recuperación (Retrieval-Augmented Generation)}

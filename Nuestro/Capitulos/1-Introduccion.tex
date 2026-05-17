@@ -38,8 +38,13 @@ Los objetivos específicos son:
 \section{Resultados Esperados}
 \label{section:1-Resultados Esperados}
 
+El proyecto buscó demostrar que es posible aprovechar el material audiovisual ya existente en \Gls{OpenFing} para construir un asistente conversacional que asista a los estudiantes en su aprendizaje, valiéndose de herramientas de inteligencia artificial que han ganado amplia popularidad en los últimos años, como los modelos de lenguaje y los sistemas de chat.
 
-%TODO: completar al final del informe, cuando estén los resultados finales.
+Para aprovechar la totalidad del material audiovisual disponible, cuya cantidad hace inviable cualquier proceso manual, se esperaba encontrar una herramienta de transcripción automática capaz de producir transcripciones de calidad suficiente para servir como base de conocimiento del sistema. Los experimentos confirmaron que fue posible obtener transcripciones con un nivel de error lo bastante bajo para que el material resultara útil en el pipeline de recuperación.
+
+En cuanto al pipeline de procesamiento del corpus, se proyectaba cubrir la totalidad del contenido disponible en \Gls{OpenFing}. El pipeline implementado procesó los 239 cursos y 4.339 clases que componen el corpus, generando 217.986 fragmentos (\textit{chunks}) indexados en la base de datos vectorial.
+
+En cuanto al componente conversacional, se esperaba que el sistema respondiera preguntas de los estudiantes de forma fundamentada en el material de los cursos, con referencia explícita al instante del video de origen. El modelo \textit{meta-llama/Meta-Llama-3.1-8B-Instruct} (Llama~3.1~8B), accedido mediante la API de inferencia de HuggingFace, demostró ser adecuado para el dominio académico en español, produciendo respuestas coherentes y trazables.
 
 \section{Organización del Documento}
 \label{section:1-Organización del Documento}
@@ -59,3 +64,8 @@ El presente documento se estructura de la siguiente manera:
 \textbf{\autoref{chapter:7-Trabajo a futuro}} explora las posibles extensiones y mejoras del sistema a futuro.
 
 \textbf{\autoref{chapter:8-Conclusiones}} resume los principales hallazgos del proyecto y reflexiona sobre el cumplimiento de los objetivos planteados.
+
+\section{Conclusiones Resumidas}
+\label{section:1-Conclusiones Resumidas}
+
+Se logró desarrollar un chatbot educativo funcional basado en el contenido de \Gls{OpenFing}, demostrando que la viabilidad de la solución no está condicionada por barreras económicas sino por decisiones metodológicas. El pipeline automatizado de extracción, transcripción e indexación procesó la totalidad del corpus disponible. La evaluación del sistema de transcripción evidenció que el modelo Whisper \textit{medium} es adecuado para el español académico rioplatense, con una WER inferior a 0.05. El asistente conversacional ancla sus respuestas en fragmentos de clase verificables e incluye referencias con temporización exacta al video de origen, lo que reduce el riesgo de alucinaciones respecto a los modelos de propósito general. Los cinco objetivos específicos del proyecto fueron abordados, aunque la evaluación del componente de pregunta-respuesta sobre el corpus completo constituye la principal área de mejora futura.

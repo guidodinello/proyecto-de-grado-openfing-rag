@@ -53,6 +53,8 @@ Para el desarrollo del sistema se optó por utilizar exclusivamente tecnologías
 \begin{itemize}
     \item \textbf{Docker}: Plataforma de contenedorización que empaqueta aplicaciones y sus dependencias en contenedores aislados. Garantiza que el software funcione de manera consistente en cualquier entorno, desde desarrollo hasta producción.\cite{docker}
 
+    \item \textbf{Nginx}: Servidor web y proxy inverso de alto rendimiento. Se utilizó como punto de entrada único del sistema en producción, enrutando el tráfico hacia los servicios internos.\cite{nginx}
+    
     \item \textbf{UV}: Gestor de paquetes y entornos virtuales para Python extremadamente rápido, escrito en Rust. Sirve como reemplazo moderno de pip y venv, acelerando significativamente la instalación de dependencias.\cite{uv}
 
     \item \textbf{Uvicorn}: Servidor ASGI (\textit{Asynchronous Server Gateway Interface}) para Python. Ejecuta la aplicación FastAPI y gestiona las conexiones HTTP y WebSocket de forma asíncrona con alta concurrencia.\cite{uvicorn}
