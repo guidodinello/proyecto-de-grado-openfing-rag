@@ -1,4 +1,8 @@
 .vscode/
 .claude/
+build/
+scripts/
 
-CLAUDE.md
+mine/citation-audits/**
+!mine/citation-audits/**/
+!mine/citation-audits/**/resumen.md
