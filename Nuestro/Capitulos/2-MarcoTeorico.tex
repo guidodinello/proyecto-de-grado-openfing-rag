@@ -5,7 +5,7 @@ En el marco teórico se amplía el contexto actual mencionado previamente, se ex
 
 \section[OpenFING]{OpenFing}
 \label{section:2-OpenFING}
-Como se explicó anteriormente, el proyecto de grado depende activamente de \Gls{OpenFing} como base de conocimiento. En esta sección se explica el origen y el rol que tiene actualmente en la facultad.
+Como se explicó anteriormente, el presente proyecto de grado depende activamente de \Gls{OpenFing} como base de conocimiento. En esta sección se explica el origen de OpenFing y el rol que cumple actualmente en la facultad.
 \Gls{OpenFing} es una plataforma de videos educativos de la Facultad de Ingeniería de la Universidad de la República (UdelaR) \cite{OpenFing}. La plataforma permite que profesores suban clases, para facilitar el seguimiento de los cursos de la FING, proveyendo difusión y acceso a las clases de la institución más allá de la presencialidad.
 
 En 2012 se creó como una herramienta de estudio complementaria para repasar contenidos desarrollados en clases presenciales. Hoy en día, concentra miles de horas de video y miles de clases. Además, casi todos los cursos se apoyan en mayor o menor medida en \Gls{OpenFing}, consolidándola como un pilar del aprendizaje digital dentro de la institución. Para la realización de este proyecto se transcribieron todas las clases incluidas en esta plataforma.
@@ -31,7 +31,7 @@ Anteriormente, el procesamiento de lenguaje natural se centraba principalmente e
 \subsubsection{Inteligencia Artificial Generativa}
 \label{subsubsection:2-Inteligencia Artificial Generativa}
 
-Los modelos generativos se distinguen de los modelos discriminativos por su objetivo de entrenamiento. Mientras que un modelo discriminativo aprende a clasificar o etiquetar entradas existentes, un modelo generativo aprende una representación de la distribución estadística subyacente a los datos de entrenamiento, lo que le permite producir nuevas muestras coherentes con esa distribución \cite{Goodfellow-et-al-2016}. Esta capacidad de síntesis, aplicada al lenguaje, habilita sistemas que redactan respuestas, resumen documentos y responden preguntas de manera fluida y contextualizada.
+Históricamente se establece una distinción en la inteligencia artificial y el aprendizaje automático entre modelos modelos discriminativos y los modelos generativos, estos se se distinguen por su objetivo de entrenamiento. Mientras que un modelo discriminativo aprende a clasificar o etiquetar entradas existentes, un modelo generativo aprende una representación de la distribución estadística subyacente a los datos de entrenamiento, lo que le permite producir nuevas muestras coherentes con esa distribución \cite{Goodfellow-et-al-2016}. Esta capacidad de síntesis, aplicada al lenguaje, habilita sistemas que redactan respuestas, resumen documentos y responden preguntas de manera fluida y contextualizada.
 
 En el dominio del lenguaje, los grandes modelos de lenguaje (LLMs) constituyen el representante más prominente de la IA generativa. Entrenados sobre volúmenes masivos de texto, estos modelos aprenden a predecir la siguiente palabra en una secuencia y, a partir de ese objetivo, desarrollan una comprensión profunda de las estructuras del lenguaje \cite{Zhao2023LLMSurvey}. En el presente proyecto, un LLM actúa como componente de generación dentro del sistema RAG, transformando los fragmentos recuperados del corpus de OpenFing en respuestas contextualizadas para el estudiante.
 
@@ -47,7 +47,7 @@ El advenimiento del aprendizaje profundo transformó sustancialmente el campo, a
 \subsection{Red Neuronal}
 \label{subsection:2-Red Neuronal}
 
-Una red neuronal es una estructura algorítmica inspirada en el funcionamiento del cerebro humano, compuesta por nodos (neuronas artificiales) interconectados en capas. Estas redes aprenden patrones complejos a través del ajuste iterativo de pesos matemáticos durante el entrenamiento. Cuando una red neuronal tiene múltiples capas ocultas, se denomina red neuronal profunda (\textit{deep neural network}), y es la base del \textit{deep learning}, paradigma que ha demostrado alta capacidad para aprender representaciones útiles en tareas de procesamiento de lenguaje natural. Goodfellow et al. \cite{Goodfellow-et-al-2016} presentan una referencia exhaustiva sobre estos conceptos y sus fundamentos matemáticos.
+Una red neuronal es una estructura algorítmica inspirada en el funcionamiento del cerebro humano, compuesta por nodos (neuronas artificiales) interconectados en capas. Estas redes aprenden patrones complejos a través del ajuste iterativo de pesos matemáticos durante el entrenamiento. Cuando una red neuronal tiene múltiples capas ocultas, se denomina red neuronal profunda (\textit{deep neural network}), y es la base del \textit{deep learning}, paradigma que ha demostrado alta capacidad para aprender representaciones útiles en tareas de procesamiento de lenguaje natural.  \cite{Goodfellow-et-al-2016} presentan una referencia exhaustiva sobre estos conceptos y sus fundamentos matemáticos.
 
 
 \subsection{Arquitectura Transformer}
@@ -57,99 +57,97 @@ La arquitectura \textit{Transformer} fue introducida por Vaswani et al. \cite{va
 
 La arquitectura original adopta una estructura de codificador-decodificador: el codificador transforma la secuencia de entrada en representaciones vectoriales contextualizadas, mientras que el decodificador genera la secuencia de salida de manera autoregresiva, condicionado en esas representaciones. Esta separación admite variantes especializadas: modelos de solo codificador, orientados a la comprensión del texto y a la generación de \textit{embeddings}, y modelos de solo decodificador, orientados a la generación de texto, que constituyen la base de los LLMs modernos \cite{SpeechandLanguageProcessing}.
 
-La relevancia de esta arquitectura para el presente proyecto es transversal. El modelo de reconocimiento de voz Whisper, los modelos de \textit{embedding} utilizados en la recuperación semántica y el LLM empleado en la generación de respuestas tienen todos como fundamento técnico la arquitectura \textit{Transformer}.
+La relevancia de esta arquitectura para el presente proyecto es transversal: El modelo de reconocimiento de voz Whisper, los modelos de \textit{embedding} utilizados en la recuperación semántica y el LLM empleado en la generación de respuestas tienen todos como fundamento técnico la arquitectura \textit{Transformer}.
 
 \subsection{Tokenización}
 \label{subsection:2-Tokenización}
-La tokenización es el proceso de dividir texto en unidades más pequeñas denominadas \textit{tokens} \cite{SpeechandLanguageProcessing}. Un \gls{token} puede ser una palabra, varias palabras juntas, una única sílaba o incluso una única letra, dependiendo de la estrategia de tokenización empleada. Con motivo de simplificación, los conceptos presentados en este capítulo utilizan \textit{token} como equivalente a una única palabra dentro de un texto.
+La tokenización es el proceso de dividir texto en unidades más pequeñas denominadas \textit{tokens} \cite{SpeechandLanguageProcessing}. Un \gls{token} puede ser una palabra, varias palabras juntas, una única sílaba o incluso una única letra, dependiendo de la estrategia de tokenización empleada. Con motivo de simplificación, los próximos conceptos presentados en este capítulo utilizan \textit{token} como equivalente a una única palabra dentro de un texto.
 
-\subsection{Modelo de lenguaje y LLMS}
+\subsection{Modelo de lenguaje y Grandes Modelos de Lenguajes}
 \label{subsection:2-Modelo de lenguaje y LLMS}
 
-Un modelo de lenguaje es un sistema de inteligencia artificial entrenado para predecir la siguiente palabra (o \gls{token}) a partir de una secuencia de entrada \cite{SpeechandLanguageProcessing}. Esta tarea de predicción constituye el fundamento del entrenamiento de los modelos de lenguaje de última generación. Diseñados para comprender y generar texto de manera coherente, estos modelos se entrenan sobre grandes volúmenes de datos textuales con el objetivo de identificar patrones y relaciones entre palabras y frases. Así, al recibir una secuencia de palabras, por ejemplo, un \gls{prompt} de un usuario (explicado en la sección \autoref{subsection:2-prompt}), el modelo es capaz de producir una continuación coherente y contextualizada, lo que permite realizar tareas como responder preguntas o mantener conversaciones de manera natural.
+Un modelo de lenguaje es un sistema de inteligencia artificial entrenado para predecir la siguiente palabra (o \gls{token}) a partir de una secuencia de entrada \cite{SpeechandLanguageProcessing}. Esta tarea de predicción constituye el fundamento del entrenamiento de los modelos de lenguaje de última generación. Diseñados para comprender y generar texto de manera coherente, estos modelos se entrenan sobre grandes volúmenes de datos textuales con el objetivo de identificar patrones y relaciones entre palabras y frases. Así, al recibir una secuencia de palabras, por ejemplo, una \gls{prompt} de un usuario (explicado en la sección \autoref{subsection:2-prompt}), el modelo es capaz de producir una continuación coherente y contextualizada, lo que permite realizar tareas como responder preguntas o mantener conversaciones de manera natural.
 
 Los grandes modelos de lenguaje (LLMs, por sus siglas en inglés) se distinguen de los modelos anteriores principalmente por su mayor complejidad y capacidad de procesamiento \cite{Zhao2023LLMSurvey}. Estos sistemas son entrenados con volúmenes masivos de datos textuales, lo que les permite captar patrones lingüísticos más amplios y profundos. Gracias a ello, son capaces de comprender mejor el lenguaje natural y generar texto coherente, incluso en contextos genéricos o no especializados. Además, los LLMs presentan arquitecturas significativamente más sofisticadas, compuestas por millones e incluso miles de millones de parámetros \cite{SpeechandLanguageProcessing}. Esta escala les otorga una notable capacidad para modelar relaciones semánticas complejas y adaptarse a una amplia variedad de tareas de procesamiento del lenguaje natural \cite{Zhao2023LLMSurvey}.
 
-\subsection{Segmentos}
-\label{subsection:2-Segmentos}
 
-En el contexto de los sistemas \acrshort{rag}, la segmentación del corpus responde a dos necesidades concretas. En primer lugar, los LLMs presentan una ventana de contexto acotada: la cantidad de texto que puede incluirse en un único \gls{prompt} es limitada, por lo que no es posible inyectar documentos completos como contexto de recuperación. En segundo lugar, fragmentos más pequeños y cohesivos mejoran la granularidad de la recuperación: al indexar unidades de texto más acotadas, el sistema puede identificar con mayor precisión qué porción del corpus responde a una consulta dada, en lugar de recuperar documentos enteros de los cuales solo una fracción es relevante \cite{gao2023retrieval}.
-
-El modo en que se generan estas secciones individuales queda determinado por la estrategia de \textit{chunking} (fragmentación) utilizada, y a cada sección individual se le denomina \textit{\gls{chunk}}.
-
-\subsubsection{Segmentos Semánticos}
-\label{subsubsection:2-Semantic Chunks}
-
-El \textit{chunking} semántico segmenta el texto en función del contenido temático de cada fragmento. El objetivo es que cada \gls{chunk} capture una idea o argumento completo, evitando dividir oraciones o conceptos relacionados en fragmentos distintos \cite{gao2023retrieval}. Este enfoque produce segmentos semánticamente cohesivos, lo que puede mejorar la relevancia de los resultados recuperados. Su principal desventaja es el mayor costo computacional necesario para determinar los límites de cada segmento.
-
-\subsubsection{Segmentos Recursivos}
-\label{subsubsection:2-Recursive Chunks}
-
-La estrategia de \textit{Recursive Character Splitting} divide el texto aplicando iterativamente una lista ordenada de separadores \cite{langchain}. El algoritmo intenta primero los separadores de mayor jerarquía estructural, como saltos de párrafo, saltos de línea y signos de puntuación oracional, y si el fragmento resultante sigue excediendo el tamaño máximo, continúa aplicando separadores de menor jerarquía hasta alcanzar el límite deseado. Esto garantiza que los cortes respeten la estructura natural del texto siempre que sea posible. Una variante de este enfoque incluye además una superposición entre fragmentos consecutivos, de modo que el contexto en los límites de cada segmento no quede truncado abruptamente.
-
-\subsection[Prompt]{Consigna (prompt)}
+\subsection[Prompt]{Instrucción (prompt)}
 \label{subsection:2-prompt}
 
-En el \gls{contexto} de LLMs, se conoce como \textit{\gls{prompt}} a la instrucción o pregunta que el usuario envía al modelo. La estructura específica de un \gls{prompt} afecta significativamente la respuesta obtenida.
+En la \gls{contexto} de los LLMs, se conoce como \textit{\gls{prompt}} a la instrucción o pregunta que el usuario envía al modelo. La estructura específica de una \gls{prompt} afecta significativamente la respuesta obtenida.
 
-Los prompts que obtienen mejores resultados son aquellos apropiadamente estructurados, incluyendo la petición requerida, instrucciones precisas para realizarla, el \gls{contexto} en que se precisa y el rol que el modelo cumple dentro de ese contexto.
+Los prompts que obtienen mejores resultados son aquellos apropiadamente estructurados, incluyendo la petición requerida, instrucciones precisas para realizarla, la \gls{contexto} en que se precisa y el rol que el modelo cumple dentro de ese contexto.
 
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=0.8\linewidth]{Nuestro/Imagenes/Figuras_De_Articulos/que_es_un_prompt_infografia.png}
-    \caption{Ejemplo de \gls{prompt}.}
+    \caption{Ejemplo de \gls{prompt}. Ilustracción de \cite{Prompts_y_estrategia_de_prompts}}
     \label{fig:2-2-5-que_es_un_prompt_infografia}
 \end{figure}
 
-La técnica de proveer ejemplos dentro del \gls{prompt} se conoce como \textit{Few-Shot Prompting} \cite{Brown2020GPT3}. En contraparte, la técnica \textit{Zero-Shot Prompting} consiste en no proveer ningún ejemplo. En particular, el \textit{One-Shot Prompting} permite al modelo generalizar a partir de un único ejemplo: resulta especialmente útil cuando no se dispone de grandes volúmenes de datos de entrenamiento, ya que los modelos de lenguaje modernos pueden generalizar eficazmente a partir de un único ejemplo, facilitando el diseño rápido de nuevas tareas y la adaptación a contextos específicos sin necesidad de reentrenamiento \cite{One_Shot_Prompting}. Estas técnicas se emplean en el presente proyecto.
+La técnica de proveer ejemplos dentro del \gls{prompt} se conoce como \textit{Few-Shot Prompting} \cite{Brown2020GPT3}. En contraparte, la técnica \textit{Zero-Shot Prompting} consiste en no proveer ningún ejemplo. En particular, el \textit{One-Shot Prompting} permite al modelo generalizar a partir de un único ejemplo: resulta especialmente útil cuando no se dispone de grandes volúmenes de datos de entrenamiento, ya que los modelos de lenguaje modernos pueden generalizar eficazmente a partir de un único o unos pocos ejemplos, facilitando el diseño rápido de nuevas tareas y la adaptación a contextos específicos sin necesidad de reentrenamiento \cite{One_Shot_Prompting}. Estas técnicas se emplean en el presente proyecto.
 
 
-\subsection[Embedding]{\Gls{embedding}}
+\subsection[Embedding]{Representación vectorial}
 \label{subsection:2-embedding}
 
-Un \gls{embedding} es una representación vectorial densa de un texto en un espacio de $N$ dimensiones, donde la proximidad geométrica entre vectores refleja similitud semántica entre los textos que representan \cite{SpeechandLanguageProcessing}. A diferencia de las representaciones dispersas tradicionales, como las bolsas de palabras o TF-IDF, que codifican únicamente frecuencias léxicas, los \textit{embeddings} densos capturan relaciones de significado: dos fragmentos con vocabulario distinto pero sentido equivalente quedan próximos en el espacio vectorial. Esta propiedad resulta fundamental para tareas de recuperación semántica, donde la coincidencia exacta de términos es insuficiente para identificar información relevante.
+En el contexto RAG, una \gls{embedding} es una representación vectorial densa de un texto  en un espacio de $N$ dimensiones, donde la proximidad geométrica entre vectores refleja similitud semántica entre los textos que representan \cite{SpeechandLanguageProcessing}. A diferencia de las representaciones dispersas tradicionales, como las bolsas de palabras o TF-IDF, que codifican únicamente frecuencias léxicas, los \textit{embeddings} densos capturan relaciones de significado: dos fragmentos con vocabulario distinto pero sentido equivalente quedan próximos en el espacio vectorial. Esta propiedad resulta fundamental para tareas de recuperación semántica, donde la coincidencia exacta de términos es insuficiente para identificar información relevante.
 
-La generación de \textit{embeddings} textuales de alta calidad se apoya en modelos de arquitectura \textit{transformer} \cite{vaswani2017attention}, entrenados para optimizar la similitud entre representaciones de textos relacionados. El enfoque Sentence-BERT \cite{reimers2019sbert} extiende los modelos BERT para producir representaciones de oraciones aptas para una comparación eficiente. En el ámbito de la recuperación de información, el modelo Dense Passage Retrieval (DPR) \cite{karpukhin2020dense} demostró que \textit{encoders} densos entrenados con pares pregunta-respuesta superan a los métodos dispersos en tareas de búsqueda abierta, consolidando el uso de \textit{embeddings} como componente central en sistemas de recuperación.
+La generación de \textit{embeddings} textuales de alta calidad se apoya en modelos de arquitectura \textit{transformer} \cite{vaswani2017attention}, entrenados para optimizar la similitud entre representaciones de textos relacionados. El enfoque Sentence-BERT \cite{reimers2019sbert} extiende los modelos BERT para producir representaciones de oraciones aptas para una comparación eficiente. En concreto en el ámbito de la recuperación de información, el modelo Dense Passage Retrieval (DPR) \cite{karpukhin2020dense} demostró que \textit{encoders} densos entrenados con pares pregunta-respuesta superan a los métodos dispersos en tareas de búsqueda abierta, consolidando el uso de \textit{embeddings} como componente central en sistemas de recuperación.
 
-En el contexto del presente proyecto, los \glspl{chunk} extraídos de las transcripciones de video son codificados mediante un modelo de \textit{embedding} multilingüe y almacenados en una base de datos vectorial. Ante una consulta, la pregunta del usuario se transforma con el mismo modelo y se recuperan los $k$ fragmentos más cercanos mediante similitud del coseno. La selección concreta del modelo y sus parámetros se detallan en los capítulos de arquitectura e implementación.
+En el contexto del presente proyecto, los fragmentos extraídos de las transcripciones de video son codificados mediante un modelo de \textit{embedding} multilingüe y almacenados en una base de datos vectorial. Ante una consulta, la pregunta del usuario se transforma con el mismo modelo y se recuperan los $k$ fragmentos más cercanos mediante similitud del coseno. La selección concreta del modelo y sus parámetros se detallan en los capítulos de arquitectura e implementación.
 
 
 \subsection{Alucinaciones en Modelos de Lenguaje}
 \label{subsection:2-Alucinaciones en Modelos de Lenguaje}
 
-Las alucinaciones en modelos de lenguaje grandes (LLMs) representan un desafío crítico en aplicaciones que requieren precisión factual. Una alucinación es cuando un modelo de lenguange produce contenido plausible pero incorrecto, inconsistente o enteramente fabricado. Los modelos de lenguaje presentan dicho contendo con confianza, lo que induce a los usuarios a creer en la veracidad de la información. 
+Las alucinaciones en modelos de lenguaje grandes (LLMs) representan un desafío crítico en aplicaciones que requieren precisión factual. Una alucinación es cuando un modelo de lenguaje produce contenido plausible pero incorrecto, inconsistente o enteramente inventado. Los modelos de lenguaje presentan dicho contenido con confianza, lo que induce a los usuarios a creer en la veracidad de la información. 
 
 Entre las principales causas identificadas en la literatura se encuentran: primero, los LLMs son modelos probabilísticos entrenados para predecir texto verosímil, no necesariamente verídico; segundo, la información en sus parámetros puede estar desactualizada o ser incompleta; tercero, durante situaciones de incertidumbre, el modelo tiende a completar patrones lingüísticos coherentes sin validación factual \cite{Hallucinations_in_LLMs}.
 
 \begin{figure}[htbp]
     \centering
-    \begin{minipage}{0.8\linewidth}
+    \begin{minipage}{\linewidth}
         \centering
-        \includegraphics[width=\linewidth]{Nuestro/Imagenes/Figuras_De_Articulos/chatgpt-lawyer-screenshot-1.jpg}
-        \caption{Ejemplo de alucinación en LLMs}
-        \label{fig:2-2-7-Hallucinations_in_LLMs1}
-    \end{minipage}
-    \hfill
-    \begin{minipage}{0.8\linewidth}
-        \centering
-        \includegraphics[width=\linewidth]{Nuestro/Imagenes/Figuras_De_Articulos/chatgpt-lawyer-screenshot-2.jpg}
-        \caption{Reafirmación de la alucinación}
-        \label{fig:2-2-7-Hallucinations_in_LLMs2}
+        \includegraphics[width=0.6\linewidth]{Nuestro/Imagenes/Figuras_De_Articulos/chatgpt-lawyer-screenshot-1.jpg}
+        \hspace{0.1cm}
+        \includegraphics[width=0.6\linewidth]{Nuestro/Imagenes/Figuras_De_Articulos/chatgpt-lawyer-screenshot-2.jpg}
+        \hspace{0.1cm}
+        \includegraphics[width=0.6\linewidth]{Nuestro/Imagenes/Figuras_De_Articulos/chatgpt-lawyer-screenshot-3.jpg}
+        \caption{Alucinación en LLMs: ejemplo de un modelo que inventa información (en este caso, casos legales inexistentes) y luego se niega a reconocer el error, reafirmando la alucinación. El modelo persiste en su respuesta incorrecta incluso cuando se le cuestiona. Caso documentado en el incidente de un abogado que utilizó ChatGPT para citar jurisprudencia ficticia. \cite{Hallucination_Abogado}.}
+        \label{fig:2-2-7-Hallucinations_in_LLMs}
     \end{minipage}
 \end{figure}
 
 
-En las figuras \ref{fig:2-2-7-Hallucinations_in_LLMs1} y \ref{fig:2-2-7-Hallucinations_in_LLMs2} se muestra un ejemplo famoso de una \gls{alucinación} de ChatGPT. En el caso, el modelo alucina la existencia de un caso, \textit{Varghese v. China Southern Airlines} judicial que nunca ocurrio. Dicha información incorrecta fue presentada en corte como si fuera verdadera. Al confrontar al modelo con la veracidad de la información, el modelo reafirmo que lo presentado era cierto y que el caso \textit{Varghese v. China Southern Airlines} existió.  
+En la figuras \ref{fig:2-2-7-Hallucinations_in_LLMs} se muestra un ejemplo famoso de una alucinación de ChatGPT. En el caso, el modelo alucina la existencia de un caso, \textit{Varghese v. China Southern Airlines} judicial que nunca ocurrió. Dicha información incorrecta fue presentada en corte como si fuera verdadera. Al confrontar al modelo con la veracidad de la información, el modelo reafirmó que lo presentado era cierto y que el caso \textit{Varghese v. China Southern Airlines} existió.  
 \cite{Hallucination_Abogado}
 
-Este es un ejemplo que resalta la motivación del proyecto actual. No solo deseamos que nuestro sistema no sea propenso a alucinaciones, sino que tampoco es deseado que los estudiantes confien ciegamente en la información producida. 
+Este es un ejemplo que resalta la motivación del proyecto actual. El grupo buscará mitigar las alucinaciones del modelo utilizado lo más posible, sin embargo, el problema de las alucinaciones siempre puede estar presente, por ende no es aconsejable ni deseado que los estudiantes confíen ciegamente en la información producida. 
 
 Para reducir las alucinaciones, el enfoque \acrshort{rag} se considera una solución efectiva, ya que ancla las respuestas del modelo en información recuperada de fuentes verificables en lugar de depender exclusivamente del conocimiento paramétrico \cite{lewis2020retrieval}.
 
 
 
 
-\subsection[Retrieval-Augmented Generation]{\acrlong{rag}}
+
+\subsection{Segmentos}
+\label{subsection:2-Segmentos}
+
+
+El modo en que se generan estas secciones individuales queda determinado por la estrategia de \textit{chunking} (fragmentación) utilizada, y a cada sección individual se le denomina \textit{\gls{chunk}}.
+
+Durante el transcurso del proyecto se evaluaron dos estrategias distintas. La primera estrategia, la estrategia de \textit{chunking} semántico se basa en en la información semántica dentro del texto mientras que la segunda, \textit{chunking} recursivo se basa en la estructura del texto. 
+
+El \textit{chunking} semántico segmenta el texto en función del contenido temático de cada fragmento. El objetivo es que cada \gls{chunk} capture una idea o argumento completo, evitando dividir oraciones o conceptos relacionados en fragmentos distintos \cite{gao2023retrieval}. Este enfoque produce segmentos semánticamente cohesivos, lo que puede mejorar la relevancia de los resultados recuperados. Su principal desventaja es el mayor costo computacional necesario para determinar los límites de cada segmento.
+
+La estrategia de \textit{Recursive Character Splitting} divide el texto aplicando iterativamente una lista ordenada de separadores \cite{langchain}. El algoritmo intenta primero los separadores de mayor jerarquía estructural, como saltos de párrafo, saltos de línea y signos de puntuación oracional, y si el fragmento resultante sigue excediendo el tamaño máximo, continúa aplicando separadores de menor jerarquía hasta alcanzar el límite deseado. Esto garantiza que los cortes respeten la estructura natural del texto siempre que sea posible. Una variante de este enfoque incluye además una superposición entre fragmentos consecutivos, de modo que el contexto en los límites de cada segmento no quede truncado abruptamente.
+
+\todo[color=cyan,inline]{Diego: En implementación se debería mencionar que se terminó utilizando chunking recursivos debido al alto costo computacional}
+
+
+
+\subsection[Retrieval-Augmented Generation]{Generación Aumentada por Recuperación (Retrieval-Augmented Generation)}
 \label{subsection:2-Retrieval-Augmented Generation}
 
 Para mitigar las alucinaciones, una de las estrategias más efectivas es \acrlong{rag} \cite{lewis2020retrieval}. A diferencia de los LLMs convencionales, que generan respuestas exclusivamente a partir del conocimiento almacenado en sus parámetros durante el entrenamiento, los sistemas RAG complementan la generación con información recuperada dinámicamente de una base de conocimiento externa. Esto asegura que las respuestas estén fundamentadas en fuentes verificables en lugar del conocimiento potencialmente desactualizado o incorrecto del modelo \cite{lewis2020retrieval}.
@@ -184,7 +182,7 @@ La calidad de un sistema ASR se mide habitualmente mediante la \textit{tasa de e
 
 Whisper es un modelo de reconocimiento automático de voz de extremo a extremo basado en la arquitectura \textit{transformer} \cite{vaswani2017attention}, que aprende directamente la correspondencia entre señal acústica y texto sin requerir módulos separados de alineación fonética \cite{radford2022robust}. Esta característica lo diferencia de los sistemas tradicionales basados en HMM, que requerían diseñar y ajustar cada componente del \textit{pipeline} de forma independiente.
 
-El modelo fue entrenado sobre una diversa colección de audio recopilado de fuentes públicas en la web, lo que le confiere capacidades multilingues robustas y una buena generalización a distintos dominios, acentos y condiciones acústicas \cite{radford2022robust}. Gracias a este entrenamiento a escala, Whisper alcanza un rendimiento competitivo en múltiples idiomas sin necesidad de ajuste fino, aunque su desempeño varía según la disponibilidad de datos de entrenamiento por idioma \cite{radford2022robust}.
+El modelo fue entrenado sobre una diversa colección de audio recopilado de fuentes públicas en la web, lo que le confiere capacidades multilingües robustas y una buena generalización a distintos dominios, acentos y condiciones acústicas \cite{radford2022robust}. Gracias a este entrenamiento a escala, Whisper alcanza un rendimiento competitivo en múltiples idiomas sin necesidad de ajuste fino, aunque su desempeño varía según la disponibilidad de datos de entrenamiento por idioma \cite{radford2022robust}.
 
 Whisper está disponible en varias variantes de distinto tamaño. Los modelos mayores ofrecen menor tasa de error pero requieren más memoria y tiempo de cómputo, mientras que los modelos más pequeños permiten una transcripción más rápida a costa de cierta precisión. En el presente proyecto se utiliza \texttt{faster-whisper} \cite{faster_whisper}, una reimplementación del modelo original de OpenAI basada en CTranslate2, un motor de inferencia optimizado que reduce significativamente el tiempo de transcripción y el consumo de memoria respecto a la implementación original. La herramienta incorpora capacidades de filtrado de actividad de voz (\textit{Voice Activity Detection}, VAD) y alineación temporal a nivel de palabra, que resultan especialmente útiles para indexar clases con segmentos de silencio y para asociar cada fragmento de texto a su instante correspondiente en el video original.
 
@@ -196,7 +194,11 @@ En esta sección se describen algunas herramientas y proyectos similares al pres
 \subsection{FINGChat}
 \label{subsection:2-FINGChat}
 
-Una de las herramientas a destacar es \textit{FINGChat}, desarrollada por Ignacio Sastre en colaboración con el Espacio de Orientación y Consulta (EOC) de la FING, como Proyecto de Grado. Al igual que el presente trabajo, \textit{FINGChat} está orientada al apoyo de los estudiantes de la Facultad de Ingeniería de la UdelaR. La herramienta permite realizar consultas en lenguaje natural sobre información institucional de la facultad, como reglamentos, trámites académicos y programas de cursos. Para ello emplea un enfoque de generación aumentada por recuperación (RAG) sobre documentación oficial, con el objetivo de reducir la probabilidad de respuestas incorrectas y fundamentar cada respuesta en fuentes verificables.
+Una de las herramientas a destacar es \textit{FINGChat}, desarrollada por Ignacio Sastre en colaboración con el Espacio de Orientación y Consulta (EOC) de la FING, como Proyecto de Grado. 
+
+\cite{sastre2024derivation}
+
+Al igual que el presente trabajo, \textit{FINGChat} está orientada al apoyo de los estudiantes de la Facultad de Ingeniería de la UdelaR. La herramienta permite realizar consultas en lenguaje natural sobre información institucional de la facultad, como reglamentos, trámites académicos y programas de cursos. Para ello emplea un enfoque de generación aumentada por recuperación (RAG) sobre documentación oficial, con el objetivo de reducir la probabilidad de respuestas incorrectas y fundamentar cada respuesta en fuentes verificables.
 
 La principal diferencia con el presente proyecto radica en la naturaleza del corpus: mientras que \textit{FINGChat} opera sobre documentación textual institucional, este trabajo indexa transcripciones de clases en video de \Gls{OpenFing}, lo que introduce desafíos propios del lenguaje oral, como variaciones en el registro, interrupciones y referencias contextuales al material de pizarrón.
 
