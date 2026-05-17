@@ -82,7 +82,7 @@ Para el desarrollo del sistema se optó por utilizar exclusivamente tecnologías
 \subsection{Modelos de Embeddings}
 \label{subsection:5-Embeddings}
 
-Para la representación vectorial del texto se utilizan modelos de embeddings de la biblioteca \textit{sentence-transformers} a través de la integración de LangChain con HuggingFace. Se configuraron dos modelos alternativos. El primero es \textbf{all-MiniLM-L6-v2}, utilizado por defecto, que produce vectores de 384 dimensiones y ofrece una buena relación entre calidad semántica y eficiencia computacional. El segundo es \textbf{multilingual-e5-base}, una alternativa multilingüe que produce vectores de 768 dimensiones, especialmente adecuada para el corpus de OpenFing dado su contenido en español con terminología técnica en inglés. Ambos modelos se cargan con normalización de embeddings habilitada y de forma \textit{lazy} con acceso concurrente seguro.
+Para la representación vectorial del texto se utilizan modelos de embeddings de la biblioteca \textit{sentence-transformers} a través de la integración de LangChain con HuggingFace. Se configuraron dos modelos alternativos. El primero es \textbf{all-MiniLM-L6-v2}, utilizado por defecto, que produce vectores de 384 dimensiones y ofrece una buena relación entre calidad semántica y eficiencia computacional. El segundo es \textbf{multilingual-e5-base}, una alternativa multilingüe que produce vectores de 768 dimensiones, especialmente adecuada para el corpus de OpenFing dado su contenido en español con terminología técnica en inglés.
 
 \subsection{Base de Datos}
 \label{subsection:5-Base de Datos}
@@ -97,6 +97,22 @@ Para la representación vectorial del texto se utilizan modelos de embeddings de
 
 Para la transcripción automática del audio de las clases se utiliza \textbf{faster-whisper} \cite{faster_whisper}, una reimplementación del modelo Whisper de OpenAI \cite{radford2022robust} optimizada mediante CTranslate2. Esta versión reduce significativamente el consumo de memoria y acelera la inferencia respecto a la implementación original, manteniendo la misma calidad de transcripción.
 
+\begin{table}[htbp]
+\centering % Centers the table on the page
+\resizebox{\textwidth}{!}{% % Scales the table to fit the text width
+\begin{tabular}{|c|c|c|c|c|c|}
+\hline
+\textbf{Size} & \textbf{Parameters} & \textbf{English-only model} & \textbf{Multilingual model} & \textbf{Required VRAM} & \textbf{Relative speed} \\ \hline
+tiny   & 39 M   & \texttt{tiny.en}   & \texttt{tiny}   & $\sim$1 GB  & $\sim$10x \\ \hline
+base   & 74 M   & \texttt{base.en}   & \texttt{base}   & $\sim$1 GB  & $\sim$7x  \\ \hline
+small  & 244 M  & \texttt{small.en}  & \texttt{small}  & $\sim$2 GB  & $\sim$4x  \\ \hline
+medium & 769 M  & \texttt{medium.en} & \texttt{medium} & $\sim$5 GB  & $\sim$2x  \\ \hline
+large  & 1550 M & N/A                & \texttt{large}  & $\sim$10 GB & 1x        \\ \hline
+turbo  & 809 M  & N/A                & \texttt{turbo}  & $\sim$6 GB  & $\sim$8x  \\ \hline
+\end{tabular}%
+}
+\caption{Tabla proveyente de \cite{README_WHISPER_OPENAI}}
+\end{table}
 Whisper es un modelo \textit{encoder-decoder} basado en la arquitectura Transformer, entrenado con supervisión débil sobre más de 680.000 horas de audio multilingüe. Ofrece varios tamaños de modelo (tiny, base, small, medium, large y turbo) que permiten ajustar la relación entre precisión y costo computacional según los recursos disponibles. El modelo por defecto en el entorno de desarrollo es \textit{tiny}, mientras que para la evaluación experimental se utilizaron modelos de mayor tamaño.
 
 Para el corpus de OpenFing se configuró la transcripción con los siguientes parámetros relevantes. El filtro de \acrlong{vad} (\acrshort{vad}) descarta segmentos de silencio y ruido de fondo antes de la transcripción. Los timestamps a nivel de palabra permiten mapear cada fragmento de texto al instante correspondiente del video, habilitando la función de citación con minuto exacto. Un prompt de dominio inicial indica al modelo el contexto de la clase: se trata de una clase de la Facultad de Ingeniería de la Universidad de la República, con terminología técnica de ingeniería, algoritmos, programación, matemática y ciencias de la computación, expresada en español rioplatense con términos técnicos ocasionalmente en inglés (ver \autoref{section:A-1-prompt-transcripcion}).
@@ -104,10 +120,10 @@ Para el corpus de OpenFing se configuró la transcripción con los siguientes pa
 \subsection{LLM}
 \label{subsection:5-LLM}
 
-El modelo de lenguaje principal utilizado en el sistema es \textbf{Meta-Llama-3.1-8B-Instruct}\cite{hf_llama31_8b_instruct}, desarrollado por Meta AI. Se trata de un modelo de 8 mil millones de parámetros de la familia Llama 3.1, optimizado para tareas de instrucción y conversación. Se seleccionó por su rendimiento competitivo en comprensión y generación de texto en español, con requerimientos de hardware moderados.
+El modelo de lenguaje principal utilizado en el sistema es \textbf{Meta-Llama-3.1-8B-Instruct} \cite{hf_llama31_8b_instruct}, desarrollado por Meta AI. Se trata de un modelo de 8 mil millones de parámetros de la familia Llama 3.1, optimizado para tareas de instrucción y conversación. Se seleccionó por su rendimiento competitivo en comprensión y generación de texto en español, con requerimientos de hardware moderados.
 
-El sistema soporta dos modos de despliegue del LLM. En producción se utiliza la \textbf{HuggingFace Inference API}\cite{huggingface_inference_api}, que permite acceder al modelo a través de una API REST sin necesidad de gestionar infraestructura GPU propia. Para desarrollo y pruebas locales se puede optar por utilizar \textbf{Ollama}\cite{ollama}, que ejecuta modelos cuantizados directamente en la máquina del desarrollador.
+El sistema soporta dos modos de despliegue del LLM. En producción se utiliza la \textbf{HuggingFace Inference API} \cite{huggingface_inference_api}, que permite acceder al modelo a través de una API REST sin necesidad de gestionar infraestructura GPU propia. Para desarrollo y pruebas locales se puede optar por utilizar \textbf{Ollama} \cite{ollama}, que ejecuta modelos cuantizados directamente en la máquina del desarrollador.
 
 Los parámetros de inferencia configurados incluyen una temperatura de 0,1 para respuestas deterministas, valores de \textit{top\_p} de 0,9 y \textit{top\_k} de 10 para controlar la diversidad del muestreo, un máximo de 2.048 tokens de salida y una penalización de repetición de 1,05 para evitar respuestas redundantes.
 
-Durante el desarrollo del proyecto se evaluaron también \textbf{Qwen2.5-72B-Instruct}\cite{hf_qwen25_72b_instruct} como alternativa de mayor capacidad, y \textbf{Mistral-7B-Instruct-v0.3}\cite{hf_mistral_7b_instruct_v03} como modelo del prototipo inicial. La selección del modelo definitivo se fundamenta en la investigación comparativa documentada en el capítulo de Requisitos del Proyecto.
+Durante el desarrollo del proyecto se evaluaron también \textbf{Qwen2.5-72B-Instruct} \cite{hf_qwen25_72b_instruct} como alternativa de mayor capacidad, y \textbf{Mistral-7B-Instruct-v0.3} \cite{hf_mistral_7b_instruct_v03} como modelo del prototipo inicial. La selección del modelo definitivo se fundamenta en la investigación comparativa documentada en el capítulo de Requisitos del Proyecto.
