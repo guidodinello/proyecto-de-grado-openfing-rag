@@ -124,6 +124,8 @@ El modelo de vectorización determina la calidad de la representación semántic
 \section{Pregunta Respuesta}
 \label{section:6-Pregunta Respuesta}
 
+En esta sección se encuentra un análisis formal realizado a partir de preguntas realizadas al sistema. 
+
 \subsection{Modelos}
 \label{subsection:6-Modelos}
 
@@ -131,7 +133,6 @@ El modelo de lenguaje principal evaluado en los experimentos de pregunta-respues
 
 \subsection{Conjunto de Preguntas de Evaluación}
 \label{subsection:6-QA-Preguntas}
-
 Para evaluar el comportamiento del sistema se diseñaron 24 consultas clasificadas según la relación entre la pregunta y el contenido del contexto recuperado por el sistema:
 
 \begin{itemize}
@@ -193,10 +194,6 @@ Para las preguntas del Grupo A, ambos tipos de prompt produjeron respuestas sust
 \subsubsection{Respuestas con corpus restringido}
 
 Las preguntas del Grupo C revelaron una limitación adicional: aun cuando el corpus estaba restringido a una única clase y la consulta era directamente sobre su contenido, el modelo frecuentemente extendió su respuesta con conocimiento de entrenamiento más allá de lo estrictamente presente en los fragmentos recuperados, sin señalarlo de forma consistente. Esto fue especialmente notable en preguntas de alto contenido técnico, como las de álgebra lineal y sistemas operativos. La consulta sobre el año de inicio del dictado virtual constituyó un caso de éxito en que el sistema dedujo correctamente la información a partir del contexto disponible.
-
-\subsubsection{Evaluación con modelo alternativo}
-
-Como alternativa de mayor capacidad, se evaluó el modelo \textit{Qwen/Qwen2.5-72B-Instruct} sobre el mismo conjunto de consultas. Las respuestas mostraron mayor fluidez y riqueza en la elaboración de explicaciones, aunque con un tiempo de respuesta notablemente mayor. Ambos modelos mostraron comportamiento adecuado en el dominio del español académico.
 
 \subsection{Conclusión}
 \label{subsection:6-QA-Conclusión}

@@ -94,8 +94,10 @@ Para la representación vectorial del texto se utilizan modelos de embeddings de
 
 \subsection{Herramienta Audio a Texto}
 \label{subsection:5-1-Transcriber}
+%__________________----
+Para la transcripción automática del audio de las clases, se optó por utilizar la familia de modelos Whisper como la herramienta de reconocimiento automático del habla (\acrshort{asr}) por defecto en el proyecto. Whisper \cite{radford2022robust} es un modelo \textit{encoder-decoder} basado en la arquitectura Transformer, entrenado con supervisión débil sobre más de 680.000 horas de audio multilingüe.
 
-Para la transcripción automática del audio de las clases se utiliza \textbf{faster-whisper} \cite{faster_whisper}, una reimplementación del modelo Whisper de OpenAI \cite{radford2022robust} optimizada mediante CTranslate2. Esta versión reduce significativamente el consumo de memoria y acelera la inferencia respecto a la implementación original, manteniendo la misma calidad de transcripción.
+Este sistema ofrece varios tamaños de modelo que permiten ajustar la relación entre precisión y costo computacional según los recursos disponibles, tal como se detalla en la Tabla~\ref{tab:whisper_models}. En el entorno de desarrollo se configuró el modelo \textit{tiny} por defecto, mientras que para la evaluación experimental se utilizaron las versiones de mayor tamaño.
 
 \begin{table}[htbp]
 \centering % Centers the table on the page
@@ -111,11 +113,51 @@ large  & 1550 M & N/A                & \texttt{large}  & $\sim$10 GB & 1x       
 turbo  & 809 M  & N/A                & \texttt{turbo}  & $\sim$6 GB  & $\sim$8x  \\ \hline
 \end{tabular}%
 }
-\caption{Tabla proveyente de \cite{README_WHISPER_OPENAI}}
+\caption{Características diferenciales entre los distintos tamaños de los modelos Whisper \cite{README_WHISPER_OPENAI}. Se observa una relación directa: a menor cantidad de parámetros, menores son las exigencias de cómputo y memoria VRAM}.
 \end{table}
-Whisper es un modelo \textit{encoder-decoder} basado en la arquitectura Transformer, entrenado con supervisión débil sobre más de 680.000 horas de audio multilingüe. Ofrece varios tamaños de modelo (tiny, base, small, medium, large y turbo) que permiten ajustar la relación entre precisión y costo computacional según los recursos disponibles. El modelo por defecto en el entorno de desarrollo es \textit{tiny}, mientras que para la evaluación experimental se utilizaron modelos de mayor tamaño.
 
-Para el corpus de OpenFing se configuró la transcripción con los siguientes parámetros relevantes. El filtro de \acrlong{vad} (\acrshort{vad}) descarta segmentos de silencio y ruido de fondo antes de la transcripción. Los timestamps a nivel de palabra permiten mapear cada fragmento de texto al instante correspondiente del video, habilitando la función de citación con minuto exacto. Un prompt de dominio inicial indica al modelo el contexto de la clase: se trata de una clase de la Facultad de Ingeniería de la Universidad de la República, con terminología técnica de ingeniería, algoritmos, programación, matemática y ciencias de la computación, expresada en español rioplatense con términos técnicos ocasionalmente en inglés (ver \autoref{section:A-1-prompt-transcripcion}).
+Ante la necesidad del grupo de procesar un gran volumen de transcripciones de manera eficiente, se buscó optimizar la herramienta \gls{ASR} analizando las dos principales alternativas de la comunidad: \textit{whisper.cpp} y \textit{faster-whisper} \cite{faster_whisper}.
+
+
+\textbf{\texttt{whisper.cpp}:} Destaca por ser una implementación ligera en C/C++ de alto rendimiento y sin dependencias externas, diseñada especialmente para una ejecución optimizada en CPU y arquitecturas específicas como Apple Silicon.
+ \textbf{\texttt{faster-whisper}:} Se diferencia por ser una reimplementación del modelo original optimizada mediante CTranslate2. Destaca por aplicar técnicas de cuantización que reducen drásticamente el consumo de memoria VRAM y aceleran la velocidad de inferencia tanto en GPU como en CPU, manteniendo la misma calidad de transcripción que el modelo base de OpenAI.
+
+Finalmente, se optó por utilizar \textbf{\texttt{faster-whisper}}, dado que su excelente rendimiento con aceleración por hardware y su fácil integración en entornos basados en Python se alineaban mejor con los requerimientos de la infraestructura del proyecto.
+
+Configuración del Modelo
+Para el procesamiento del corpus de OpenFing, la transcripción con \texttt{faster-whisper} se configuró mediante los siguientes parámetros clave:
+
+
+\textbf{Filtro de \acrlong{vad} (\acrshort{vad}):} Permite descartar segmentos de silencio y ruido de fondo antes de iniciar la transcripción, optimizando el tiempo de cómputo y evitando alucinaciones del modelo.
+\textbf{Timestamps a nivel de palabra:} Habilitan el mapeo preciso de cada fragmento de texto con su correspondiente instante temporal en el video, lo que hace posible la funcionalidad de citación con el minuto exacto en la plataforma.
+ \textbf{Prompt de dominio inicial:} Se configuró un texto guía para indicar al modelo el contexto técnico y geográfico de las clases. Este prompt le advierte al sistema que el audio proviene de la Facultad de Ingeniería de la Universidad de la República (UdelaR), caracterizado por el uso de español rioplatense combinando terminología técnica de ingeniería, algoritmos, programación, matemática y ciencias de la computación, junto con términos ocasionales en inglés.
+
+
+%______________________
+
+Para la transcri
+Para la transcripción automática del audio de las clases se utiliza \textbf{faster-whisper} \cite{faster_whisper}, una reimplementación del modelo Whisper de OpenAI \cite{radford2022robust} optimizada mediante CTranslate2. Esta versión reduce significativamente el consumo de memoria y acelera la inferencia respecto a la implementación original, manteniendo la misma calidad de transcripción.
+
+Whisper es un modelo \textit{encoder-decoder} basado en la arquitectura Transformer, entrenado con supervisión débil sobre más de 680.000 horas de audio multilingüe. Ofrece varios tamaños de modelo (tiny, base, small, medium, large y turbo) que permiten ajustar la relación entre precisión y costo computacional según los recursos disponibles. El modelo por defecto en el entorno de desarrollo es \textit{tiny}, mientras que para la evaluación experimental se utilizaron modelos de mayor tamaño.
+\begin{table}[htbp]
+\centering % Centers the table on the page
+\resizebox{\textwidth}{!}{% % Scales the table to fit the text width
+\begin{tabular}{|c|c|c|c|c|c|}
+\hline
+\textbf{Size} & \textbf{Parameters} & \textbf{English-only model} & \textbf{Multilingual model} & \textbf{Required VRAM} & \textbf{Relative speed} \\ \hline
+tiny   & 39 M   & \texttt{tiny.en}   & \texttt{tiny}   & $\sim$1 GB  & $\sim$10x \\ \hline
+base   & 74 M   & \texttt{base.en}   & \texttt{base}   & $\sim$1 GB  & $\sim$7x  \\ \hline
+small  & 244 M  & \texttt{small.en}  & \texttt{small}  & $\sim$2 GB  & $\sim$4x  \\ \hline
+medium & 769 M  & \texttt{medium.en} & \texttt{medium} & $\sim$5 GB  & $\sim$2x  \\ \hline
+large  & 1550 M & N/A                & \texttt{large}  & $\sim$10 GB & 1x        \\ \hline
+turbo  & 809 M  & N/A                & \texttt{turbo}  & $\sim$6 GB  & $\sim$8x  \\ \hline
+\end{tabular}%
+}
+\caption{Tabla proveyente de \cite{README_WHISPER_OPENAI}}. Refleja las características diferenciales entre los modelos. Se puede observar que mientras menos parámetros tiene un modelos, menores son las exigencias de computo.
+\end{table}
+
+
+Para el corpus de OpenFing se configuró la transcripción con los siguientes parámetros relevantes. El filtro de \acrlong{vad} (\acrshort{vad}) descarta segmentos de silencio y ruido de fondo antes de la transcripción. Los timestamps a nivel de palabra permiten mapear cada fragmento de texto al instante correspondiente del video, habilitando la función de citación con minuto exacto. Un prompt de dominio inicial indica al modelo el contexto de la clase: se trata de una clase de la Facultad de Ingeniería de la Universidad de la República, con terminología técnica de ingeniería, algoritmos, programación, matemática y ciencias de la computación, expresada en español rioplatense con términos técnicos ocasionalmente en inglés.
 
 \subsection{LLM}
 \label{subsection:5-LLM}
