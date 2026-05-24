@@ -60,3 +60,21 @@ El sistema utiliza PostgreSQL como único motor de base de datos, extendido con 
 La primera es la cohesión del modelo de datos. Los modelos relacionales del sistema, cursos, lecciones, transcripciones y el historial de conversaciones, ya residen en PostgreSQL. Incorporar pgvector permite mantener la persistencia vectorial dentro del mismo motor, evitando la complejidad operativa de administrar un servicio de base de datos adicional y aprovechando las mismas garantías de transaccionalidad y consistencia.
 
 La segunda motivación es la simplicidad operativa. Alternativas como \acrshort{faiss} \cite{douze2024faiss} mantienen el índice en memoria \acrshort{ram} y requieren serialización y carga manual para persistirlo en disco, lo que implica gestionar un estado externo a la base de datos relacional. pgvector, al integrarse directamente con PostgreSQL, persiste los vectores con las mismas garantías transaccionales que el resto de los datos del sistema y soporta inserciones estándar mediante \acrshort{sql} sin infraestructura adicional. Esta propiedad resulta especialmente relevante en relación con el requisito de extensibilidad descrito en la \autoref{subsection:3-Requisitos No Funcionales}: el sistema debe permitir incorporar nuevas clases de \Gls{OpenFing} de forma automatizada y, en el mediano plazo, escalar hacia otras fuentes como OpenUDELAR, reutilizando los mismos módulos de procesamiento sin reprocesar el corpus completo.
+
+\subsection{Flujo de una Consulta}
+\label{subsection:4-Flujo de una Consulta}
+
+Esta subsección describe el comportamiento del sistema en tiempo de ejecución ante una consulta del estudiante, integrando los componentes descritos en las secciones anteriores en una secuencia de pasos coordinada.
+
+Cuando el estudiante formula una pregunta desde el \gls{frontend}, la consulta se envía al \gls{backend} junto con el identificador de la conversación activa y el token \acrshort{jwt} de autenticación. El primer paso del \gls{backend} es determinar si corresponde realizar una búsqueda vectorial. En consultas de seguimiento breves (tres palabras o menos) en conversaciones con historial previo, la recuperación se omite: el sistema asume que la pregunta refiere al contexto ya establecido y genera la respuesta directamente a partir del historial. En el caso general, se realiza una búsqueda por similitud vectorial sobre pgvector, recuperando los cuatro fragmentos de transcripción más relevantes para la consulta.
+
+Los fragmentos recuperados se ensamblan en un bloque de contexto agrupado por clase, con el formato \textit{"En la clase '[Curso] - [Título]' se menciona: [contenido]"}. Este agrupamiento evita repetir el encabezado de la misma clase cuando varios fragmentos provienen de la misma lección. A continuación, se construye el \gls{prompt} final, que concatena el \textit{system prompt} del asistente educativo, el historial de la conversación (hasta 4.000 tokens, recortado por los mensajes más recientes), el bloque de contexto y la consulta del usuario. Esta cadena se procesa mediante LangChain (\texttt{prompt\_template | llm}) y se envía al modelo Llama 3.1 8B a través de HuggingFace Inference \acrshort{api}.
+
+La respuesta generada, siempre en español, se persiste en la base de datos junto con las referencias a los fragmentos utilizados (\texttt{message\_sources}), que incluyen el identificador del chunk y su \textit{confidence score}. El \gls{frontend} recibe la respuesta y las fuentes asociadas, y las presenta al estudiante con los datos de trazabilidad correspondientes: nombre del curso, lección y marca temporal exacta dentro del video original. La \autoref{fig:Arquitectura_FlujoPipeline} ilustra este flujo de forma esquemática.
+
+\begin{figure}[p]
+    \centering
+    \includegraphics[width=\linewidth,height=\textheight,keepaspectratio]{Nuestro/Imagenes/Arquitectura/FlujoPipeline.png}
+    \caption{Flujo de una consulta en el sistema RAG, desde la pregunta del estudiante hasta la respuesta con referencias. Ilustración propia.}
+    \label{fig:Arquitectura_FlujoPipeline}
+\end{figure}

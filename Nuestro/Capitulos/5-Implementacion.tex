@@ -135,7 +135,6 @@ Para el procesamiento del corpus de OpenFing, la transcripción con \texttt{fast
 
 %______________________
 
-Para la transcri
 Para la transcripción automática del audio de las clases se utiliza \textbf{faster-whisper} \cite{faster_whisper}, una reimplementación del modelo Whisper de OpenAI \cite{radford2022robust} optimizada mediante CTranslate2. Esta versión reduce significativamente el consumo de memoria y acelera la inferencia respecto a la implementación original, manteniendo la misma calidad de transcripción.
 
 Whisper es un modelo \textit{encoder-decoder} basado en la arquitectura Transformer, entrenado con supervisión débil sobre más de 680.000 horas de audio multilingüe. Ofrece varios tamaños de modelo (tiny, base, small, medium, large y turbo) que permiten ajustar la relación entre precisión y costo computacional según los recursos disponibles. El modelo por defecto en el entorno de desarrollo es \textit{tiny}, mientras que para la evaluación experimental se utilizaron modelos de mayor tamaño.

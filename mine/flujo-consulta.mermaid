@@ -1,0 +1,18 @@
+flowchart TD
+    U([Estudiante]) -->|pregunta en lenguaje natural| FE["Frontend (React)"]
+    FE -->|JWT + consulta + conversation_id| API["Backend (FastAPI)"]
+    API --> D{"¿Historial presente\nY consulta ≤ 3 palabras?"}
+    D -->|Sí| NORETR["Omitir recuperación\n(consulta de seguimiento)"]
+    D -->|No| RETR["Búsqueda por similitud\nvectorial (k = 4)"]
+    RETR --> CHUNKS[("PostgreSQL\n+ pgvector")]
+    CHUNKS -->|"4 chunks más relevantes"| CTX["Ensamblar contexto\n(agrupado por clase)"]
+    NORETR --> PROMPT
+    CTX --> PROMPT["Construir prompt\n(system prompt + historial ≤ 4000 tokens\n+ contexto + consulta)"]
+    PROMPT --> LLM["LLM: Llama 3.1 8B\n(HuggingFace Inference API)"]
+    LLM -->|"respuesta en español\n+ fuentes (chunk_ids)"| SAVE["Persistir mensaje\ny message_sources"]
+    SAVE --> FE2["Frontend muestra respuesta\n+ referencias (curso, lección, timestamp)"]
+    FE2 --> U
+
+    style U fill:#dcfce7
+    style CHUNKS fill:#dbeafe
+    style LLM fill:#fef9c3

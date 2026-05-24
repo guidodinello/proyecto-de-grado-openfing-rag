@@ -5,7 +5,7 @@ En este capítulo se presentan los experimentos realizados para evaluar el desem
 
 \section{Evaluación de Métodos de Transcripción}
 \label{section:6-Evaluación de Métodos de Transcripción}
-En la siguiente sección se escribe un análisis acerca del método de transcripción.
+En esta sección se describe el proceso de evaluación de los modelos de transcripción automática, se presentan los resultados obtenidos y se justifica la selección del modelo y la implementación adoptados.
 \subsection{Proceso de Evaluación}
 
 La evaluación de los métodos de transcripción requiere un balance entre los 3 parámetros definidos en \autoref{subsection:3-RNF6: Evaluación de Herramientas de Transcripción}. Para validar el desempeño de cada método, es necesario contar con un estándar de referencia de transcripción perfecta (\textit{ground-truth}). Con este propósito, se transcribieron manualmente siguientes clases:
@@ -74,7 +74,7 @@ medium & Pnl-2   & ad & 0.086 & 0.085 & 0.120 & 0.879 & 0.052 \\
 
 
 
-\subsubsection{Análisis de Resultados}
+\subsection{Análisis de Resultados}
 
 Los resultados evidencian diferencias significativas en el desempeño de los tres modelos evaluados. El modelo \textit{medium} obtiene el rendimiento más favorable, con una WER de 0.046 en la Clase 1 y 0.042 en la Clase 2 cuando se especifica explícitamente el idioma español. Esta mejora respecto a la autodetección de idioma (WER de 0.086 en Clase 2) indica que la indicación explícita del idioma optimiza la precisión del modelo.
 
@@ -102,19 +102,17 @@ Durante la evaluación se identificó una fuente recurrente de discrepancia: las
 
 Desde la perspectiva de la aplicación propuesta en este trabajo, donde las transcripciónes alimentan un sistema de recuperación de información (RAG) diseñado para generar respuestas en un asistente conversacional, la omisión de muletillas puede considerarse beneficiosa. Estos elementos lingüísticos no contribuyen contenido semántico significativo y su eliminación reduce el ruido en los documentos indexados, potencialmente mejorando la calidad de las respuestas generadas. Una cuantificación sistemática de este fenómeno constituye una línea de mejora futura para optimizar aún más el procesamiento.
 
+\subsection{Justificación de faster-whisper}
+\label{subsection:6-1-faster-whisper}
+
+Para la transcripción del corpus se utilizó la biblioteca \textit{faster-whisper} en lugar de la implementación original de Whisper provista por OpenAI. La diferencia central radica en el motor de inferencia: \textit{faster-whisper} emplea CTranslate2, un motor optimizado para la ejecución de modelos transformer que reduce el consumo de memoria y el tiempo de procesamiento sin modificar la arquitectura del modelo subyacente. En la práctica, esto se traduce en una reducción del tiempo de transcripción de entre dos y cuatro veces respecto a la implementación original, manteniendo resultados equivalentes en las métricas de error. Esta eficiencia es especialmente relevante dado que el corpus completo de OpenFing comprende 4.339 clases, un volumen que haría inviable el procesamiento con herramientas de menor rendimiento.
+
 \subsection{Conclusión}
 \label{subsection:6-1-Conclusión}
 
 Los resultados obtenidos permiten establecer que el modelo Whisper \textit{medium} con especificación explícita del idioma español es el más adecuado para la transcripción del corpus de OpenFing. Alcanza una WER promedio inferior a 0.05 en todos los conjuntos de prueba evaluados, lo que equivale a menos de cinco errores por cada cien palabras. Esta precisión es suficiente para que los segmentos generados sean útiles como fuente de conocimiento en el pipeline RAG: los fragmentos recuperados contienen información semánticamente correcta, incluso cuando presentan errores menores de transcripción.
 
 El modelo \textit{small} ofrece una alternativa de menor costo computacional pero con una WER entre dos y cuatro veces mayor, lo que puede degradar la calidad de los segmentos indexados y, por extensión, la relevancia de las respuestas generadas. El modelo \textit{base} no resulta adecuado para este dominio. En consecuencia, el sistema utiliza el modelo \textit{medium} como configuración de producción.
-
-\subsection{Justificación de faster-whisper}
-\label{subsection:6-1-faster-whisper}
-
-Para la transcripción del corpus se utilizó la biblioteca \textit{faster-whisper} en lugar de la implementación original de Whisper provista por OpenAI. La diferencia central radica en el motor de inferencia: \textit{faster-whisper} emplea CTranslate2, un motor optimizado para la ejecución de modelos transformer que reduce el consumo de memoria y el tiempo de procesamiento sin modificar la arquitectura del modelo subyacente. En la práctica, esto se traduce en una reducción del tiempo de transcripción de entre dos y cuatro veces respecto a la implementación original, manteniendo resultados equivalentes en las métricas de error. Esta eficiencia es especialmente relevante dado que el corpus completo de OpenFing comprende 4.339 clases, un volumen que haría inviable el procesamiento con herramientas de menor rendimiento.
-
-\includegraphics[]{}
 
 \section{Modelo de Vectorización}
 \label{section:6-Modelo de Vectorización}
@@ -203,6 +201,26 @@ Los experimentos de pregunta-respuesta permiten concluir que el pipeline RAG imp
 La principal limitación identificada es la dependencia de la calidad de la transcripción, dado que fragmentos con errores pueden introducir ruido en el contexto recuperado y afectar ocasionalmente la precisión de la respuesta. Esta limitación es consistente con las métricas de WER obtenidas en la evaluación de transcripción y refuerza la relevancia de utilizar un modelo con buena precisión.
 
 La ausencia de una evaluación cuantitativa sistemática del componente conversacional, mediante métricas automáticas de calidad de respuesta o evaluación humana estructurada, constituye la principal área pendiente de la evaluación experimental. Una evaluación de este tipo requeriría la construcción de un conjunto de pares pregunta-respuesta de referencia sobre el corpus de \Gls{OpenFing}, lo que queda planteado como trabajo a futuro. % TODO: agregar en Cap. 7
+
+\section{Análisis de Infraestructura}
+\label{section:6-Infraestructura}
+
+En esta sección se analiza la viabilidad operativa del sistema desde la perspectiva de la infraestructura, complementando los experimentos de calidad presentados en las secciones anteriores. El análisis cubre tres dimensiones: los costos asociados a las alternativas de inferencia evaluadas, las latencias observadas en producción y la comparación entre el modelo de \textit{inference as a service} adoptado y la alternativa de \textit{self-hosting}.
+
+\subsection{Costos de Inferencia}
+\label{subsection:6-Costos}
+
+% TODO: completar con datos reales de costos por token/solicitud de HuggingFace Inference API vs Ollama local.
+
+\subsection{Latencia en Producción}
+\label{subsection:6-Latencia}
+
+% TODO: completar con latencias medidas en el despliegue en Mi Nube ANTEL.
+
+\subsection{Comparación Self-Hosting vs. Inferencia como Servicio}
+\label{subsection:6-Selfhosting}
+
+% TODO: completar con análisis comparativo. Referencias disponibles: \cite{touvron2023llama2}, \cite{jiang2023mistral}, \cite{zheng2023mtbench}, \cite{chiang2024chatbotarena}.
 
 \section{Despliegue y Validación Operacional}
 \label{section:6-Despliegue}

@@ -8,42 +8,40 @@ En este capítulo se realiza el análisis de los requisitos del sistema y del pr
 
 En la siguiente sección se detallan los requisitos funcionales y no funcionales del sistema.
 
+\subsection{Requisitos Funcionales}
+\label{subsection:3-Requisitos Funcionales}
+Esta sección detalla las capacidades operativas y las funcionalidades específicas que el chatbot asistente pondrá a disposición de sus usuarios finales.
+\medskip
+
+El principal requisito funcional, y motivo del presente proyecto de grado, es el desarrollo de un chatbot interactivo basado en una arquitectura RAG, con el corpus de OpenFING. Esta funcionalidad permite que el asistente procese el corpus de transcripciones provenientes de OpenFING para ofrecer respuestas precisas y contextualizadas. El chatbot asistente no solo debe ser capaz de mantener un diálogo fluido, sino también integrar mecanismos de control sobre las fuentes utilizadas. Relacionado a la confiabilidad del sistema, cuando la información solicitada no se encuentre en el repositorio específico, el sistema debe informar explícitamente al usuario que la respuesta se basa en el conocimiento general del modelo preentrenado y no en el material de las clases.
+
+El contenido de OpenFING será nuestra base de conocimientos, por lo tanto, el sistema debe estar apropiadamente integrado con OpenFING. Esto implica ciertas funcionalidades que aseguran dinamismo y automatización a la hora de sincronizar y pasar el contenido de OpenFING a nuestro corpus.
+
+Así mismo, el sistema deberá contar con una base de conocimientos dinámica y continuamente actualizable. Esto implica automatizar el proceso de incorporación de nuevo material mediante módulos encargados de descargar clases, generar transcripciones, crear embeddings e indexar la información para su posterior consulta. Del mismo modo, deberá disponer de un módulo generador de respuestas que utilice dicho conocimiento de forma eficiente y consistente. El módulo generador deberá referenciar en cada respuesta a las fuentes utilizadas. Por lo tanto se debe mencionar que información toma de cada uno de los segmentos referenciados. Aportando a la trazabilidad del sistema, cada fuente será mostrada, incluyendo el nombre del curso, la lección y el instante exacto dentro del video.
+
+Finalmente, el sistema debe asegurar una cobertura integral del repositorio OpenFING, procesando la totalidad de las clases disponibles para garantizar que el conocimiento accesible sea exhaustivo. La arquitectura debe estar diseñada para ser extensible, permitiendo que la base de conocimientos crezca hacia otros proyectos como OpenUDELAR. De esta manera, el producto final se constituye como una herramienta centralizada que transforma el contenido de video en una base de datos textual consultable, resumible y totalmente trazable para el ámbito educativo.
+
 \subsection{Requisitos No Funcionales}
 \label{subsection:3-Requisitos No Funcionales}
 
 Dentro de la sección de requisitos no funcionales se incluyen aspectos relacionados con la calidad, rendimiento, usabilidad y otras características que no están directamente relacionadas con las funcionalidades específicas del sistema.
 
-
 Resulta fundamental que todo el código publicado sea de código abierto. Se busca evitar que el sistema sea percibido como un producto exclusivo del grupo desarrollador. El objetivo es que el chatbot asistente permanezca como un recurso público de la comunidad estudiantil de la Facultad de Ingeniería, como hoy es percibido OpenFING. Dado el potencial y la complejidad del sistema se considera valioso que cualquier estudiante pueda estudiar, modificar y mejorar el código, así como colaborar en el mantenimiento y evolución de la plataforma. El grupo ve posible el desarrollo de una comunidad a través del código abierto de este proyecto.
 
 Contribuyendo con lo anteriormente mencionado, la mantenibilidad del código es crucial. El código producido debe ser de alta calidad y estar apropiadamente documentado para que cualquiera que quiera desarrollar sobre el mismo se adapte apropiadamente a la herramienta.
 
-La fiabilidad resulta un aspecto central del sistema. Se aspira a que la fiabilidad diferencie al chatbot asistente de otras herramientas populares de propósito general. Se identifica la confiabilidad y la trazabilidad como los pilares que constituyen la fiabilidad. La confiabilidad y trazabilidad aunque conceptualmente distintos están profundamente relacionados. 
+La fiabilidad resulta un aspecto central del sistema. Se aspira a que la fiabilidad diferencie al chatbot asistente de otras herramientas populares de propósito general. Se identifica la confiabilidad y la trazabilidad como los pilares que constituyen la fiabilidad. La confiabilidad y trazabilidad aunque conceptualmente distintos están profundamente relacionados.
 
 La trazabilidad refiere a la capacidad del sistema de exponer el origen preciso de cada respuesta generada. Cada fragmento de
 información recuperado del repositorio deberá estar acompañado de referencias explícitas a las clases de donde proviene. Esta transparencia sobre las fuentes permite al usuario final la verificación, validación y profundización de los temas consultados de forma directa, sin depender exclusivamente del criterio del sistema.
 
 La confiabilidad, en cambio, refiere a la precisión y corrección del contenido generado. Como se mencionó anteriormente, los modelos de lenguaje de gran escala presentan una tendencia conocida a la alucinación: generan afirmaciones con una seguridad aparente que no refleja necesariamente su veracidad, lo cual puede inducir en el usuario una falsa sensación de confianza. Esta falencia se considera inaceptable en el contexto de un asistente educativo. El sistema deberá responder prioritariamente a partir del corpus de datos disponible; en los casos en que una consulta exceda el alcance de dicho corpus, el asistente deberá comunicarlo explícitamente al usuario que no hay información en el corpus de lo consultado.
 
-La extensibilidad y mantenibilidad de la base de conocimientos constituyen también un requisito no funcional importante. El sistema debe estar diseñado de forma tal que incorporar nuevo material no requiera severa complejidad ni rediseño arquitectónico. En el corto plazo, esto implica que la base de conocimientos se mantenga sincronizada con el repositorio de OpenFING de manera continua. 
+La extensibilidad y mantenibilidad de la base de conocimientos constituyen también un requisito no funcional importante. El sistema debe estar diseñado de forma tal que incorporar nuevo material no requiera severa complejidad ni rediseño arquitectónico. En el corto plazo, esto implica que la base de conocimientos se mantenga sincronizada con el repositorio de OpenFING de manera continua.
 %A medida que se publiquen nuevas clases, el sistema deberá ser capaz de detectarlas, descargarlas, transcribirlas e indexarlas de forma automatizada, sin necesidad de reprocesar el corpus completo.
 
 En el mediano y largo plazo, la arquitectura debe estar preparada para escalar hacia otras bases de conocimiento más allá de
 OpenFING. Proyectos como OpenUDELAR representan un caso de extensión natural: el sistema debería poder incorporar nuevo material proveniente de fuentes distintas con un esfuerzo de integración mínimo, reutilizando los mismos módulos de procesamiento y almacenamiento. Esta capacidad de escalabilidad horizontal no solo amplía el valor del producto, sino que también asegura que el esfuerzo invertido en el presente proyecto sirva como base reutilizable para iniciativas futuras dentro de la comunidad académica.
-
-\subsection{Requisitos Funcionales}
-Esta sección detalla las capacidades operativas y las funcionalidades específicas que el chatbot asistente pondrá a disposición de sus usuarios finales.
-\medskip
-
-El principal requisito funcional, y motivo del presente proyecto de grado, es el desarrollo de un chatbot interactivo basado en una arquitectura RAG, con el corpus de OpenFING. Esta funcionalidad permite que el asistente procese el corpus de transcripciones provenientes de OpenFING para ofrecer respuestas precisas y contextualizadas. El chatbot asistente no solo debe ser capaz de mantener un diálogo fluido, sino también integrar mecanismos de control sobre las fuentes utilizadas. Relacionado a la confiabilidad del sistema, cuando la información solicitada no se encuentre en el repositorio específico, el sistema debe informar explícitamente al usuario que la respuesta se basa en el conocimiento general del modelo preentrenado y no en el material de las clases.
-
-
-
-El contenido de OpenFING será nuestra base de conocimientos, por lo tanto, el sistema debe estar apropiadamente integrado con OpenFING. Esto implica ciertas funcionalidades que aseguran dinamismo y automatización a la hora de sincronizar y pasar el contenido de OpenFING a nuestro corpus. 
-
-Así mismo, el sistema deberá contar con una base de conocimientos dinámica y continuamente actualizable. Esto implica automatizar el proceso de incorporación de nuevo material mediante módulos encargados de descargar clases, generar transcripciones, crear embeddings e indexar la información para su posterior consulta. Del mismo modo, deberá disponer de un módulo generador de respuestas que utilice dicho conocimiento de forma eficiente y consistente. El módulo generador deberá referenciar en cada respuesta a las fuentes utilizadas. Por lo tanto se debe mencionar que información toma de cada uno de los segmentos referenciados. Aportando a la trazabilidad del sistema, cada será mostrada, incluyendo el nombre del curso, la lección y el instante exacto dentro del video.
-
-Finalmente, el sistema debe asegurar una cobertura integral del repositorio OpenFING, procesando la totalidad de las clases disponibles para garantizar que el conocimiento accesible sea exhaustivo. La arquitectura debe estar diseñada para ser extensible, permitiendo que la base de conocimientos crezca hacia otros proyectos como OpenUDELAR. De esta manera, el producto final se constituye como una herramienta centralizada que transforma el contenido de video en una base de datos textual consultable, resumible y totalmente trazable para el ámbito educativo.
 
 \section{Requisitos del Proyecto}
 \label{section:3-Requisitos del Proyecto}
