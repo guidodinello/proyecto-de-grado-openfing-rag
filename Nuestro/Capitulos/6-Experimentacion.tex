@@ -1,3 +1,4 @@
+
 \chapter{Experimentación}
 \label{chapter:6-Experimentación}
 
@@ -10,11 +11,13 @@ En esta sección se describe el proceso de evaluación de los modelos de transcr
 
 La evaluación de los métodos de transcripción requiere un balance entre los 3 parámetros definidos en \autoref{subsection:3-RNF6: Evaluación de Herramientas de Transcripción}. Para validar el desempeño de cada método, es necesario contar con un estándar de referencia de transcripción perfecta (\textit{ground-truth}). Con este propósito, se transcribieron manualmente siguientes clases:
 
+
+
 \begin{itemize}
-\item Computación 1, Clase 1 - Teoría 2024 \href{https://open.fing.edu.uy/courses/comp1-2024/2/}{(disponible en línea)}
-\item Computación 1, Clase 2 - Teoría 2024 \href{https://open.fing.edu.uy/courses/comp1-2024/1/}{(disponible en línea)}
-\item Introducción al Procesamiento de Lenguaje Natural, Clase 1 - Teoría 2016 \href{https://open.fing.edu.uy/courses/pln/1}{(disponible en línea)}
-\item Introducción al Procesamiento de Lenguaje Natural, Clase 2 - Teoría 2016 \href{https://open.fing.edu.uy/courses/pln/1/}{(disponible en línea)}
+\item Computación 1, Clase 1 - Teoría 2024. \cite{OpenFing_Comp1_Clase1_2024}
+\item Computación 1, Clase 2 - Teoría 2024. \cite{OpenFing_Comp1_Clase2_2024}.
+\item Introducción al Procesamiento de Lenguaje Natural, Clase 1 - Teoría 2016. \cite{OpenFing_PLN_Clase1_2016}
+\item Introducción al Procesamiento de Lenguaje Natural, Clase 2 - Teoría 2016. \cite{OpenFing_Comp1_Clase2_2024}.
 \end{itemize}
 
 El conjunto de datos así construido representa aproximadamente 5 horas y media de contenido de audio en español. Este volumen de material proporciona una base empírica suficiente para evaluar la consistencia y el rendimiento de los modelos en contextos académicos variados.
@@ -22,7 +25,7 @@ El conjunto de datos así construido representa aproximadamente 5 horas y media 
 \subsection{Métricas de Evaluación}
 \label{subsection:6-1-Métricas}
 
-Para comparar el desempeño de los modelos de reconocimiento automático de voz (ASR), se emplearon cinco métricas estándar en la evaluación de sistemas de transcripción. La métrica principal de análisis es la \textit{Word Error Rate} (WER), que mide el porcentaje de palabras incorrectamente transcritas. Las métricas complementarias incluyen \textit{Match Error Rate} (MER), \textit{Word Information Lost} (WIL), \textit{Word Information Preserved} (WIP) y \textit{Character Error Rate} (CER).
+Para comparar el desempeño de los modelos de reconocimiento automático de voz (ASR), se emplearon cinco métricas estándar en la evaluación de sistemas de transcripción. La métrica principal de análisis es la \textit{Word Error Rate} (WER), que mide el porcentaje de palabras incorrectamente transcritas. Las métricas complementarias incluyen \textit{Match Error Rate} (MER), \textit{Word Information Lost} (WIL), \textit{Word Information Preserved} (WIP).
 
 
 
@@ -209,6 +212,71 @@ En esta sección se analiza la viabilidad operativa del sistema desde la perspec
 
 \subsection{Costos de Inferencia}
 \label{subsection:6-Costos}
+
+En esta sección se calculan los costos asociados a la inferencia de los modelos de lenguaje, concepto introducido previamente en la \autoref{subsection:3-RNF5:analisis-infraestructura}. Dentro de esta categoría, se contemplan los gastos derivados de utilizar un proveedor de LLM gestionado de extremo a extremo (all-in-one).
+
+El costo de utilizar LLM comerciales varia en función del volumen de tokens (explicado en \autoref{subsection:2-Tokenización}) de entrada y tokens de salida. Los tokens de entrada correspondería,  En realidad este calculo no es del todo preciso debido al Context Caching. Context caching es tecnica de optimización de contexto que potencialmente bajaría los costos presentados en ). A partir de la serie de preguntas analizada en la \autoref{subsection:6-QA-Preguntas}, se determinó que una consulta promedio consta de 1179.25 tokens de entrada y 405.125 tokens de salida. 
+
+Asimismo, con el propósito de establecer una cota máxima para el peor escenario posible, se identificó la consulta de la muestra que exigió el mayor consumo de recursos, registrando un máximo de 1268 tokens de entrada y 702 tokens de salida. Con base en estas métricas, se proyectaron los costos económicos para un volumen de 1000 preguntas en algunos de los LLM más populares del mercado.
+
+Por lo tanto, se aproxima que en mil preguntas realizadas se utilizarían \textit{1.179.250} en promedio de tokens de entrada y \textit{405.125} de tokens de salida. Para llegar a un valor de cota máxima se utilizo el valor de \textit{1.268.000} tokens de entrada como máximo y \textit{702.000} tokens de salida. 
+
+A continuación, se presenta la estimación económica detallada para un volumen proyectado de 1000 consultas, aplicando las métricas de tokens (tanto promedio como máximas) obtenidas en el análisis muestral previo. La siguiente tabla contrasta las tarifas comerciales vigentes por cada millón de tokens de dichos llms.
+
+
+\begin{table}[ht]
+\begin{adjustwidth}{-3.5cm}{-2.5cm} % Expande el margen izquierdo y derecho 1.8cm temporalmente
+\centering
+\begin{threeparttable}
+\caption{Comparación de modelos fundacionales según proveedor, costo y capacidades.}
+\label{tab:modelos_llm}
+\small
+\begin{tabular}{l l c c c c c c}
+\toprule
+\textbf{Modelo} &
+\textbf{Proveedor} &
+\textbf{Entrada} &
+\textbf{Salida} &
+\textbf{Preg. Prom} &
+\textbf{Resp. Prom} &
+\textbf{Preg. Máx} &
+\textbf{Resp. Máx} \\
+ &
+ &
+\textbf{(\$/1M tok)} &
+\textbf{(\$/1M tok)} &
+\textbf{(\$)} &
+\textbf{(\$)} &
+\textbf{(\$)} &
+\textbf{(\$)} \\
+\midrule
+
+Qwen/Qwen2.5-72B-Instruct & HuggingFace-Novita & 0.38 & 0.40 & 0.448 & 0.162 & 0.482 & 0.281 \\
+Meta-Llama-3-8B-Instruct & HuggingFace-Novita & 0.04 & 0.04 & 0.047 & 0.016 & 0.051 & 0.028 \\
+Claude Sonnet 4.6 & Anthropic & 3.00 & 15.00 & 3.538 & 6.077 & 3.804 & 10.530 \\
+Claude Opus 4.1 & Anthropic & 15.00 & 75.00 & 17.689 & 30.384 & 19.020 & 52.650 \\
+GPT-5.4 Nano & OpenAI & 0.20 & 1.25 & 0.236 & 0.506 & 0.254 & 0.877 \\
+GPT-4.1 & OpenAI & 2.00 & 8.00 & 2.358 & 3.241 & 2.536 & 5.616 \\
+GPT-5 Pro & OpenAI & 15.00 & 120.00 & 17.689 & 48.615 & 19.020 & 84.240 \\
+Gemini 3.5 Flash & Google & 1.50 & 9.00 & 1.769 & 3.646 & 1.902 & 6.318 \\
+Gemini 2.5 Pro & Google & 1.25 & 10.00 & 1.474 & 4.051 & 1.585 & 7.02\\
+
+\bottomrule
+\end{tabular}
+\begin{adjustwidth}{3.5cm}{2.5cm}
+\begin{tablenotes}
+\footnotesize
+\item  \cite{openai_pricing},  \cite{google_gemini_pricing},  \cite{anthropic_claude_pricing}  \cite{huggingface_inference_pricing}.
+\item Los precios corresponden al costo en dolares por millón de tokens reportado por cada proveedor al momento de la consulta. Para Gemini 2.5 Pro el precio es dinamico dependiendo de los tokens utilizados. Se consideró el costo de entrada para solicitudes menores a 200.000 tokens de contexto debido a la naturaleza de queryes realizadas en el experminto tienen severamente menos tokens a la cota de precio de Google. 
+\end{tablenotes}
+\end{adjustwidth}
+\end{threeparttable}
+\end{adjustwidth}
+\end{table}
+
+Por otro lado, el mercado de los modelos de lenguaje comerciales es extremadamente dinámico y competitivo, caracterizado por una alta fluctuación en las estructuras tarifarias a lo largo del tiempo. Los valores expuestos en la tabla representan una imagen estática y precisa del escenario comercial al momento de la redacción de este documento. Debido a las constantes optimizaciones en la infraestructura de hardware y a las estrategias comerciales de las empresas proveedoras, existe una probabilidad certera de que estos costos sufran modificaciones significativas a corto o mediano plazo, ya sea mediante reducciones agresivas para ganar competitividad o reajustes al alza.
+
+Finalmente, existe un riesgo operativo ligado a la continuidad de los servicios de inferencia gestionada, dado que los proveedores pueden decidir unilateralmente retirar del mercado, discontinuar o modificar el acceso a determinados modelos. En caso de que el modelo seleccionado deje de mantenerse de forma libre o integrada bajo las condiciones actuales, el sistema se vería forzado a migrar hacia una alternativa diferente. Este proceso de transición no solo altera las proyecciones económicas, sino que puede generar inconvenientes técnicos asociados a la reconfiguración de la arquitectura, recalibración de prompts y variaciones imprevistas en el rendimiento de la aplicación.
 
 % TODO: completar con datos reales de costos por token/solicitud de HuggingFace Inference API vs Ollama local.
 
