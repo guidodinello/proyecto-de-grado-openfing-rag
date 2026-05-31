@@ -8,7 +8,7 @@ En este capítulo se presentan, en primer lugar, los objetivos del proyecto que 
 
 Esta sección describe las actividades de investigación y evaluación que el equipo realizó para fundamentar las decisiones de diseño del sistema. A diferencia de los requisitos del sistema, que especifican el comportamiento del software en producción, los objetivos del proyecto refieren a las tareas de investigación que son condición necesaria para que las elecciones tecnológicas estén debidamente justificadas. Estos objetivos orientan al lector sobre las decisiones documentadas en los capítulos de Arquitectura, Implementación y Experimentación.
 
-\subsection{RP: Estudio de Arquitecturas de Sistemas}
+\subsection{Estudio de Arquitecturas de Sistemas}
 \label{subsection:3-RNF2: Estudio de Arquitecturas de Sistemas}
 
 La selección de la arquitectura del sistema es una decisión de diseño con impacto directo sobre la mantenibilidad, escalabilidad y
@@ -18,10 +18,10 @@ respuestas— resulta necesario evaluar de forma sistemática qué combinación 
 El análisis se estructura en dos niveles:
 
 \begin{itemize}
-    \item \textbf{Arquitectura general del sistema.} Se evaluará la organización de los componentes en su conjunto: un frontend web,
-una \Gls{api} \Gls{rest} como capa de comunicación, y un conjunto de servicios de backend encargados del procesamiento de datos. Se considerará el nivel de acoplamiento entre componentes, la facilidad de despliegue y la viabilidad de mantener el sistema con recursos de infraestructura limitados.
+    \item \textbf{Arquitectura general del sistema.} Se evaluó la organización de los componentes en su conjunto: un frontend web,
+una \Gls{api} \Gls{rest} como capa de comunicación, y un conjunto de servicios de backend encargados del procesamiento de datos. Se consideró el nivel de acoplamiento entre componentes, la facilidad de despliegue y la viabilidad de mantener el sistema con recursos de infraestructura limitados.
     \item \textbf{Arquitectura de almacenamiento y búsqueda vectorial.} Esta es la decisión arquitectónica central del sistema
-\acrshort{rag}. Se compararán tres enfoques:
+\acrshort{rag}. Se compararon tres enfoques:
     \begin{itemize}
         \item \textbf{pgvector}: extensión de PostgreSQL que habilita el almacenamiento y búsqueda de vectores directamente en la
 base de datos relacional. Permite combinar búsqueda semántica con filtros relacionales (por curso, lección, etc.) en una única
@@ -31,15 +31,15 @@ consulta.
         \item \textbf{Elasticsearch}: motor de búsqueda distribuido con soporte para búsqueda híbrida (textual y vectorial).
 Introduce mayor complejidad operativa pero ofrece capacidades de búsqueda \textit{full-text} avanzadas.
     \end{itemize}
-    Los aspectos a evaluar para cada alternativa incluyen: integración con la base de datos existente, soporte nativo para filtrado
+    Los aspectos evaluados para cada alternativa incluyeron: integración con la base de datos existente, soporte nativo para filtrado
 por metadatos, complejidad de despliegue y mantenimiento, y rendimiento en consultas de similitud semántica.
 \end{itemize}
 
-El criterio de selección será la alternativa que minimice la complejidad operativa sin sacrificar las capacidades de búsqueda y
+El criterio de selección fue la alternativa que minimiza la complejidad operativa sin sacrificar las capacidades de búsqueda y
 filtrado requeridas por la arquitectura \acrshort{rag}, en el contexto de un proyecto académico con recursos de infraestructura
 limitados.
 
-\subsection{RP: Análisis de Requisitos de Infraestructura}
+\subsection{Análisis de Requisitos de Infraestructura}
 \label{subsection:3-RNF5:analisis-infraestructura}
 
 El sistema requiere un modelo de lenguaje de gran escala para la generación de respuestas, lo que plantea una decisión de infraestructura fundamental: alojar el modelo localmente (\textbf{\textit{self-hosting}}) o delegar la inferencia a un servicio externo (\textbf{\textit{inference as a service}}). Esta decisión conlleva implicancias directas sobre el costo operativo, la latencia, la privacidad de los datos, la viabilidad de producción y la calidad de las respuestas producidas.
@@ -60,9 +60,9 @@ La principal desventaja que el grupo identifica es el:
 \item \textbf{Requerimientos de Hardware:} Ejecutar un modelo especializado de gran tamaño implica una o varias \acrshort{gpu}s de alta gama cuyo costo de adquisición y mantenimiento energético es elevado.
 \end{enumerate}
 
-\cite{kaplan2020scalingTamanoporsobretodo} afirma que el tamaño del modelo es esencial por sobre otros parámetros, como la arquitectura de las capas o el tamaño del corpus de entrenamiento, sugiriendo que es preferible un modelo mayor no entrenado a un modelo pequeño altamente entrenado. Sin embargo, dentro de la alternativa \textbf{\textit{self-hosting}}, estaremos limitados en cuanto al tamaño de modelo a ejecutar, .
+\cite{kaplan2020scalingTamanoporsobretodo} afirma que el tamaño del modelo es esencial por sobre otros parámetros, como la arquitectura de las capas o el tamaño del corpus de entrenamiento, sugiriendo que es preferible un modelo mayor no entrenado a un modelo pequeño altamente entrenado. Sin embargo, dentro de la alternativa \textbf{\textit{self-hosting}}, el equipo se vio limitado en cuanto al tamaño de modelo a ejecutar.
 
-En contraposición, el trabajo de \cite{jiang2023mistral} propone el modelo \textit{\textbf{Mistral 7B} } como una alternativa compacta y eficiente, planteando una visión tridimensional, no era previamente pensado.
+En contraposición, el trabajo de \cite{jiang2023mistral} propone el modelo \textit{\textbf{Mistral 7B} como una alternativa compacta y eficiente, planteando una visión multidimensional:
 
 \begin{quote}
 \textit{"Our work on Mistral 7B demonstrates that language models may compress knowledge more than what was previously thought. This opens up interesting perspectives: the field has so far put the emphasis on scaling laws in 2 dimensions (directly associating model capabilities to training cost...); the problem is rather 3 dimensional (model capabilities, training cost, inference cost), and much remains to be explored to obtain the best performance with the smallest possible model."} \cite{jiang2023mistral}
@@ -70,16 +70,16 @@ En contraposición, el trabajo de \cite{jiang2023mistral} propone el modelo \tex
 
 Si bien 7 mil millones de parámetros requiere recursos informáticos mayores a los que el grupo tuvo a disposición durante el desarrollo del proyecto, se entiende que la facultad cuenta con recursos informáticos para realizar \textit{self-hosting} de este modelo.
 
-\item \textbf{Inferencia como servicio (\textit{inference as a service}):} Se evaluará la alternativa de consumir capacidad de inferencia a través de \acrshort{api}s provistas por terceros. Esto permite acceder a modelos de mayor escala sin requerir inversión en hardware especializado. Los aspectos críticos en esta modalidad incluyen el modelo de facturación (habitualmente por token o solicitud), los límites de cuota (\textit{rate limits}), la latencia introducida por la red y la dependencia de la disponibilidad del proveedor.
+\item \textbf{Inferencia como servicio (\textit{inference as a service}):} Se evaluó la alternativa de consumir capacidad de inferencia a través de \acrshort{api}s provistas por terceros. Esto permite acceder a modelos de mayor escala sin requerir inversión en hardware especializado. Los aspectos críticos en esta modalidad incluyen el modelo de facturación (habitualmente por token o solicitud), los límites de cuota (\textit{rate limits}), la latencia introducida por la red y la dependencia de la disponibilidad del proveedor.
 
 \end{itemize}
 
-El criterio de evaluación principal será la viabilidad práctica para el contexto del proyecto: un sistema académico con recursos de infraestructura limitados que debe garantizar una experiencia de usuario fluida y segura.
+El criterio de evaluación principal fue la viabilidad práctica para el contexto del proyecto: un sistema académico con recursos de infraestructura limitados que debe garantizar una experiencia de usuario fluida y segura.
 
-\subsection{RP: Comparación de Modelos de Lenguaje de Gran Escala}
+\subsection{Comparación de Modelos de Lenguaje de Gran Escala}
 \label{subsection:3-RNF4: Comparación de Modelos de Lenguaje de Gran Escala}
 
-Para seleccionar el modelo de lenguaje de gran escala (LLM) más adecuado que servirá como núcleo de procesamiento de lenguaje natural en nuestro sistema, se realizará una evaluación comparativa basada en criterios técnicos y operativos clave. Dado el papel fundamental que desempeñará el LLM en la funcionalidad y la experiencia del usuario, esta comparación es un paso crítico en la fase de diseño. La decisión final no está predefinida y se tomará únicamente tras analizar el rendimiento de los candidatos con respecto a los siguientes puntos:
+Para seleccionar el modelo de lenguaje de gran escala (LLM) más adecuado que sirviera como núcleo de procesamiento de lenguaje natural en el sistema, se realizó una evaluación comparativa basada en criterios técnicos y operativos clave. Dado el papel fundamental que desempeña el LLM en la funcionalidad y la experiencia del usuario, esta comparación constituyó un paso crítico en la fase de diseño. La decisión final se tomó tras analizar el rendimiento de los candidatos con respecto a los siguientes puntos:
 
 \begin{itemize}
     \item \textbf{Calidad de la Respuesta: Extensión y Precisión.} Este es el criterio principal para medir la utilidad del modelo. Se evaluará no solo la exactitud factual y la coherencia lógica de las respuestas (precisión), sino también su completitud, nivel de detalle y capacidad para abordar todos los aspectos de una consulta compleja (extensión). Un modelo debe ser capaz de proporcionar respuestas que sean a la vez correctas e informativamente ricas para ser verdaderamente útil.
@@ -91,29 +91,29 @@ Para seleccionar el modelo de lenguaje de gran escala (LLM) más adecuado que se
 
 La razón fundamental para analizar y comparar estos tres puntos específicos es lograr una decisión de diseño equilibrada. No se busca simplemente el modelo ``más potente'' en abstracto, sino el que ofrezca el mejor equilibrio entre capacidades (calidad y contexto) y viabilidad operativa (costo). Un modelo con una calidad de respuesta excelente pero un costo prohibitivo no sería sostenible, así como un modelo económico pero con respuestas pobres o un contexto limitado no cumpliría con los objetivos funcionales del sistema. Por lo tanto, esta evaluación multidimensional nos permitirá identificar el candidato que mejor se alinee con los requisitos técnicos y las restricciones prácticas de nuestro proyecto.
 
-\subsection{RP: Evaluación de Performance y Escalabilidad}
+\subsection{Evaluación de Performance y Escalabilidad}
 \label{subsection:3-Evaluación de Performance y Escalabilidad}
 
-Se analizará el rendimiento computacional de las herramientas de transcripción evaluadas. Considerando el volumen de contenido a procesar, es fundamental que la herramienta seleccionada sea eficiente y escalable. Principalmente se deberá evaluar la velocidad de transcripción en una unidad de tiempo determinada sobre un \textit{hardware} específico.
+Se analizó el rendimiento computacional de las herramientas de transcripción evaluadas. Considerando el volumen de contenido a procesar, resulta fundamental que la herramienta seleccionada sea eficiente y escalable. Principalmente se evaluó la velocidad de transcripción en una unidad de tiempo determinada sobre un \textit{hardware} específico.
 
-\subsection{RP: Evaluación de Herramientas de Transcripción}
+\subsection{Evaluación de Herramientas de Transcripción}
 \label{subsection:3-RNF6: Evaluación de Herramientas de Transcripción}
 
-Investigar y evaluar de manera exhaustiva la eficiencia y precisión de diferentes herramientas y tecnologías de transcripción automática (Automatic Speech Recognition, ASR) para convertir las clases grabadas en formato de texto estructurado y procesable. Es importante remarcar qué si bien las métricas en las cuales se evaluó cada uno de los modelos están disponibles en linea, el grupo decidió realizar una verificación para garantizar si las métricas obtenidas eran precisas.
+Se investigó y evaluó de manera exhaustiva la eficiencia y precisión de diferentes herramientas y tecnologías de transcripción automática (Automatic Speech Recognition, ASR) para convertir las clases grabadas en formato de texto estructurado y procesable. Es importante remarcar qué si bien las métricas en las cuales se evaluó cada uno de los modelos están disponibles en línea, el grupo decidió realizar una verificación para garantizar que las métricas obtenidas fueran precisas.
 \medskip
-Para garantizar la selección de la herramienta más adecuada a la situación, se deberá realizar un proceso de evaluación que contemple los siguientes aspectos:
+Para garantizar la selección de la herramienta más adecuada a la situación, se realizó un proceso de evaluación que contempló los siguientes aspectos:
 \begin{itemize}
     \item Análisis Cuantitativo
     \item Análisis Cualitativo
-    \item Performarmance y Escálabilidad
+    \item Performance y Escalabilidad
 \end{itemize}
 
-Cabe destacar que el analisis de las herramientas \acrshort{asr} se realizará a pesar de que existen estudios y métricas publicadas al respecto. Los \acrshort{asr} son mayoritariamente entrenados en inglés y mucha de la literatura disponible se enfoca en este idioma.
+Cabe destacar que el análisis de las herramientas \acrshort{asr} se realizó a pesar de que existen estudios y métricas publicadas al respecto. Los \acrshort{asr} son mayoritariamente entrenados en inglés y mucha de la literatura disponible se enfoca en este idioma.
 
 \subsubsection{Análisis Cuantitativo}
 \label{subsubsection:3-Análisis Cuantitativo}
 
-Para la evaluación de la calidad, el grupo se basa en cierta medida en estadísticas objetivas que señalizan cuán cercano es una transcripción realizada con respecto a la transcripción perfecta(\textit{ground-truth}), una en la cuál no hubo ningún error. Para ello se realizarán transcripciones manuales de referencia de un conjunto reducido de clases, las mismas servirán como base de comparación para evaluar la precisión de las herramientas \acrshort{asr} candidatas. La evaluación cuantitativa incluirá métricas estándar de la industria tales como:
+Para la evaluación de la calidad, el grupo se basó en estadísticas objetivas que señalizan cuán cercano es una transcripción realizada con respecto a la transcripción perfecta (\textit{ground-truth}), una en la cual no hubo ningún error. Para ello se realizaron transcripciones manuales de referencia de un conjunto reducido de clases, las cuales sirvieron como base de comparación para evaluar la precisión de las herramientas \acrshort{asr} candidatas. La evaluación cuantitativa incluyó métricas estándar de la industria tales como:
 
 \begin{itemize}
 \item Word Error Rate: Calcula el número mínimo de inserciones, borrados y sustituciones de una palabra por otra, necesarios para transformar una frase en otra.
@@ -143,11 +143,11 @@ Donde:
 \subsubsection{Análisis Cualitativo}
 \label{subsubsection:3-Análisis Cualitativo}
 
-Complementariamente, se realizará un análisis cualitativo de las transcripciones generadas por cada herramienta. Es importante complementar los datos y estadísticas descritos con un enfoque cualitativo que indique las posibles falencias que un \acrshort{asr} puede tener.
+Complementariamente, se realizó un análisis cualitativo de las transcripciones generadas por cada herramienta. Es importante complementar los datos y estadísticas con un enfoque cualitativo que indique las posibles falencias que un \acrshort{asr} puede tener.
 
 Los aspectos a evaluar son:
 \begin{itemize}
-    \item Nombres Propios o inventados, el ASR debe transcribir correctamente nobres propios de personas como también nombres inventados (ejemplos: FING, UdelaR, \Gls{OpenFing} etcetera).
+    \item Nombres Propios o inventados, el ASR debe transcribir correctamente nombres propios de personas como también nombres inventados (ejemplos: FING, UdelaR, \Gls{OpenFing} etcetera).
     \item Manejo de jerga académica: Precisión en la transcripción de términos especializados de diferentes áreas del conocimiento (ejemplos: Teorema de Bernulli, Teorema de Morgan, Ley de Ohm, etcetera).
     \item Identificar la calidad a situaciones específicas, como podrian ser acentos muy marcados, sonidos de fondo intensos u otros factores que puedan afectar la precisión.
     \item Uso de otros idiomas. Es común que utilizar palabras o conceptos que provienen del inglés u otros idiomas. También hay clases, workshops, y conferencias enteras realizadas en otros idiomas, como por ejemplo \cite{workshopOpenFing}. El comportamiento del ASR en estos casos debe ser conocido.
