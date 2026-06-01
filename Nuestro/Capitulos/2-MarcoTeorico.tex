@@ -31,7 +31,7 @@ Anteriormente, el procesamiento de lenguaje natural se centraba principalmente e
 \subsubsection{Inteligencia Artificial Generativa}
 \label{subsubsection:2-Inteligencia Artificial Generativa}
 
-Históricamente se establece una distinción en la inteligencia artificial y el aprendizaje automático entre modelos modelos discriminativos y los modelos generativos, estos se se distinguen por su objetivo de entrenamiento. Mientras que un modelo discriminativo aprende a clasificar o etiquetar entradas existentes, un modelo generativo aprende una representación de la distribución estadística subyacente a los datos de entrenamiento, lo que le permite producir nuevas muestras coherentes con esa distribución \cite{Goodfellow-et-al-2016}. Esta capacidad de síntesis, aplicada al lenguaje, habilita sistemas que redactan respuestas, resumen documentos y responden preguntas de manera fluida y contextualizada.
+Históricamente se establece una distinción en la inteligencia artificial y el aprendizaje automático entre modelos discriminativos y los modelos generativos, estos se distinguen por su objetivo de entrenamiento. Mientras que un modelo discriminativo aprende a clasificar o etiquetar entradas existentes, un modelo generativo aprende una representación de la distribución estadística subyacente a los datos de entrenamiento, lo que le permite producir nuevas muestras coherentes con esa distribución \cite{Goodfellow-et-al-2016}. Esta capacidad de síntesis, aplicada al lenguaje, habilita sistemas que redactan respuestas, resumen documentos y responden preguntas de manera fluida y contextualizada.
 
 En el dominio del lenguaje, los grandes modelos de lenguaje (LLMs) constituyen el representante más prominente de la IA generativa. Entrenados sobre volúmenes masivos de texto, estos modelos aprenden a predecir la siguiente palabra en una secuencia y, a partir de ese objetivo, desarrollan una comprensión profunda de las estructuras del lenguaje \cite{Zhao2023LLMSurvey}. En el presente proyecto, un LLM actúa como componente de generación dentro del sistema RAG, transformando los fragmentos recuperados del corpus de OpenFing en respuestas contextualizadas para el estudiante.
 
@@ -57,7 +57,7 @@ La arquitectura \textit{Transformer} fue introducida por Vaswani et al. \cite{va
 
 La arquitectura original adopta una estructura de codificador-decodificador: el codificador transforma la secuencia de entrada en representaciones vectoriales contextualizadas, mientras que el decodificador genera la secuencia de salida de manera autoregresiva, condicionado en esas representaciones. Esta separación admite variantes especializadas: modelos de solo codificador, orientados a la comprensión del texto y a la generación de \textit{embeddings}, y modelos de solo decodificador, orientados a la generación de texto, que constituyen la base de los LLMs modernos \cite{SpeechandLanguageProcessing}.
 
-La relevancia de esta arquitectura para el presente proyecto es transversal: El modelo de reconocimiento de voz Whisper, los modelos de \textit{embedding} utilizados en la recuperación semántica y el LLM empleado en la generación de respuestas tienen todos como fundamento técnico la arquitectura \textit{Transformer}.
+La relevancia de esta arquitectura para el presente proyecto es transversal. El modelo de reconocimiento de voz Whisper, los modelos de \textit{embedding} utilizados en la recuperación semántica y el LLM empleado en la generación de respuestas tienen todos como fundamento técnico la arquitectura \textit{Transformer}.
 
 \subsection{Tokenización}
 \label{subsection:2-Tokenización}
@@ -191,9 +191,7 @@ En esta sección se describen algunas herramientas y proyectos similares al pres
 \subsection{FINGChat}
 \label{subsection:2-FINGChat}
 
-Una de las herramientas a destacar es \textit{FINGChat}, desarrollada por Ignacio Sastre en colaboración con el Espacio de Orientación y Consulta (EOC) de la FING, como Proyecto de Grado. 
-
-\cite{sastre2024derivation}
+Una de las herramientas a destacar es \textit{FINGChat}, desarrollada por Ignacio Sastre en colaboración con el Espacio de Orientación y Consulta (EOC) de la FING, como Proyecto de Grado \cite{sastre2024derivation}.
 
 Al igual que el presente trabajo, \textit{FINGChat} está orientada al apoyo de los estudiantes de la Facultad de Ingeniería de la UdelaR. La herramienta permite realizar consultas en lenguaje natural sobre información institucional de la facultad, como reglamentos, trámites académicos y programas de cursos. Para ello emplea un enfoque de generación aumentada por recuperación (RAG) sobre documentación oficial, con el objetivo de reducir la probabilidad de respuestas incorrectas y fundamentar cada respuesta en fuentes verificables.
 
