@@ -50,7 +50,7 @@ Orquestador de la interacción con modelos de lenguaje. Expone la \acrshort{api}
 
 \subsubsection{Shared}
 \label{subsubsection:4-Shared}
-Módulo transversal que encapsula funcionalidades comunes utilizadas por múltiples componentes. Incluye utilidades genéricas como manejo de configuración, logging centralizado, gestión de errores, helpers de validación de datos y clases base reutilizables. Su propósito es evitar duplicación de código y establecer convenciones compartidas que garanticen consistencia en toda la aplicación. Facilita la evolución del sistema al centralizar cambios en funcionalidades core.
+Módulo transversal que encapsula funcionalidades comunes utilizadas por múltiples componentes. Incluye utilidades genéricas como manejo de configuración, logging centralizado, gestión de errores y clases base reutilizables, así como los modelos de base de datos compartidos y las definiciones de prompts del sistema. Contiene además el subcomponente de vectorización (\texttt{shared/vectors}), responsable del \textit{chunking} de las transcripciones y de su representación como vectores de embeddings para la indexación en pgvector. Su propósito es evitar duplicación de código y establecer convenciones compartidas que garanticen consistencia en toda la aplicación.
 
 
 \subsection{Base de Datos}

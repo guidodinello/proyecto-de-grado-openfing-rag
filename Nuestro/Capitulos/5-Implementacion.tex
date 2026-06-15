@@ -84,6 +84,15 @@ Para el desarrollo del sistema se optó por utilizar exclusivamente tecnologías
 
 Para la representación vectorial del texto se utilizan modelos de embeddings de la biblioteca \textit{sentence-transformers} a través de la integración de LangChain con HuggingFace. Se configuraron dos modelos alternativos. El primero es \textbf{all-MiniLM-L6-v2}, utilizado por defecto, que produce vectores de 384 dimensiones y ofrece una buena relación entre calidad semántica y eficiencia computacional. El segundo es \textbf{multilingual-e5-base}, una alternativa multilingüe que produce vectores de 768 dimensiones, especialmente adecuada para el corpus de OpenFing dado su contenido en español con terminología técnica en inglés.
 
+\subsection{Estrategia de \textit{Chunking}}
+\label{subsection:5-Chunking}
+
+El \textit{chunking} de las transcripciones en segmentos indexables es una etapa central del pipeline, ya que determina la granularidad con que el sistema recupera información y la precisión de las referencias temporales expuestas al usuario.
+
+En producción se utiliza \textbf{Semantic Chunking} \cite{langchain}, implementado mediante la integración de LangChain con el modelo \textbf{intfloat/multilingual-e5-base}. A diferencia del \textit{chunking} por longitud fija, este enfoque divide el texto en los puntos donde el cambio semántico entre oraciones supera un umbral determinado, produciendo así fragmentos que tienden a encapsular ideas completas en lugar de cortar el texto en posiciones arbitrarias. Los parámetros configurados son \texttt{threshold\_type: "percentile"}, \texttt{semantic\_threshold: 0.6} y \texttt{min\_chunk\_size: 400} caracteres. Con esta configuración se generaron los 217.986 chunks que componen el corpus indexado.
+
+Como alternativa disponible en el sistema, se implementó también \textbf{RecursiveCharacterTextSplitter} \cite{langchain}, configurado con fragmentos de 1.200 caracteres y un solapamiento de 200 caracteres, con separadores adaptados al español académico. Esta estrategia se utilizó durante el desarrollo inicial y constituye una alternativa de menor costo computacional para contextos donde no se requiere coherencia semántica estricta.
+
 \subsection{Base de Datos}
 \label{subsection:5-Base de Datos}
 \begin{itemize}

@@ -13,7 +13,7 @@ Esta sección describe las actividades de investigación y evaluación que el eq
 
 La selección de la arquitectura del sistema es una decisión de diseño con impacto directo sobre la mantenibilidad, escalabilidad y
 eficiencia a largo plazo. Dado que el sistema integra múltiples componentes scraping, transcripción, vectorización y generación de
-respuestas— resulta necesario evaluar de forma sistemática qué combinación arquitectónica se adecúa mejor al contexto del proyecto.
+respuestas, resulta necesario evaluar de forma sistemática qué combinación arquitectónica se adecúa mejor al contexto del proyecto.
 
 El análisis se estructura en dos niveles:
 
@@ -157,7 +157,7 @@ Los aspectos a evaluar son:
 \section{Requisitos del Sistema}
 \label{section:3-Requisitos del Sistema}
 
-En la siguiente sección se detallan los requisitos funcionales y no funcionales del sistema. Durante el transcurso del proyecto, se llevaron a reuniones junto a la (\cite{uefi_fing}) para el afinamiento de estos requisitos. Ellos están en contacto directo diario con la \cite{uri_fing}, está unidad es la actual encargada de mantener el sistema de OpenFING funcionando. 
+En la siguiente sección se detallan los requisitos funcionales y no funcionales del sistema. Durante el transcurso del proyecto, se llevaron a cabo reuniones con la (\cite{uefi_fing}) para el afinamiento de estos requisitos. Ellos están en contacto directo diario con la \cite{uri_fing}, está unidad es la actual encargada de mantener el sistema de OpenFING funcionando. 
 
 El principal requisito funcional, y motivo del presente proyecto de grado, es el desarrollo de un chatbot interactivo basado en una arquitectura RAG, con el corpus de OpenFING. Esta funcionalidad permite que el asistente procese el corpus de transcripciones provenientes de OpenFING para ofrecer respuestas precisas y contextualizadas. El chatbot asistente no solo debe ser capaz de mantener un diálogo fluido, sino también integrar mecanismos de control sobre las fuentes utilizadas. Relacionado a la confiabilidad del sistema, cuando la información solicitada no se encuentre en el repositorio específico, el sistema debe informar explícitamente al usuario que la respuesta se basa en el conocimiento general del modelo preentrenado y no en el material de las clases.
 
