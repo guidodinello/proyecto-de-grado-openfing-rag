@@ -1,7 +1,7 @@
 \chapter{Requisitos}
-\label{chapter:3-Requisitos del Sistema}
+\label{chapter:3-Requisitos}
 
-En este capítulo se presentan, en primer lugar, los objetivos del proyecto que guiaron las investigaciones y decisiones de diseño del equipo, y a continuación los requisitos funcionales y no funcionales del sistema resultante.
+En este capítulo se presentan, en primer lugar, los objetivos del proyecto que guiaron las investigaciones y decisiones de diseño y arquitectura del grupo, y a continuación los requisitos funcionales y no funcionales del sistema resultante.    
 
 \section{Objetivos del Proyecto}
 \label{section:3-Objetivos del Proyecto}
@@ -134,9 +134,9 @@ Donde:
 
 \item WIL (Información de Palabra Perdida): Mide cuánto significado se pierde debido a errores (como sustituciones y eliminaciones).
 
-\item WIP (Información de Palabra Preservada): Lo opuesto a WIL; muestra cuánto de la información original de la palabra se mantuvo en la transcripción.
+\item WIP (Información de Palabra Preservada): Lo opuesto a WIL, muestra cuánto de la información original de la palabra se mantuvo en la transcripción.
 
-\item CER (Tasa de Error de Carácter): El porcentaje de caracteres incorrectos (sustituciones, eliminaciones, inserciones) en comparación con el texto de referencia.
+\item CER (Tasa de Error de Carácter): El porcentaje de caracteres incorrectos (sustituciones, eliminaciones, inserciones) en comparación con el texto de referencia. Esta estadística mide qué tan cercana 
 
 \end{itemize}
 
@@ -157,12 +157,7 @@ Los aspectos a evaluar son:
 \section{Requisitos del Sistema}
 \label{section:3-Requisitos del Sistema}
 
-En la siguiente sección se detallan los requisitos funcionales y no funcionales del sistema.
-
-\subsection{Requisitos Funcionales}
-\label{subsection:3-Requisitos Funcionales}
-Esta sección detalla las capacidades operativas y las funcionalidades específicas que el chatbot asistente pondrá a disposición de sus usuarios finales.
-\medskip
+En la siguiente sección se detallan los requisitos funcionales y no funcionales del sistema. Durante el transcurso del proyecto, se llevaron a reuniones junto a la (\cite{uefi_fing}) para el afinamiento de estos requisitos. Ellos están en contacto directo diario con la \cite{uri_fing}, está unidad es la actual encargada de mantener el sistema de OpenFING funcionando. 
 
 El principal requisito funcional, y motivo del presente proyecto de grado, es el desarrollo de un chatbot interactivo basado en una arquitectura RAG, con el corpus de OpenFING. Esta funcionalidad permite que el asistente procese el corpus de transcripciones provenientes de OpenFING para ofrecer respuestas precisas y contextualizadas. El chatbot asistente no solo debe ser capaz de mantener un diálogo fluido, sino también integrar mecanismos de control sobre las fuentes utilizadas. Relacionado a la confiabilidad del sistema, cuando la información solicitada no se encuentre en el repositorio específico, el sistema debe informar explícitamente al usuario que la respuesta se basa en el conocimiento general del modelo preentrenado y no en el material de las clases.
 

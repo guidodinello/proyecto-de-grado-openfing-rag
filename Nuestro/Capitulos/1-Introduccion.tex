@@ -1,7 +1,7 @@
 \chapter{Introducción}
 \label{chapter:1-Introducción} 
 
-El acceso a información confiable y relevante es un desafío constante para los estudiantes universitarios. Las grabaciones de clase son una herramienta valiosa, pero presentan limitaciones concretas: su consumo es lento, la búsqueda de un concepto puntual obliga a revisar extensos videos, y la calidad del audio puede dificultar la comprensión. En paralelo, los modelos de lenguaje de gran escala (LLMs) de propósito general están ampliamente disponibles y son capaces de responder preguntas con aparente precisión; sin embargo, presentan una tendencia conocida a la alucinación, generando afirmaciones incorrectas con una seguridad que puede inducir en el usuario una falsa confianza. Este riesgo se agrava en un contexto educativo, donde una respuesta incorrecta puede consolidar conceptos erróneos en el estudiante.
+El acceso a información confiable y relevante es un desafío constante para los estudiantes universitarios. Las grabaciones de clase son una herramienta valiosa, pero presentan limitaciones concretas: su consumo es lento, la búsqueda de un concepto puntual obliga a revisar extensos videos, y la calidad del audio puede dificultar la comprensión. En paralelo, los modelos de lenguaje de gran escala (LLMs) de propósito general están ampliamente disponibles y son capaces de responder preguntas con aparente precisión. Sin embargo, presentan una tendencia conocida a las alucinaciones, información aparentemente correcta inventada por los LLMs, generando afirmaciones incorrectas con una seguridad que puede inducir en el usuario una falsa confianza. Este riesgo se agrava en un contexto educativo, donde una respuesta incorrecta puede consolidar conceptos erróneos en el estudiante.
 
 El presente proyecto de grado aborda esta problemática mediante el desarrollo de un asistente de inteligencia artificial generativa orientado a estudiantes de la Facultad de Ingeniería (FING) de la Universidad de la República (UdelaR). El sistema se basa en la arquitectura de Generación Aumentada por Recuperación (\acrshort{rag}), utilizando como base de conocimiento las transcripciones automáticas del contenido educativo de \Gls{OpenFing}, plataforma que concentra miles de horas de clases grabadas de la FING. A diferencia de los LLMs de propósito general, el asistente ancla sus respuestas en el material de los cursos y expone explícitamente las fuentes utilizadas, incluyendo el instante exacto del video de donde proviene cada fragmento de información.
 
@@ -53,7 +53,7 @@ El presente documento se estructura de la siguiente manera:
 
 \textbf{\autoref{chapter:2-Marco Teórico}} presenta una revisión del estado del arte y los conceptos teóricos que sustentan el proyecto: IA generativa, LLMs, arquitectura RAG, reconocimiento automático de voz y las plataformas relacionadas, incluyendo una descripción de \Gls{OpenFing}.
 
-\textbf{\autoref{chapter:3-Requisitos del Sistema}} formaliza los requisitos funcionales y no funcionales del sistema, así como los requisitos del proyecto que guiaron las decisiones de diseño.
+\textbf{\autoref{chapter:3-Requisitos}} formaliza los requisitos funcionales y no funcionales del sistema, así como los requisitos del proyecto que guiaron las decisiones de diseño.
 
 \textbf{\autoref{chapter:4-Arquitectura y Diseño}} expone la arquitectura general del sistema y el diseño detallado de sus componentes, acompañado de diagramas de arquitectura y flujos de datos.
 

@@ -4,6 +4,7 @@
 
 
 \documentclass{prgrado}
+\usepackage{float}
 \usepackage[colorinlistoftodos]{todonotes}
 \usepackage{siunitx}
 \usepackage{booktabs} 
@@ -14,6 +15,29 @@
 \usepackage{pdflscape}
 \usepackage{changepage}
 \usepackage{threeparttable}
+\usepackage{multirow}
+\usepackage{listings}
+\lstdefinelanguage{json}{
+  basicstyle=\ttfamily,
+  numbers=left,
+  numberstyle=\tiny, 
+  stepnumber=1,
+  numbersep=5pt,
+  showstringspaces=false,
+  breaklines=true,
+  frame=lines,
+  backgroundcolor=\color{white},
+  literate={"}{{\texttt{\char34}}}1
+           {\{}{{\texttt{\char123}}}1
+           {\}}{{\texttt{\char125}}}1
+           {[}{{\texttt{[}}}1
+           {]}{{\texttt{]}}}1
+           {,}{{\texttt{,}}}1
+           {:}{{\texttt{:}}}1
+           {true}{{\texttt{true}}}1
+           {false}{{\texttt{false}}}1
+           {null}{{\texttt{null}}}1
+}
 \makeglossaries
 
 % título del proyecto (debe escribirse en minúscula, con excepción de la
@@ -189,6 +213,7 @@ comunicación entre componentes a través de HTTP. Los servicios que siguen este
 \newacronym{sql}{SQL}{Structured Query Language}
 % carátula
 \setlength{\parskip}{1em plus 0.1em minus 0.1em}
+\raggedbottom
 \begin{document}
 
 \maketitle
@@ -224,42 +249,53 @@ Agradecer, siempre es bueno agradecer%.Agradecemos a nuestro supervisor Luis Chi
 \bibliography{referencias}
 
 \begin{appendix}
-\chapter{Anexo 1} 
-
-En este capitulo incluimos información relevante al proyecto que no se encotró un sitio apropiado para incluirlo dentro de la documentación principal.
-
-\section{Sección del Anexo}
-
-\subsection{Prompt Utilizada en la comunicación con el LLM Externo}
-La siguiente es la prompt que fue utilizada para la comunicación con el LLM externo. La misma incluye las técnicas de prompting mencionadas en \autoref{sec:prompt}.
 
 
-"Eres un asistente educativo especializado en responder preguntas sobre contenido académico.
+En los anexos se incluyó toda la información y documentación relevante al proyecto que no se encotró un sitio apropiado donde incluirlo dentro de la documentación principal.
+\chapter{Prompt Utilizada en la comunicación con el LLM Externo} 
+
+Se realizaron ajustes a la prompt utilizada para la comunicación con el LLM que genera las respuestas a las preguntas. Una de las prompts consideradas es la siguiente. Sin embargo, se decidió descartarla luego de que se observó un pobre desempeño en la categoría de preguntas cuya información no se encuentra en el contexto relevante. 
+
+\begin{quote}
+Eres un asistente educativo especializado en responder preguntas sobre contenido académico. \\
 Tu objetivo es ser útil y educativo, proporcionando respuestas claras y naturales.
 
-INSTRUCCIONES:
-1. PRIORIZA el contexto proporcionado de las clases cuando esté disponible y sea relevante 
-2. Si el contexto no contiene información completa pero tienes conocimiento general relevante, combina ambos de manera fluida y natural
-3. Usa el historial para mantener continuidad en la conversación
-4. NUNCA copies literalmente el formato del contexto (ej: 'Fragmento 1:', 'Contenido:')
-5. Integra la información de manera natural y conversacional
-6. Si mencionas información de clases específicas, hazlo de forma natural: 'En la clase de [materia] se explica que...'
+\medskip
+\noindent INSTRUCCIONES:
+\begin{enumerate}
+    \item PRIORIZA el contexto proporcionado de las clases cuando esté disponible y sea relevante.
+    \item Si el contexto no contiene información completa pero tienes conocimiento general relevante, combina ambos de manera fluida y natural.
+    \item Usa el historial para mantener continuidad en la conversación.
+    \item NUNCA copies literalmente el formato del contexto (ej: `Fragmento 1:', `Contenido:').
+    \item Integra la información de manera natural y conversacional.
+    \item Si mencionas información de clases específicas, hazlo de forma natural: `En la clase de [materia] se explica que...'.
+\end{enumerate}
 
-ESTILO DE RESPUESTA:
-- Respuestas conversacionales y naturales, como si fueras un profesor explicando
-- Evita estructuras artificiales como listas numeradas del contexto
-- Integra ejemplos y explicaciones de forma fluida
-- Mantén un tono educativo pero amigable
-- Responde siempre en español
+\medskip
+\noindent ESTILO DE RESPUESTA:
+\begin{itemize}
+    \item Respuestas conversacionales y naturales, como si fueras un profesor explicando.
+    \item Evita estructuras artificiales como listas numeradas del contexto.
+    \item Integra ejemplos y explicaciones de forma fluida.
+    \item Mantén un tono educativo pero amigable.
+    \item Responde siempre en español.
+\end{itemize}
 
-EJEMPLO MALO:
-'Fragmento 1: En la clase X se explica... Fragmento 2: Otra clase menciona...'
+\medskip
+\noindent EJEMPLO MALO: \\
+`Fragmento 1: En la clase X se explica... Fragmento 2: Otra clase menciona...'
 
-EJEMPLO BUENO:
-'El algoritmo de ordenamiento burbuja es un método simple que funciona comparando elementos adyacentes... Como se explica en las clases de programación, el proceso se repite hasta que no hay más intercambios...' "
+\medskip
+\noindent EJEMPLO BUENO: \\
+`El algoritmo de ordenamiento burbuja es un método simple que funciona comparando elementos adyacentes... Como se explica en las clases de programación, el proceso se repite hasta que no hay más intercambios...'
+\end{quote}
 
 
-\section{Experiencia en Ingeniería de Muestra} 
+Al observar este pobre desempeño se sustituyo la prompt por la siguiente. En esta prompt, se fue más explicito en la necesidad de aclarar cuando una respuesta es a partir del conjunto de entrenamiento previo del LLM y cuando la respuesta(o contexto relevante) fue encontrado en la base de datos vectorial. 
+
+
+
+\chapter{Experiencia en Ingeniería de Muestra} 
 \label{chapter:A-0-Anexo I-Ingeniería de Muestra}
 
 Durante el 10 y 11 de octubre de 2025 se celebro Ingeniería de Muestra. Una instancia donde se comparten diversos proyectos de grado e investigación que se llevan a cavo en la FING. En esta instancia, el grupo compartió el chatbot asistente con el público, entre ellos, varios estudiantes, actuales profesores y actores académicos de la FING. 
@@ -267,7 +303,7 @@ Este presentación del chatbot asistente permitió recoger múltiples perspectiv
 
 En esta sección se destacan dos visiones particularmente relevantes surgidas a partir de las instancias de intercambio.
 
-La primera perspectiva corresponde a estudiantes que residen en el interior del país y que, debido a limitaciones geográficas o logísticas, no pueden asistir regularmente a la facultad. Desde este punto de vista, el proyecto adquiere un fuerte valor como herramienta de equidad educativa. Estos estudiantes enfrentan dificultades para participar en la mayoría de las clases presenciales, lo que suele generar una sensación de desconexión respecto al curso y a la dinámica académica. Asimismo, los mecanismos tradicionales para evacuar dudas —como foros virtuales o consultas informales a otros estudiantes— no siempre garantizan respuestas oportunas o suficientes. En este contexto, la posibilidad de acceder a un chatbot especializado, entrenado específicamente con los materiales del curso, no representa únicamente una mejora en la accesibilidad, sino también un recurso potencialmente decisivo para facilitar la adaptación al curso y sostener un rendimiento académico comparable al de sus pares que cursan presencialmente en Montevideo.
+La primera perspectiva corresponde a estudiantes que residen en el interior del país y que, debido a limitaciones geográficas o logísticas, no pueden asistir regularmente a la facultad. Desde este punto de vista, el proyecto adquiere un fuerte valor como herramienta de equidad educativa. Estos estudiantes enfrentan dificultades para participar en la mayoría de las clases presenciales, lo que suele generar una sensación de desconexión respecto al curso y a la dinámica académica. Asimismo, los mecanismos tradicionales para evacuar dudas, como foros virtuales o consultas informales a otros estudiantes, no siempre garantizan respuestas oportunas o suficientes. En este contexto, la posibilidad de acceder a un chatbot especializado, entrenado específicamente con los materiales del curso, no representa únicamente una mejora en la accesibilidad, sino también un recurso potencialmente decisivo para facilitar la adaptación al curso y sostener un rendimiento académico comparable al de sus pares que cursan presencialmente en Montevideo.
 
 La segunda perspectiva destacada proviene de estudiantes de la Universidad de la República que no pertenecen a la Facultad de Ingeniería. A partir de la experiencia generada durante la pandemia, período en el cual la presencialidad se vio interrumpida y los cursos debieron desarrollarse en modalidad virtual, numerosas facultades comenzaron a publicar y mantener disponibles sus clases en formato online. En este marco, se señaló que la herramienta propuesta podría resultar igualmente valiosa para estudiantes de otras facultades, ampliando significativamente su alcance institucional.
 
@@ -281,17 +317,18 @@ Desde esta perspectiva, la adaptación de la herramienta a otros cursos requerir
 \end{figure}
 
 
-\section{Estimaciones entregadas a URI}
-En este documento se presentarón estimaciones de lo que representaría para la FING transcribir las clases en OpenFing. Estas estimaciones aplicarían para cualquier clase nueva que se decida subir al sistema. 
+\chapter{Estimaciones entregadas para el pasaje de conocimiento}
+En este documento se presentaron estimaciones de lo que representaría para la FING transcribir las clases en OpenFing. Estas estimaciones aplicarían para cualquier clase nueva que se decida subir al sistema. 
 
 
 \input{Nuestro/Anexos/2-EstimacionesParaOpenFing}
 
-\section{Manual de Usuario}
+\chapter{Manual de Usuario}
 En este documento se detalla el manual de usuario de la API desarrollada, los métodos expuestos y los parámetros de cada uno de esos métodos.
 
-Ahora mismo es un documento. $Manual_De_Usuario.tex$
-\section{Recursos}
+\input{Nuestro/Anexos/3-Manual_De_Usuario}
+
+\chapter{Recursos}
 
 Repositorio: %en un futuro se tiene que hacer repositorio owner a la fing o crear una org del proyecto
 \url{https://gitlab.fing.edu.uy/diego.amorena/tesis}
@@ -309,9 +346,6 @@ Tablero de Tareas: // en un futuro cambiarlo por un readonly link
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \end{document}
-
-
-
 
 
 
