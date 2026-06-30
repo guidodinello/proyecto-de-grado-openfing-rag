@@ -9,14 +9,16 @@
 \usepackage{siunitx}
 \usepackage{booktabs} 
 \usepackage{glossaries}
-\usepackage[utf8]{inputenc}
+% \usepackage[utf8]{inputenc}
 \usepackage{natbib}
+\usepackage{bibentry}
 \usepackage{float}
 \usepackage{pdflscape}
 \usepackage{changepage}
 \usepackage{threeparttable}
 \usepackage{multirow}
 \usepackage{listings}
+
 \lstdefinelanguage{json}{
   basicstyle=\ttfamily,
   numbers=left,
@@ -214,7 +216,10 @@ comunicación entre componentes a través de HTTP. Los servicios que siguen este
 % carátula
 \setlength{\parskip}{1em plus 0.1em minus 0.1em}
 \raggedbottom
+
 \begin{document}
+
+\nobibliography*
 
 \maketitle
 
@@ -311,7 +316,7 @@ Desde esta perspectiva, la adaptación de la herramienta a otros cursos requerir
 
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=\linewidth]{./Nuestro/Otros_Documentos/Poster.pdf}
+    \includegraphics[width=0.8\linewidth]{./Nuestro/Otros_Documentos/Poster.pdf}
     \caption{Poster presentado. Ilustración propia.}
     \label{fig:placeholder}
 \end{figure}

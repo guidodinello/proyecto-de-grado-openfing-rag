@@ -147,17 +147,17 @@ Complementariamente, se realizó un análisis cualitativo de las transcripciones
 
 Los aspectos a evaluar son:
 \begin{itemize}
-    \item Nombres Propios o inventados, el ASR debe transcribir correctamente nombres propios de personas como también nombres inventados (ejemplos: FING, UdelaR, \Gls{OpenFing} etcetera).
+    \item Nombres Propios o inventados, el ASR debe transcribir correctamente nombres propios de personas como también nombres inventados (ejemplos: FING, UdelaR, OpenFing etcetera).
     \item Manejo de jerga académica: Precisión en la transcripción de términos especializados de diferentes áreas del conocimiento (ejemplos: Teorema de Bernulli, Teorema de Morgan, Ley de Ohm, etcetera).
     \item Identificar la calidad a situaciones específicas, como podrian ser acentos muy marcados, sonidos de fondo intensos u otros factores que puedan afectar la precisión.
-    \item Uso de otros idiomas. Es común que utilizar palabras o conceptos que provienen del inglés u otros idiomas. También hay clases, workshops, y conferencias enteras realizadas en otros idiomas, como por ejemplo \cite{workshopOpenFing}. El comportamiento del ASR en estos casos debe ser conocido.
+    \item Uso de otros idiomas. Es común que utilizar palabras o conceptos que provienen del inglés u otros idiomas. También hay clases, workshops, y conferencias enteras realizadas en otros idiomas, como por ejemplo Workshop: Generación de Guías Didácticas con IA Generativa \footnote{\url{https://open.fing.edu.uy/courses/workshop-ggd/1/}}. El comportamiento del ASR en estos casos debe ser conocido.
 
 \end{itemize}
 
 \section{Requisitos del Sistema}
 \label{section:3-Requisitos del Sistema}
 
-En la siguiente sección se detallan los requisitos funcionales y no funcionales del sistema. Durante el transcurso del proyecto, se llevaron a cabo reuniones con la (\cite{uefi_fing}) para el afinamiento de estos requisitos. Ellos están en contacto directo diario con la \cite{uri_fing}, está unidad es la actual encargada de mantener el sistema de OpenFING funcionando. 
+En la siguiente sección se detallan los requisitos funcionales y no funcionales del sistema. Durante el transcurso del proyecto, se llevaron a cabo reuniones con la UEFI -- Unidad de Enseñanza \footnote{\url{https://www.fing.edu.uy/es/uefi}} para el afinamiento de estos requisitos. Ellos están en contacto directo diario con la Unidad de Recursos Informaticos \footnote{\url{https://idm.fing.edu.uy/es/sysadmin}}, está unidad es la actual encargada de mantener el sistema de OpenFING funcionando. 
 
 El principal requisito funcional, y motivo del presente proyecto de grado, es el desarrollo de un chatbot interactivo basado en una arquitectura RAG, con el corpus de OpenFING. Esta funcionalidad permite que el asistente procese el corpus de transcripciones provenientes de OpenFING para ofrecer respuestas precisas y contextualizadas. El chatbot asistente no solo debe ser capaz de mantener un diálogo fluido, sino también integrar mecanismos de control sobre las fuentes utilizadas. Relacionado a la confiabilidad del sistema, cuando la información solicitada no se encuentre en el repositorio específico, el sistema debe informar explícitamente al usuario que la respuesta se basa en el conocimiento general del modelo preentrenado y no en el material de las clases.
 
