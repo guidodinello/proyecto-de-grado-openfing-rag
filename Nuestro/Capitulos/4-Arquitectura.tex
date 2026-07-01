@@ -2,6 +2,15 @@
 \label{chapter:4-Arquitectura y Diseño}
 En este capítulo se describe la arquitectura del sistema, detallando los componentes del \gls{frontend} y del \gls{backend} y la forma en que se relacionan para conformar el producto final.
 
+La \autoref{fig:Arquitectura_Overview} presenta una vista general del pipeline completo antes de entrar en el detalle de cada componente. El sistema se organiza en dos fases, una de ingesta que corre de forma offline para indexar el contenido de OpenFing, y otra de consulta que se ejecuta ante cada pregunta del estudiante. Las secciones siguientes describen cada componente en profundidad.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\linewidth]{Nuestro/Imagenes/Arquitectura/Overview.png}
+    \caption{Vista general del pipeline del sistema, con las fases de ingesta y consulta. Ilustración propia.}
+    \label{fig:Arquitectura_Overview}
+\end{figure}
+
 
 \section[Frontend]{Frontend}
 \label{section:4-2-frontend}
