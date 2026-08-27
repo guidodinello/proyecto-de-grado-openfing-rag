@@ -1,19 +1,19 @@
 
 \label{chapter:A-2-Estimaciones Para Open Fing}
-\title{Estimaciónes para \Gls{OpenFing}}
+\title{Estimaciónes para OpenFing}
 
 \section{Proceso}
 \label{section:Proceso}
 \label{Proceso}
-En esta sección se detallan los distintos procesos necesarios para pasar los videos de \Gls{OpenFing} a vectores en nuestra bases vectorial que puedan ser utilizados por nuestro chatbot.
+En esta sección se detallan los distintos procesos necesarios para pasar los videos de OpenFing a vectores en nuestra bases vectorial que puedan ser utilizados por nuestro chatbot.
 
-\subsection[Scraping de OpenFing]{Scraping de \Gls{OpenFing}}
+\subsection[Scraping de OpenFing]{Scraping de OpenFing}
 \label{Scraping de OpenFing}
-Se debe comenzar scrapeando \Gls{OpenFing}. Lo que nos interesa de cada clase es:
+Se debe comenzar scrapeando OpenFing. Lo que nos interesa de cada clase es:
 \begin{itemize}
-    \item link especifico al video(típicamente en servidores de \Gls{OpenFing} y con extensión mp4)
-    \item el curso que proviene dicha clase(los cursos los identificamos por los acrónimos ya asignados por \Gls{OpenFing}, ejemplo:Programación 1 tiene el acrónimo)
-    \item Numero de la clase, que ya está en \Gls{OpenFing}.
+    \item link especifico al video(típicamente en servidores de OpenFing y con extensión mp4)
+    \item el curso que proviene dicha clase(los cursos los identificamos por los acrónimos ya asignados por OpenFing, ejemplo:Programación 1 tiene el acrónimo)
+    \item Numero de la clase, que ya está en OpenFing.
     \item Curso relacionado, es el curso de la lista de la pagina inicial por el cual llegue a dicha clase, curso relacionado puede ser el mismo curso.
 \end{itemize}
 Todos estos datos los consideramos los metadatos.
@@ -27,7 +27,7 @@ Todos estos datos los consideramos los metadatos.
 
 Ejemplo: La clase \textit{"Bienvenida 2025"} tiene los siguientes datos. Curso: \textit{"actint2025"}, por el url, Numero: \textit{1}, Curso Relacionado: \textit{actint2025}. Las clases de \textit{"Charlas 2024"}  también tienen como curso relacionado \textit{"actint2025"} , ya que para acceder a las bajo \textit{"Charlas de 2024"} preciso como usuario pasar primero  por \textit{"Charlas 2025"}.
 
-Lo que se realizó específicamente es recorrer cada uno de los cursos de la pantalla inicial de \Gls{OpenFing}. Es decir, todas las clases de los cursos que se encuentran en la pantalla inicial o son referenciados por uno de estos. Sin embargo, hay cursos publicados que no se encuentran en dicha lista y tampoco son referenciados por ninguno de estos, como también hay clases que no están publicadas. Estas clases no se pudieron contabilizar debido a que no se puede acceder a ellas.
+Lo que se realizó específicamente es recorrer cada uno de los cursos de la pantalla inicial de OpenFing. Es decir, todas las clases de los cursos que se encuentran en la pantalla inicial o son referenciados por uno de estos. Sin embargo, hay cursos publicados que no se encuentran en dicha lista y tampoco son referenciados por ninguno de estos, como también hay clases que no están publicadas. Estas clases no se pudieron contabilizar debido a que no se puede acceder a ellas.
 
 \begin{figure}[htbp]
     \centering
@@ -35,7 +35,7 @@ Lo que se realizó específicamente es recorrer cada uno de los cursos de la pan
     \caption{Pantalla inicial con todos los cursos a los que se accedieron. Página Principal \protect\footnote{\url{https://open.fing.edu.uy/}}}
 \end{figure}
 
-Scrapeamos \Gls{OpenFing} y logramos tomar estas clases, con el objetivo de tomar el peso total de los videos y la cantidad de clases que hay en total.
+Scrapeamos OpenFing y logramos tomar estas clases, con el objetivo de tomar el peso total de los videos y la cantidad de clases que hay en total.
 
 \subsection{Proceso de transcripción}
 \label{subsection:Proceso de transcripción}
@@ -55,15 +55,15 @@ Hay que mencionar que también debemos de quedarnos con los timestamps mencionad
 
 Para esto utilizamos langchain.
 
-\subsection[Estimaciones de lo que significaría para OpenFing]{Estimaciones de lo que significaría para \Gls{OpenFing}}
+\subsection[Estimaciones de lo que significaría para OpenFing]{Estimaciones de lo que significaría para OpenFing}
 \label{Estimaciones de lo que significaría para OpenFing}
-También tenemos un ultimo proceso, que fue básicamente tomar un "muestreo" de \Gls{OpenFing} y realizar los anterior ores procesos descritos. Esto con el objetivo de buscar estimaciones que indiquen cuanto tiempo y espacio se necesitarían para realizar los anteriores pasos con todo \Gls{OpenFing}.
+También tenemos un ultimo proceso, que fue básicamente tomar un "muestreo" de OpenFing y realizar los anteriores procesos descriptos. Esto con el objetivo de buscar estimaciones que indiquen cuanto tiempo y espacio se necesitarían para realizar los anteriores pasos con todo OpenFing.
 
 \section{Resultados}
 \label{section:Resultados}
 \label{Resultados}
 En esta sección se encuentra los resultados. 
-Estamos estimando que \Gls{OpenFing} tiene un total de 1 TB de videos(solo incluye los que encontramos públicos) y 2835 videos públicos en total. A partir de realizar unas muestra de transcripciones y conversiones, estimamos lo que significaría hacer todo el proceso para todo. 
+Estamos estimando que OpenFing tiene un total de 1 TB de videos(solo incluye los que encontramos públicos) y 2835 videos públicos en total. A partir de realizar unas muestra de transcripciones y conversiones, estimamos lo que significaría hacer todo el proceso para todo. 
 Total Size: 999.29 GB 
 \subsection{Conversiones de mp4 a m4a.}
 \label{subsection:Conversiones de mp4 a m4a.}
@@ -116,7 +116,7 @@ Para esto, realizamos transcripciones manuales y medimos las realizadas por los 
 Tenemos estadísticas que indican de forma objetiva que tan bueno es un modelo. Sin embargo, estas estadísticas no expresan ni visualizan correctamente la calidad de un modelo o transcripción. Por eso proveemos una explicación de como es que se terminaron valorando estos resultados.
 
 
-Las transcripciones que consideramos buenas son las del los modelos Small y Medium, no encontramos bastante diferencia entre estos modelos. Encontramos buenos resultados cuando el audio es nítido(mayoría de \Gls{OpenFing}), las transcripciones son peores cuando no es nítido pero igual mantienen buenos resultados. Errores que encontramos con estos modelos es que se puede equivocar entre dos palabras similares, a veces con definiciones parecidas o que ambas son configuraciones de una misma palabra base. También suele haber errores en nombres proprios o apellidos. Tampoco pueden captar bien funciones, transcriben literalmente lo mencionado. Por ejemplo si el profesor menciona una función "Rx en función de y", suele transcribir eso mismo y no algo similar a "R(x) en función de y" como puede ser preferible.  
+Las transcripciones que consideramos buenas son las del los modelos Small y Medium, no encontramos bastante diferencia entre estos modelos. Encontramos buenos resultados cuando el audio es nítido(mayoría de OpenFing), las transcripciones son peores cuando no es nítido pero igual mantienen buenos resultados. Errores que encontramos con estos modelos es que se puede equivocar entre dos palabras similares, a veces con definiciones parecidas o que ambas son configuraciones de una misma palabra base. También suele haber errores en nombres proprios o apellidos. Tampoco pueden captar bien funciones, transcriben literalmente lo mencionado. Por ejemplo si el profesor menciona una función "Rx en función de y", suele transcribir eso mismo y no algo similar a "R(x) en función de y" como puede ser preferible.  
 
 Sin embargo, logran detectar palabras de inglés u otros idiomas cuando se utilizan, suele ser captadas satisfactoriamente incluso utilizando la configuración de solo español. También transcriben correctamente a pesar de que hablen personas con acento. Cuando se mencionan números no suelen estar escritos en letras si no en números. 
 

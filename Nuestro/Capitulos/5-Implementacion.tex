@@ -2,13 +2,10 @@
 \label{chapter:5-Implementación}
 En este capítulo se detallan las tecnologías, herramientas y software de terceros utilizados en el proyecto. Se describe cómo y dónde se emplea cada uno, así como la justificación de su elección.
 
-\section{Tecnologías y Lenguajes}
-\label{section:5-Tecnologías y Lenguajes}
+\section{Frontend}
+\label{section:5-frontend}
+A continuación se explican las tecnologías utilizadas para el frontend.   
 
-Para el desarrollo del sistema se optó por utilizar exclusivamente tecnologías de código abierto y gratuitas. Esta decisión responde a dos objetivos fundamentales. En primer lugar, garantizar que el producto sea mantenible y sostenible sin impedimentos económicos que comprometan la continuidad del proyecto. En segundo lugar, aprovechar herramientas ampliamente adoptadas que aseguren la disponibilidad de una base extensa de desarrolladores capacitados y faciliten la incorporación de nuevos colaboradores.
-
-\subsection{Frontend}
-\label{subsection:5-frontend}
 \begin{itemize}
 
 \item \textbf{React}: Biblioteca de JavaScript para construir interfaces de usuario interactivas. Es código abierto y uno de los frameworks más utilizados para el desarrollo del lado cliente. Destaca en rendimiento y agiliza la velocidad de desarrollo.React Documentation \footnote{\url{https://react.dev/}}
@@ -26,12 +23,13 @@ Para el desarrollo del sistema se optó por utilizar exclusivamente tecnologías
 \item \textbf{Radix UI}: Biblioteca de primitivas de interfaz accesibles y sin estilos predefinidos, utilizada como base por shadcn/ui. Provee comportamientos complejos como diálogos, menús desplegables y \textit{tooltips} con accesibilidad incorporada.Radix UI: An open source component library for building accessible web apps and design systems \footnote{\url{https://www.radix-ui.com/}}
 
 \item \textbf{Zustand}: Biblioteca de gestión de estado global para React. Provee una API minimalista basada en hooks que simplifica el manejo del estado de la aplicación.Zustand: A small, fast and scalable bearbones state-management solution \footnote{\url{https://github.com/pmndrs/zustand}}
+\item \textbf{Zustand}: Biblioteca de gestión de estado global para React. Provee una API minimalista basada en hooks que simplifica el manejo del estado de la aplicación.Zustand: A small, fast and scalable barebones state-management solution \footnote{\url{https://github.com/pmndrs/zustand}}
 
 \item \textbf{TanStack Query}: Biblioteca para gestionar el estado asíncrono del servidor, el caché de datos y la sincronización con el backend en aplicaciones React.{TanStack Query}: Powerful asynchronous state management, server-state utilities and data fetching for the web \footnote{\url{https://tanstack.com/query}}
 
 \item \textbf{Axios}: Cliente HTTP basado en promesas para el navegador y Node.js. Se utiliza para realizar las peticiones a la API del backend.Axios: Promise based {HTTP} client for the browser and node.js \footnote{\url{https://github.com/axios/axios}}
 
-\item \textbf{JSON Web Token (JWT)}: Estándar para autenticación en aplicaciones web. Permite transmitir información de usuario de forma segura entre cliente y servidor, como se ilustra en la \autoref{fig:JWT}.JSON Web Token (JWT) \footnote{\url{https://datatracker.ietf.org/doc/html/rfc7519}}
+\item \textbf{JSON Web Token (JWT)}: Estándar para autenticación en aplicaciones web. Permite transmitir información de usuario de forma segura entre cliente y servidor, como se ilustra en la \autoref{fig:JWT}.\cite{misc_jwt}.
 
 \begin{figure}[htbp]
     \centering
@@ -48,8 +46,8 @@ Para el desarrollo del sistema se optó por utilizar exclusivamente tecnologías
 
 \end{itemize}
 
-\subsection{Entorno}
-\label{subsection:5-Entorno}
+\section{Entorno}
+\label{section:5-Entorno}
 \begin{itemize}
     \item \textbf{Docker}: Plataforma de contenedorización que empaqueta aplicaciones y sus dependencias en contenedores aislados. Garantiza que el software funcione de manera consistente en cualquier entorno, desde desarrollo hasta producción.Docker Documentation \footnote{\url{https://docs.docker.com/}}
 
@@ -60,8 +58,8 @@ Para el desarrollo del sistema se optó por utilizar exclusivamente tecnologías
     \item \textbf{Uvicorn}: Servidor ASGI (\textit{Asynchronous Server Gateway Interface}) para Python. Ejecuta la aplicación FastAPI y gestiona las conexiones HTTP y WebSocket de forma asíncrona con alta concurrencia.Uvicorn Documentation \footnote{\url{https://www.uvicorn.org/}}
 \end{itemize}
 
-\subsection{Backend}
-\label{subsection:5-backend}
+\section{Backend}
+\label{section:5-backend}
 \begin{itemize}
     \item \textbf{Python}: Lenguaje de programación interpretado, de alto nivel y multipropósito. Es conocido por su sintaxis clara y legible, lo que reduce la barrera de entrada para nuevos colaboradores y va en línea con el objetivo del proyecto de facilitar la incorporación de desarrolladores al sistema. Además, es ampliamente utilizado en ciencia de datos, inteligencia artificial y desarrollo web.Python Documentation \footnote{\url{https://docs.python.org/3/}}
 
@@ -75,17 +73,17 @@ Para el desarrollo del sistema se optó por utilizar exclusivamente tecnologías
 
     \item \textbf{BeautifulSoup4 y aiohttp}: BeautifulSoup4 permite analizar y extraer información de documentos HTML, y se utiliza en el módulo de scraping para identificar la estructura jerárquica de cursos y clases en el catálogo de OpenFing.Beautiful Soup Documentation \footnote{\url{https://www.crummy.com/software/BeautifulSoup/bs4/doc/}} aiohttp provee un cliente HTTP asíncrono que permite realizar múltiples peticiones de forma concurrente, acelerando significativamente el proceso de extracción de metadatos.aiohttp: Asynchronous HTTP Client/Server for asyncio and Python \footnote{\url{https://docs.aiohttp.org/}}
 
-    \item \textbf{LangChain}: Framework de desarrollo para aplicaciones con LLMs. Se utiliza mediante la interfaz LCEL (\textit{LangChain Expression Language}) para componer cadenas del tipo \texttt{prompt | llm}, integrando la gestión del historial de conversación, la recuperación de \gls{contexto} y la generación de respuestas en un pipeline declarativo.LangChain Documentation \footnote{\url{https://python.langchain.com/docs/}}
+    \item \textbf{LangChain}: Framework de desarrollo para aplicaciones con LLMs. Se utiliza mediante la interfaz LCEL (\textit{LangChain Expression Language}) para componer cadenas del tipo \texttt{prompt | llm}, integrando la gestión del historial de conversación, la recuperación de contexto y la generación de respuestas en un pipeline declarativo.LangChain Documentation \footnote{\url{https://python.langchain.com/docs/}}
 \end{itemize}
 
 
-\subsection{Modelos de Embeddings}
-\label{subsection:5-Embeddings}
+\section{Modelos de Embeddings}
+\label{section:5-Embeddings}
 
-Para la representación vectorial del texto se utilizan modelos de embeddings de la biblioteca \textit{sentence-transformers} a través de la integración de LangChain con HuggingFace. Se configuraron dos modelos alternativos. El primero es \textbf{all-MiniLM-L6-v2}, utilizado por defecto, que produce vectores de 384 dimensiones y ofrece una buena relación entre calidad semántica y eficiencia computacional. El segundo es \textbf{multilingual-e5-base}, una alternativa multilingüe que produce vectores de 768 dimensiones, especialmente adecuada para el corpus de OpenFing dado su contenido en español con terminología técnica en inglés.
+Para la representación vectorial del texto se utilizan modelos de embeddings de la biblioteca \textit{sentence-transformers}\footnote{\url{https://huggingface.co/sentence-transformers/}} \cite{reimers-2019-sentence-bert} a través de la integración de LangChain con HuggingFace. Se configuraron dos modelos alternativos, ambos provienen de la biblioteca \textit{sentence-transformers}. El primero es \textbf{all-MiniLM-L6-v2}\footnote{\url{https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2}}, utilizado por defecto, que produce vectores de 384 dimensiones y ofrece una buena relación entre calidad semántica y eficiencia computacional. El segundo es \textbf{multilingual-e5-base}\footnote{\url{https://huggingface.co/intfloat/multilingual-e5-base}}, una alternativa multilingüe que produce vectores de 768 dimensiones, especialmente adecuada para el corpus de OpenFing dado su contenido en español con terminología técnica en inglés.
 
-\subsection{Estrategia de \textit{Chunking}}
-\label{subsection:5-Chunking}
+\section{Estrategia de \textit{Chunking}}
+\label{section:5-Chunking}
 
 El \textit{chunking} de las transcripciones en segmentos indexables es una etapa central del pipeline, ya que determina la granularidad con que el sistema recupera información y la precisión de las referencias temporales expuestas al usuario.
 
@@ -93,18 +91,18 @@ En producción se utiliza \textbf{Semantic Chunking} LangChain Documentation \fo
 
 Como alternativa disponible en el sistema, se implementó también \textbf{RecursiveCharacterTextSplitter} LangChain Documentation \footnote{\url{https://python.langchain.com/docs/}}, configurado con fragmentos de 1.200 caracteres y un solapamiento de 200 caracteres, con separadores adaptados al español académico. Esta estrategia se utilizó durante el desarrollo inicial y constituye una alternativa de menor costo computacional para contextos donde no se requiere coherencia semántica estricta.
 
-\subsection{Base de Datos}
-\label{subsection:5-Base de Datos}
+\section{Base de Datos}
+\label{section:5-Base de Datos}
 \begin{itemize}
     \item \textbf{PostgreSQL}: Sistema de gestión de bases de datos relacionales de código abierto, robusto y con soporte para características avanzadas como transacciones ACID, índices complejos y extensiones personalizadas.PostgreSQL Documentation \footnote{\url{https://www.postgresql.org/docs/}}
 
     \item \textbf{PGVector}: Extensión de PostgreSQL que añade soporte para almacenar y consultar vectores de embeddings.pgvector: Open-source vector similarity search for {PostgreSQL} \footnote{\url{https://github.com/pgvector/pgvector}} Permite realizar búsquedas de similitud semántica directamente sobre la base de datos relacional existente, sin necesidad de mantener un almacén vectorial separado.
 \end{itemize}
 
-\subsection{Herramienta Audio a Texto}
-\label{subsection:5-1-Transcriber}
+\section{Herramienta Audio a Texto}
+\label{section:5-1-Transcriber}
 
-Para la transcripción automática del audio de las clases, se optó por utilizar la familia de modelos Whisper como la herramienta de reconocimiento automático del habla (\acrshort{asr}) por defecto en el proyecto. Whisper \cite{radford2022robust} es un modelo \textit{encoder-decoder} basado en la arquitectura Transformer, entrenado con supervisión débil sobre más de 680.000 horas de audio multilingüe.
+Para la transcripción automática del audio de las clases, se optó por utilizar la familia de modelos Whisper como la herramienta de reconocimiento automático del habla (ASR) por defecto en el proyecto. Whisper \cite{radford2022robust} es un modelo \textit{encoder-decoder} basado en la arquitectura Transformer, entrenado con supervisión débil sobre más de 680.000 horas de audio multilingüe.
 
 Este sistema ofrece varios tamaños de modelo que permiten ajustar la relación entre precisión y costo computacional según los recursos disponibles, tal como se detalla en la Tabla~\ref{tab:whisper_models}. En el entorno de desarrollo se configuró el modelo \textit{tiny} por defecto, mientras que para la evaluación experimental se utilizaron las versiones de mayor tamaño.
 
@@ -126,11 +124,11 @@ turbo  & 809 M  & N/A                & \texttt{turbo}  & $\sim$6 GB  & $\sim$8x 
 \label{tab:whisper_models}
 \end{table}
 
-Ante la necesidad del grupo de procesar un gran volumen de transcripciones de manera eficiente, se buscó optimizar la herramienta \Gls{asr} evaluando las dos principales alternativas disponibles en la comunidad:
+Ante la necesidad del grupo de procesar un gran volumen de transcripciones de manera eficiente, se buscó optimizar la herramienta ASR evaluando las dos principales alternativas disponibles en la comunidad:
 
 \begin{itemize}
-    \item \textbf{\texttt{whisper.cpp}:} Implementación ligera en C/C++ de alto rendimiento y sin dependencias externas, diseñada especialmente para una ejecución optimizada en CPU y arquitecturas específicas como Apple Silicon.
-    \item \textbf{\texttt{faster-whisper}:} Reimplementación del modelo original optimizada mediante CTranslate2. Aplica técnicas de cuantización que reducen drásticamente el consumo de memoria VRAM y aceleran la velocidad de inferencia tanto en GPU como en CPU, manteniendo la misma calidad de transcripción que el modelo base de OpenAI faster-whisper: Faster Whisper transcription with {CTranslate2} \footnote{\url{https://github.com/SYSTRAN/faster-whisper}}.
+    \item \textbf{\texttt{whisper.cpp}:} Implementación ligera en C/C++ de alto rendimiento y sin dependencias externas, diseñada especialmente para una ejecución optimizada en CPU. whisper.cpp. \cite{whispercpp}
+    \item \textbf{\texttt{faster-whisper}:} Reimplementación del modelo original optimizada mediante CTranslate2. Aplica técnicas de cuantización que reducen drásticamente el consumo de memoria VRAM y aceleran la velocidad de inferencia tanto en GPU como en CPU, manteniendo la misma calidad de transcripción que el modelo base de OpenAI faster-whisper. \cite{fasterwhisper}
 \end{itemize}
 
 Se optó por utilizar \textbf{\texttt{faster-whisper}}, dado que su rendimiento con aceleración por hardware y su integración directa en entornos Python se alineaban mejor con los requerimientos de la infraestructura del proyecto.
@@ -144,8 +142,8 @@ Para el procesamiento del corpus de OpenFing, la transcripción con \textit{fast
     \item \textbf{Prompt de dominio inicial:} texto guía que indica al modelo el contexto de las clases. Especifica que el audio proviene de la Facultad de Ingeniería de la Universidad de la República, con terminología técnica de ingeniería, algoritmos, programación, matemática y ciencias de la computación, expresada en español rioplatense con términos técnicos ocasionalmente en inglés.
 \end{itemize}
 
-\subsection{LLM}
-\label{subsection:5-LLM}
+\section{LLM}
+\label{section:5-LLM}
 
 El modelo de lenguaje principal utilizado en el sistema es \textbf{Meta-Llama-3.1-8B-Instruct} Llama 3.1 8B Instruct --- Hugging Face \footnote{\url{https://huggingface.co/meta-llama/Llama-3.1-8B-Instruct}}, desarrollado por Meta AI. Se trata de un modelo de 8 mil millones de parámetros de la familia Llama 3.1, optimizado para tareas de instrucción y conversación. Se seleccionó por su rendimiento competitivo en comprensión y generación de texto en español, con requerimientos de hardware moderados.
 

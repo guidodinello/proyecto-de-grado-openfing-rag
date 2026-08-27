@@ -2,15 +2,12 @@
 \label{chapter:A-3-Manual de Usuario}
 \label{section:A-3-Introducción}
 
-
-Este manual describe el uso de la \Gls{api} de servicios en la plataforma, un sistema diseñado para gestionar cursos, lecciones, transcripciones y conversaciones mediante inteligencia artificial. La \Gls{api} proporciona funcionalidades de scraping, generación de respuestas mediante RAG (Retrieval-Augmented Generation), transcripción de contenido y gestión de usuarios.
-
-
+Este manual describe el uso de la API de servicios en la plataforma, un sistema diseñado para gestionar cursos, lecciones, transcripciones y conversaciones mediante inteligencia artificial. La API proporciona funcionalidades de scraping, generación de respuestas mediante RAG (Retrieval-Augmented Generation), transcripción de contenido y gestión de usuarios.
 
 \subsection{URL Base}
 \label{subsection:A-3-URL Base}
 
-Todos los endpoints de la \Gls{api} utilizan la siguiente \acrshort{url} base:
+Todos los endpoints de la API utilizan la siguiente \acrshort{url} base:
 
 \begin{lstlisting}[language=bash]
 http://localhost:8000
@@ -19,7 +16,7 @@ http://localhost:8000
 \section{Códigos de Estado HTTP}
 \label{section:A-3-Códigos de Estado HTTP}
 
-La \Gls{api} utiliza códigos de estado\acrshort{http} estándar:
+La API utiliza códigos de estado \acrshort{http} estándar:
 
 \begin{table}[h]
 \centering
@@ -42,18 +39,18 @@ La \Gls{api} utiliza códigos de estado\acrshort{http} estándar:
 500 & Internal Server Error & Error interno del servidor \\
 \hline
 \end{tabular}
-\caption{Códigos de estado \acrshort{http} comunes}
+\caption{Códigos de estado HTTP comunes}
 \end{table}
 
-\section[Métodos de la api]{Métodos de la \Gls{api}}
-\label{Métodos de la api}
+\section[Métodos de la API]{Métodos de la API}
+\label{Métodos de la API}
 
-Esta sección describe todos los métodos disponibles en la \Gls{api}, organizados por categoría funcional.
+Esta sección describe todos los métodos disponibles en la API, organizados por categoría funcional.
 
 \subsection{Autenticación}
 \label{subsection:A-3-Autenticación}
 
-Para utilizar los endpoints protegidos, debe incluir el \gls{token} de acceso en el encabezado:
+Para utilizar los endpoints protegidos, debe incluir el token de acceso en el encabezado:
 
 \begin{lstlisting}[language=bash]
 curl -X GET http://localhost:8000/endpoint \
@@ -114,7 +111,7 @@ curl -X POST http://localhost:8000/register \
 
 \textbf{Autenticación:} No requerida
 
-\textbf{Descripción:} Inicia sesión con username/password para recibir un \gls{token} JWT de acceso para solicitudes autenticadas.
+\textbf{Descripción:} Inicia sesión con username/password para recibir un token JWT de acceso para solicitudes autenticadas.
 
 \textbf{Códigos de Respuesta:}
 \begin{itemize}
@@ -148,9 +145,9 @@ curl -X POST http://localhost:8000/login \
 
 \textbf{Endpoint:} \texttt{POST /refresh}
 
-\textbf{Autenticación:} No requerida (utiliza refresh \gls{token})
+\textbf{Autenticación:} No requerida (utiliza refresh token)
 
-\textbf{Descripción:} Genera un nuevo \gls{token} de acceso a partir del refresh \gls{token}.
+\textbf{Descripción:} Genera un nuevo token de acceso a partir del refresh token.
 
 \textbf{Códigos de Respuesta:}
 \begin{itemize}
@@ -178,7 +175,7 @@ curl -X POST http://localhost:8000/refresh \
 
 \textbf{Autenticación:} Requerida
 
-\textbf{Descripción:} Realiza scraping de todos los cursos y lecciones desde \Gls{OpenFing} y los sincroniza con la base de datos.
+\textbf{Descripción:} Realiza scraping de todos los cursos y lecciones desde OpenFing y los sincroniza con la base de datos.
 
 \textbf{Códigos de Respuesta:}
 \begin{itemize}
@@ -204,7 +201,7 @@ curl -X POST http://localhost:8000/v1/services/scraper/sync-all \
     \item \texttt{course\_code} (string, requerido): Código del curso a sincronizar
 \end{itemize}
 
-\textbf{Descripción:} Realiza scraping de un curso específico y sus lecciones desde \Gls{OpenFing}.
+\textbf{Descripción:} Realiza scraping de un curso específico y sus lecciones desde OpenFing.
 
 \textbf{Códigos de Respuesta:}
 \begin{itemize}
@@ -229,7 +226,7 @@ curl -X POST http://localhost:8000/v1/services/scraper/sync-course/PROG1 \
 
 \textbf{Autenticación:} Requerida
 
-\textbf{Descripción:} Procesa un mensaje de chat utilizando RAG (Retrieval-Augmented Generation). Soporta usuarios anónimos (efímeros), usuarios JWT y usuarios con \Gls{api} key.
+\textbf{Descripción:} Procesa un mensaje de chat utilizando RAG (Retrieval-Augmented Generation). Soporta usuarios anónimos (efímeros), usuarios JWT y usuarios con API key.
 
 \textbf{Códigos de Respuesta:}
 \begin{itemize}
