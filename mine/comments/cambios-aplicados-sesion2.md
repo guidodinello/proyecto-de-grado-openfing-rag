@@ -37,6 +37,37 @@ Todos los perdidos se re-aplicaron en esta sesión (abajo).
 | 16 | L p.46 (re-aplic. #9) | `4-Arquitectura.tex:52` | re-agregada "El texto completo de este prompt se detalla en el \autoref{section:A-1-prompt-transcripcion}." (label ya existía en `1-Prompting.tex:48`) |
 | 17 | L p.49 (re-aplic. #10) | `1-Prompting.tex:7` + `4-Arquitectura.tex:100` | re-agregado `\label{section:A-1-prompt-asistente}` a la sección "Prompt del asistente educativo" y `(\autoref{section:A-1-prompt-asistente})` en "Construcción del prompt" |
 
+## Estado de sincronización con Overleaf (verificado 2026-08-30 ~21:00)
+
+Se comparó el zip de Overleaf descargado (estado ~20:51) contra el commit `36b3cd6`
+(estado local antes de las ediciones de esta sesión). **Overleaf NO tiene ningún cambio
+independiente.** Difiere de `36b3cd6` solo en 3 archivos, y cada diferencia es exactamente
+uno de los arreglos de la sesión 1 que ya estaban staged en local:
+
+- `referencias.bib` → RussellNorvig `"{Stuart J. Russell and Peter Norvig}"` → `"{Russell and Norvig}"`
+- `4-Arquitectura.tex` → comillas rectas → `` ``…'' `` en la línea del "ruido visual"
+- `3-RequisitosDelSistema.tex` → limpieza de líneas en blanco
+
+Las ediciones de "diegoamorenag" del 30/08 en el historial de Overleaf eran solo eso: alguien
+pegó los 3 arreglos de la sesión 1 en Overleaf. No hay trabajo nuevo de Diego.
+
+**Conclusión: NO correr `sync-overleaf.sh`.** El commit `a0e7bd5` (local) ya contiene todo lo
+de Overleaf más las 18 correcciones. Correr el sync revertiría las 18 correcciones.
+
+**Camino correcto: subir a Overleaf estos 9 archivos** (donde `a0e7bd5` difiere del zip):
+
+- `main.tex`
+- `Nuestro/Capitulos/0-Resumen.tex`
+- `Nuestro/Capitulos/1-Introduccion.tex`
+- `Nuestro/Capitulos/3-RequisitosDelSistema.tex`
+- `Nuestro/Capitulos/4-Arquitectura.tex`
+- `Nuestro/Capitulos/6-Experimentacion.tex`
+- `Nuestro/Capitulos/7-Conclusiones.tex`
+- `Nuestro/Anexos/1-Prompting.tex`
+- `Nuestro/Otros_Documentos/Estructura.tex`
+
+(`referencias.bib` no hace falta: el zip ya trae el fix de RussellNorvig y no se tocó más.)
+
 ## Verificación pendiente en Overleaf
 
 - Compilar y confirmar que los `\autoref{section:A-1-prompt-transcripcion}` y
