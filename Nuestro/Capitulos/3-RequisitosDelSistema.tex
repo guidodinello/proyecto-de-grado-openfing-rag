@@ -3,12 +3,10 @@
 
 En este capítulo se presentan, en primer lugar, los objetivos del proyecto que guiaron las investigaciones y decisiones de diseño y arquitectura del grupo, y a continuación los requisitos funcionales y no funcionales del sistema resultante. 
 
-En los capitulos \autoref{chapter:5-Implementación} y \autoref{chapter:6-Experimentación} y se explican las cuestiones planteadas en este capitulos. 
-
 \section{Objetivos del Proyecto}
 \label{section:3-Objetivos del Proyecto}
 
-Esta sección describe las actividades de investigación y evaluación que el equipo realizó para fundamentar las decisiones de diseño del sistema. A diferencia de los requisitos del sistema, que especifican el comportamiento del software en producción, los objetivos del proyecto refieren a las tareas de investigación que son condición necesaria para que las elecciones tecnológicas estén debidamente justificadas. Estos objetivos orientan al lector sobre las decisiones documentadas en los capítulos de Arquitectura, Implementación y Experimentación.
+Esta sección describe las actividades de investigación y evaluación que el equipo realizó para respaldar adecuadamente la toma de decisiones de diseño del sistema. A diferencia de los requisitos del sistema, que especifican el comportamiento del software en producción, los objetivos del proyecto refieren a las tareas de investigación que son condición necesaria para que las elecciones tecnológicas estén debidamente justificadas. Estos objetivos orientan al lector sobre las decisiones documentadas en los capítulos de Arquitectura, Implementación y Experimentación.
 
 \subsection{Estudio de Arquitecturas de Sistemas}
 \label{subsection:3-RNF2: Estudio de Arquitecturas de Sistemas}
@@ -128,7 +126,6 @@ Donde:
 \end{itemize}
 
 
-
 \item CER (Tasa de Error de Carácter): El porcentaje de caracteres incorrectos (sustituciones, eliminaciones, inserciones) en comparación con el texto de referencia. Esta estadística mide qué tan cercana es la transcripción al texto original a nivel de caracteres.
 \medskip
 $\mathit{CER}=\frac{S+I+D}{N}$
@@ -152,8 +149,6 @@ $\mathit{WIL}=1-\frac{C}{N}\cdot\frac{C}{C+S+I}$
 \medskip
 
 $\mathit{WIP}=\frac{C}{N}\cdot\frac{C}{C+S+I}$
-
-
 
 \end{itemize}
 
@@ -182,7 +177,7 @@ Considerando el volumen de contenido a procesar, resulta fundamental que la herr
 \section{Requisitos del Sistema}
 \label{section:3-Requisitos del Sistema}
 
-En la siguiente sección se detallan los requisitos funcionales y no funcionales del sistema. Durante el transcurso del proyecto, se llevaron a cabo reuniones con la UEFI (Unidad de Enseñanza de Facultad de Ingeniería\footnote{\url{https://www.fing.edu.uy/es/uefi}}) para el afinamiento de estos requisitos. Ellos están en contacto directo diario con la Unidad de Recursos Informáticos \footnote{\url{https://idm.fing.edu.uy/es/sysadmin}}, está unidad es la actual encargada de mantener el sistema de OpenFing funcionando. 
+En la siguiente sección se detallan los requisitos funcionales y no funcionales del sistema. Durante el transcurso del proyecto, se llevaron a cabo reuniones con la UEFI (Unidad de Enseñanza de Facultad de Ingeniería\footnote{\url{https://www.fing.edu.uy/es/uefi}}) para el refinamiento de estos requisitos. Ellos están en contacto directo diario con la Unidad de Recursos Informáticos \footnote{\url{https://idm.fing.edu.uy/es/sysadmin}}, está unidad es la actual encargada de mantener el sistema de OpenFing funcionando. 
 
 El principal requisito funcional, y motivo del presente proyecto de grado, es el desarrollo de un chatbot interactivo basado en una arquitectura RAG, con un corpus construido a partir de los videos de OpenFing. Esta funcionalidad permite que el asistente procese el corpus de transcripciones provenientes de OpenFing para ofrecer respuestas precisas y contextualizadas. El chatbot asistente no solo debe ser capaz de mantener un diálogo fluido, sino también integrar mecanismos de control sobre las fuentes utilizadas. Relacionado a la confiabilidad del sistema, cuando la información solicitada no se encuentre en el repositorio específico, el sistema debe informar explícitamente al usuario que la respuesta se basa en el conocimiento general del modelo preentrenado y no en el material de las clases.
 
