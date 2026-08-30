@@ -111,7 +111,7 @@ Cabe destacar que el análisis de las herramientas ASR se realizó a pesar de qu
 \subsubsection{Análisis Cuantitativo}
 \label{subsubsection:3-Análisis Cuantitativo}
 
-Para la evaluación de la calidad, el grupo se basó en estadísticas objetivas que señalizan cuán cercano es una transcripción realizada con respecto a la transcripción perfecta (\textit{ground-truth}), una en la cual no hubo ningún error. Para ello se realizaron transcripciones manuales de referencia de un conjunto reducido de clases, las cuales sirvieron como base de comparación para evaluar la precisión de las herramientas ASR candidatas. La evaluación cuantitativa incluyó métricas estándar de la industria tales como:
+Para la evaluación de la calidad, el grupo se basó en estadísticas objetivas que indican cuán cercana es una transcripción realizada con respecto a la transcripción perfecta (\textit{ground-truth}), una en la cual no hubo ningún error. Para ello se realizaron transcripciones manuales de referencia de un conjunto reducido de clases, las cuales sirvieron como base de comparación para evaluar la precisión de las herramientas ASR candidatas. La evaluación cuantitativa incluyó métricas estándar de la industria tales como:
 
 \begin{itemize}
     \item Word Error Rate: Calcula el número mínimo de inserciones, borrados y sustituciones de una palabra por otra, necesarios para transformar una frase en otra. \cite{ASR_Accuracy} 
@@ -135,13 +135,11 @@ $\mathit{CER}=\frac{S+I+D}{N}$
 
 Donde $S$, $D$ e $I$ corresponden al número de sustituciones, eliminaciones e inserciones de caracteres, respectivamente, y $N$ es el número total de caracteres del texto de referencia.
 
-\item MER (Tasa de Error de Coincidencia): La tasa de error general, que combina sustituciones, eliminaciones e inserciones.
+\item MER (Tasa de Error de Coincidencia): La tasa de error general, que combina sustituciones, eliminaciones e inserciones \cite{Morris2004}.
 
 \medskip
 
 $\mathit{MER}=\frac{S+D+I}{C+S+D+I}$
-
-\cite{Morris2004}
 
 \item WIL (Información de Palabra Perdida): Mide cuánto significado se pierde debido a errores (como sustituciones y eliminaciones).
 
@@ -184,13 +182,13 @@ Considerando el volumen de contenido a procesar, resulta fundamental que la herr
 \section{Requisitos del Sistema}
 \label{section:3-Requisitos del Sistema}
 
-En la siguiente sección se detallan los requisitos funcionales y no funcionales del sistema. Durante el transcurso del proyecto, se llevaron a cabo reuniones con la UEFI( Unidad de Enseñanza de Facultad de Ingeniería\footnote{\url{https://www.fing.edu.uy/es/uefi}}) para el afinamiento de estos requisitos. Ellos están en contacto directo diario con la Unidad de Recursos Informáticos \footnote{\url{https://idm.fing.edu.uy/es/sysadmin}}, está unidad es la actual encargada de mantener el sistema de OpenFing funcionando. 
+En la siguiente sección se detallan los requisitos funcionales y no funcionales del sistema. Durante el transcurso del proyecto, se llevaron a cabo reuniones con la UEFI (Unidad de Enseñanza de Facultad de Ingeniería\footnote{\url{https://www.fing.edu.uy/es/uefi}}) para el afinamiento de estos requisitos. Ellos están en contacto directo diario con la Unidad de Recursos Informáticos \footnote{\url{https://idm.fing.edu.uy/es/sysadmin}}, está unidad es la actual encargada de mantener el sistema de OpenFing funcionando. 
 
 El principal requisito funcional, y motivo del presente proyecto de grado, es el desarrollo de un chatbot interactivo basado en una arquitectura RAG, con un corpus construido a partir de los videos de OpenFing. Esta funcionalidad permite que el asistente procese el corpus de transcripciones provenientes de OpenFing para ofrecer respuestas precisas y contextualizadas. El chatbot asistente no solo debe ser capaz de mantener un diálogo fluido, sino también integrar mecanismos de control sobre las fuentes utilizadas. Relacionado a la confiabilidad del sistema, cuando la información solicitada no se encuentre en el repositorio específico, el sistema debe informar explícitamente al usuario que la respuesta se basa en el conocimiento general del modelo preentrenado y no en el material de las clases.
 
 El contenido de OpenFing será nuestra base de conocimientos, por lo tanto, el sistema debe estar apropiadamente integrado con OpenFing. Esto implica ciertas funcionalidades que aseguran dinamismo y automatización a la hora de sincronizar y pasar el contenido de OpenFing a nuestro corpus.
 
-Asimismo, el sistema deberá contar con una base de conocimientos dinámica y continuamente actualizable. Esto implica automatizar el proceso de incorporación de nuevo material mediante módulos encargados de descargar clases, generar transcripciones, crear embeddings e indexar la información para su posterior consulta. Del mismo modo, deberá disponer de un módulo generador de respuestas que utilice dicho conocimiento de forma eficiente y consistente. El módulo generador deberá referenciar en cada respuesta a las fuentes utilizadas. Por lo tanto,se debe mencionar qué información toma de cada uno de los segmentos referenciados. Aportando a la trazabilidad del sistema, cada fuente será mostrada, incluyendo el nombre del curso, la lección y el instante exacto dentro del video.
+Asimismo, el sistema deberá contar con una base de conocimientos dinámica y continuamente actualizable. Esto implica automatizar el proceso de incorporación de nuevo material mediante módulos encargados de descargar clases, generar transcripciones, crear embeddings e indexar la información para su posterior consulta. Del mismo modo, deberá disponer de un módulo generador de respuestas que utilice dicho conocimiento de forma eficiente y consistente. El módulo generador deberá referenciar en cada respuesta a las fuentes utilizadas. Por lo tanto, se debe mencionar qué información toma de cada uno de los segmentos referenciados. Aportando a la trazabilidad del sistema, cada fuente será mostrada, incluyendo el nombre del curso, la lección y el instante exacto dentro del video.
 
 Finalmente, el sistema debe asegurar una cobertura integral del repositorio OpenFing, procesando la totalidad de las clases disponibles para garantizar que el conocimiento accesible sea exhaustivo. La arquitectura debe estar diseñada para ser extensible, permitiendo que la base de conocimientos crezca hacia otros proyectos como OpenUDELAR. De esta manera, el producto final se constituye como una herramienta centralizada que transforma el contenido de video en una base de datos textual consultable, resumible y totalmente trazable para el ámbito educativo.
 
