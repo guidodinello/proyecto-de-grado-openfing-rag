@@ -84,24 +84,39 @@ response to tutor feedback — and re-adding it silently would reintroduce somet
 explicitly cut. This nearly happened once with a "trabajo a futuro" paragraph on automated
 testing that Diego had removed on purpose.
 
-The authoritative source for Overleaf history is the **diff API**, not the local git log:
-
-```
-GET https://www.overleaf.com/project/<PROJECT_ID>/diff?from=<v>&to=<v>&pathname=<url-encoded path>
-```
+The authoritative source for Overleaf history is its own API, not the local git log.
 
 - `PROJECT_ID`: `67b9ca8f36dc38d47bc61e3b`
-- Headers needed (ask the user to copy these from their browser devtools while logged in):
-  `Cookie: overleaf_session2=...; GCLB=...` and `X-Csrf-Token: ...`
-- Response: JSON `{"diff":[{"u":"unchanged"},{"i":"inserted"},{"d":"deleted"}, ...]}`.
-  Reconstruct a file's content at version `to` by concatenating all `u` + `i` segments.
-- Version numbers come from a saved copy of the history panel HTML:
-  the dropdown button ids are `history-version-dropdown-toggle-<lo>_<hi>`, and each version
-  block lists its date, author, and changed files. Ask the user to paste the panel HTML into
-  `mine/comments/html-overleaf-history/` when a deep history check is needed.
+- Auth headers, needed on every call — ask the user to copy them from browser devtools
+  (Network tab, any `overleaf.com` request) while logged in; they expire, so re-ask if a call
+  returns HTML/401 instead of JSON:
+  `Cookie: overleaf_session2=...; GCLB=...`, `X-Csrf-Token: ...`,
+  `Referer: https://www.overleaf.com/project/<PROJECT_ID>`, a browser `User-Agent`,
+  `Accept: application/json`.
 
-Workflow: bisect across versions to find exactly when a line appeared or disappeared, read the
-`i`/`d` segments of that one version to see *what else* changed alongside it (a targeted edit
-vs. a bulk restructure tells you whether it was intentional), identify the author and date, and
-**bring that to the user before making any change** — especially before `git revert`,
-re-adding removed content, or "fixing" something that may not be broken.
+**1. List versions** — `GET /project/<PROJECT_ID>/updates?min_count=<N>` (add
+`&before=<cursor>` to page back, using the `nextBeforeTimestamp` from the previous page —
+despite the name it is a version number). Each entry:
+
+```json
+{ "fromV": 8036, "toV": 8041,
+  "meta": { "users": [{ "first_name": "...", "last_name": "...", "email": "..." }],
+            "start_ts": <epoch ms>, "end_ts": <epoch ms> },
+  "labels": [], "pathnames": ["Nuestro/Capitulos/7-Conclusiones.tex", ...],
+  "project_ops": []  // renames / creates / deletes
+}
+```
+
+This replaces the old approach of pasting the history-panel HTML — no HTML copy needed.
+
+**2. Read a diff / file content at a version** —
+`GET /project/<PROJECT_ID>/diff?from=<v>&to=<v>&pathname=<url-encoded path>` →
+`{"diff":[{"u":"unchanged"},{"i":"inserted"},{"d":"deleted"}, ...]}`.
+Reconstruct a file's content at version `to` by concatenating every `u` + `i` segment.
+
+Workflow: pull `/updates` to see who touched the file and when; bisect `/diff` across versions
+to find exactly when a line appeared or disappeared; read the `i`/`d` segments of that one
+version to see *what else* changed alongside it (a small targeted edit vs. a bulk restructure
+tells you whether the change was intentional); identify the author and date; and **bring that
+to the user before making any change** — especially before `git revert`, re-adding removed
+content, or "fixing" something that may not be broken.
