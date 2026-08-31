@@ -59,6 +59,13 @@ Fuente: anotaciones extraídas de los dos PDF en `mine/comments/`.
 | L p.85 | "de manera online. Desarrollando" → "…online, desarrollando" + "UDELAR" → "UdelaR" (Cap. 7) |
 | L p.85 | "La integración garantizaría…" y "Por lo que permitir segmentar…, se garantiza que…" reescritas (Cap. 7) |
 | L p.48 | Cortada la frase "evita el ruido visual de agregar fuentes y referencias…" (Cap. 4) |
+| T p.15 | Cita para alucinaciones → `\cite{ji2023survey}` (Intro) |
+| T p.15 | Cita para riesgo en contexto educativo → `\cite{kasneci2023chatgpt}` (Intro) |
+| T p.15 | "(RAG, por sus siglas en inglés)" + `\cite{lewis2020retrieval}` en la primera mención (Intro) |
+| T p.15 | Cita para OpenFing → `\cite{misc_OpenFing}` (Intro) |
+| T p.16 | "(ASR, por sus siglas en inglés)" + `\cite{SpeechandLanguageProcessing}` (Intro) |
+| T p.34 | Citas en la lista de tecnologías: `fielding2000rest` (API REST), `misc_pgvector`, `douze2025faiss` (FAISS, además se descomentó la frase que estaba rota), `gormley2015elasticsearch` (Cap. 3) |
+| T p.15 | "conjunto de documentos confiables / corpus curado" y "evitando así"→"mitigando": N/A, esas frases ya no están en la intro reescrita |
 | L p.86 | Reescrito el párrafo de Re-Ranking: los embeddings SÍ capturan semántica; lo que no garantizan es relevancia para la consulta puntual, y eso hay que medirlo con el set de preguntas anotadas (Cap. 7) |
 | L p.86 | Agregado párrafo: el mismo set de preguntas habilita ajuste fino del modelo de embeddings sobre el dominio de OpenFing (Cap. 7) |
 | Nuevo | Sección "Declaración de Uso de Herramientas de IA" agregada en Cap. 1 |
@@ -78,13 +85,7 @@ misma página. El requisito de la declaración de IA cuenta aparte.)
 - **T p.83** — añadir referencia a la evidencia cualitativa de IdeM en Cap. 7.
 - **Diego** — párrafo sobre Gemini en la sección de declaración de IA.
 
-**Citas faltantes (Libertad):**
-- **T p.15/16** — citas para: alucinaciones, riesgo educativo, OpenFing (nota al pie), ASR.
-- **T p.15/16** — "(RAG por sus siglas en inglés)" y "(ASR por sus siglas en inglés)" en la primera mención.
-- **T p.34** — citas para API REST, FAISS, pgvector, Elasticsearch.
-
 **Redacción corta / dudas de Libertad:**
-- **T p.15** — "conjunto de documentos confiables o corpus curado"; "evitando así" → "mitigando".
 - **T p.27** — "deseable?" sobre "comportamiento esperado / deseado" (no localizado, revisar RNF).
 - **T p.37** — "ya que?": hacer explícito el nexo causal entre las dos oraciones sobre ASR en inglés.
 

@@ -19,16 +19,16 @@ El análisis se estructura en dos niveles:
 
 \begin{itemize}
     \item \textbf{Arquitectura general del sistema.} Se evaluó la organización de los componentes en su conjunto: un frontend web,
-una \Gls{api} \Gls{rest} como capa de comunicación, y un conjunto de servicios de backend encargados del procesamiento de datos. Se consideró el nivel de acoplamiento entre componentes, la facilidad de despliegue y la viabilidad de mantener el sistema con recursos de infraestructura limitados.
+una \Gls{api} \Gls{rest} \cite{fielding2000rest} como capa de comunicación, y un conjunto de servicios de backend encargados del procesamiento de datos. Se consideró el nivel de acoplamiento entre componentes, la facilidad de despliegue y la viabilidad de mantener el sistema con recursos de infraestructura limitados.
     \item \textbf{Arquitectura de almacenamiento y búsqueda vectorial.} Esta es la decisión arquitectónica central del sistema
 RAG. Se compararon 3 enfoques:
     \begin{itemize}
-        \item \textbf{pgvector}: extensión de PostgreSQL que habilita el almacenamiento y búsqueda de vectores directamente en la
+        \item \textbf{pgvector} \cite{misc_pgvector}: extensión de PostgreSQL que habilita el almacenamiento y búsqueda de vectores directamente en la
 base de datos relacional. Permite combinar búsqueda semántica con filtros relacionales (por curso, lección, etc.) en una única
 consulta.
         \item \textbf{\acrshort{faiss}} (\textit{Facebook AI Similarity Search}): librería de búsqueda de similitud en memoria desarrollada
-  % por Meta \cite{douze2025faiss}. Ofrece alta eficiencia computacional pero requiere gestión separada de metadatos y persistencia en disco.
-        \item \textbf{Elasticsearch}: motor de búsqueda distribuido con soporte para búsqueda híbrida (textual y vectorial).
+por Meta \cite{douze2025faiss}. Ofrece alta eficiencia computacional pero requiere gestión separada de metadatos y persistencia en disco.
+        \item \textbf{Elasticsearch} \cite{gormley2015elasticsearch}: motor de búsqueda distribuido con soporte para búsqueda híbrida (textual y vectorial).
 Introduce mayor complejidad operativa pero ofrece capacidades de búsqueda \textit{full-text} avanzadas.
     \end{itemize}
     Los aspectos evaluados para cada alternativa incluyeron: integración con la base de datos existente, soporte nativo para filtrado
