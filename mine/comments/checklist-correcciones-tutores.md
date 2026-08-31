@@ -115,9 +115,10 @@ misma página. El requisito de la declaración de IA cuenta aparte.)
 
 ## Notas de estructura detectadas al cruzar (importante)
 
-- El capítulo de conclusiones que compila es **`Nuestro/Capitulos/7-Conclusiones.tex`** (único `\input` en `main.tex:247`). Contiene además `\section{Trabajo a futuro}`.
-- **`Nuestro/Capitulos/8-Conclusiones.tex` y `Nuestro/Capitulos/7-TrabajoAFuturo.tex` NO se compilan** (no están en `main.tex`) pero tienen contenido casi idéntico. Todo cambio de conclusiones/trabajo a futuro va en `7-Conclusiones.tex`. Conviene borrar los archivos huérfanos o dejar constancia de que son obsoletos.
-- `7-Conclusiones.tex:2` y `8-Conclusiones.tex:2` comparten `\label{chapter:8-Conclusiones}`. La numeración de capítulo/label quedó desalineada con el nombre de archivo.
+- El capítulo de conclusiones que compila es **`Nuestro/Capitulos/7-Conclusiones.tex`** (único `\input`). Contiene además `\section{Trabajo a futuro}`.
+- **`8-Conclusiones.tex` y `7-TrabajoAFuturo.tex` fueron BORRADOS** el 2026-08-30 (commit `7aca49e`). Eran huérfanos (no compilaban, no estaban en Overleaf). Su contenido está en `7-Conclusiones.tex`.
+- **Párrafo de tests automatizados**: agregado a `7-TrabajoAFuturo.tex` en `8d84380` (2026-06-01), NUNCA re-copiado a `7-Conclusiones.tex` cuando se fusionaron los capítulos en `73aa5c9` (2026-08-27). No hay commit que lo borre a propósito, parece copy-paste incompleto. Mi re-add quedó revertido (`b7d4e26`) pendiente de que Diego/ustedes verifiquen en el historial de Overleaf si debe ir. Recuperable: `git show 8d84380:Nuestro/Capitulos/7-TrabajoAFuturo.tex`.
+- `7-Conclusiones.tex:2` usa `\label{chapter:8-Conclusiones}` (herencia histórica). El `\autoref` de la intro resuelve bien igual. Renombrar es opcional.
 
 ---
 
