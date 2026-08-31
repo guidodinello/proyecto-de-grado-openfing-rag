@@ -97,19 +97,23 @@ misma página. El requisito de la declaración de IA cuenta aparte.)
 
 ### 🔲 Pendientes
 
-**Necesitan input / datos de ustedes:**
-- **T p.6** — anexo de planificación (Gantt inicial/final, % por tarea-macro, horas, comentario de demoras).
-- **Diego** — párrafo sobre Gemini en la sección de declaración de IA.
-- **Confirmar** — borrar `8-Conclusiones.tex` y `7-TrabajoAFuturo.tex` (huérfanos, no compilan; el error conceptual de p.86 también vive ahí).
-- **L p.93** — confirmar que el relato de IdeM ya está completo en §6.6 para dejar el anexo con solo el póster (y ajustar los `\autoref` que citan al anexo).
+**Necesitan input / datos de ustedes (bloqueantes):**
+- **T p.6 — anexo de planificación**: Gantt inicial y final, % de dedicación por tarea-macro, estimación de horas (si existe), comentario sobre las demoras. Solo ustedes tienen estos datos. Es el ítem más grande.
+- **Diego — párrafo de Gemini** en la sección de Declaración de Uso de IA (hay `% TODO (Diego)` en `1-Introduccion.tex`).
+- **Diego — párrafo de tests automatizados** (§Trabajo a futuro): lo borró él a propósito el 19/7. Preguntarle el motivo. Si va, `git revert b7d4e26`.
+- **T p.9 (Anexo 2) — dato de videos**: el Anexo 2 dice "2835 videos", el real es 4.339 clases / 239 cursos. ¿Confirmo el reemplazo? (parece error factual, pero conviene chequear de dónde salió 2835).
 
-**Que puedo hacer yo (2ª ronda):**
-- **L p.99** — referenciar el Anexo de Estimaciones desde el cuerpo (ya lo cita `7-Conclusiones:24`; agregar en Cap. 3 donde se habla de la UEFI).
-- **L p.82** — "." y "hubo": esa zona se reescribió y movió a §6.6; verificar si aún aplican.
-- **Anexo 2 (Estimaciones)** — comillas rectas → `` ``…'' ``, tildes ("Numero", "ultimo", "proprios"), oraciones incompletas, tabla en inglés, "2835 videos" → 4.339. Es el archivo más flojo (~28%).
-- **Estructural** — revisar `\label{chapter:8-Conclusiones}` en `7-Conclusiones.tex:2`.
-- **Opcional** — agregar la sigla "(URI)" en `3-Requisitos:180`.
-- Nota: el resto del documento compilado está limpio de comillas rectas y de tildes faltantes; el debe está solo en Anexo 2.
+**Que puedo hacer yo, revisan ustedes:**
+- **L p.93** — renombrar Anexo 0-IDM a "Póster utilizado en Ingeniería de Muestra", dejar solo el póster (el relato ya está en §6.6), y ajustar los `\autoref` que apuntan al anexo. Verifico yo que §6.6 esté completo antes.
+- **L p.99** — referenciar el Anexo de Estimaciones también desde Cap. 3 (ya lo cita `7-Conclusiones:24`).
+- **L p.82** — "." y "hubo": la zona se reescribió y movió a §6.6; verificar si aún aplican.
+- **Anexo 2 (Estimaciones)** — pase de comillas rectas → `` ``…'' ``, tildes ("Numero", "ultimo", "proprios"), oraciones incompletas, tabla en inglés → español. Es el archivo más flojo (~28%).
+- **Opcional** — agregar la sigla "(URI)" en `3-Requisitos:180`; renombrar `\label{chapter:8-Conclusiones}` (funciona como está).
+
+### ✅ Cerrados desde el último estado
+- Huérfanos `8-Conclusiones.tex` y `7-TrabajoAFuturo.tex` **borrados** (commit `7aca49e`).
+- Párrafo de tests: forensics completo — lo borró Diego el 19/7 en Overleaf (v8036→v8041), edición dirigida. Mi re-add revertido (`b7d4e26`).
+- 24 vs 16 preguntas: resuelto (16 únicas → 24 consultas), sin necesitar input.
 
 ---
 
