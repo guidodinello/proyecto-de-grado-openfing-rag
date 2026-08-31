@@ -73,38 +73,43 @@ Fuente: anotaciones extraídas de los dos PDF en `mine/comments/`.
 (La tabla cuenta ~28 líneas porque varios comentarios de Luis marcaban varias cosas en la
 misma página. El requisito de la declaración de IA cuenta aparte.)
 
+### ✅ Resueltos — 2ª tanda (2026-08-30, sesión 3)
+
+| Coment. | Qué se hizo |
+|---|---|
+| T p.9 | Resumen movido antes del índice; agradecimientos activados; Resumen ampliado (corpus 239/4.339, faster-whisper 2–4×, WER < 0,05, Llama 3.1 8B, IdeM 2025) |
+| T p.19 | "concentra miles…" → cifras concretas (239 cursos, 4.339 clases) |
+| T p.27 | "no es aconsejable ni deseado" → "…ni deseable" (estaba en Cap. 2) |
+| T p.37 | Nexo causal explícito en el párrafo de ASR en inglés |
+| T p.43 | Figura 4.1 (overview) en página apaisada para legibilidad |
+| T p.79 | `\footnotesize` en la tabla de precios |
+| T p.83 | Referencia a la retroalimentación de IdeM en el párrafo del estudiante (Cap. 7) |
+| L p.51 | "cuatro palabras" → "cinco palabras" en el caso del árbol AVL (era conteo, no WER) |
+| L p.68 | Tabla del dataset con `threeparttable`/`tablenotes`; label reubicado |
+| L p.68 | "Procesamiento de Lenguaje Natural (PLN)" en su primera aparición + fragmento arreglado |
+| L p.73 | "el sesgo del juez" → "los sesgos del juez" |
+| L p.73/74 | 24 vs 16 aclarado: 16 preguntas únicas → 24 consultas (8 de corpus completo × 2 prompts) |
+| L p.79 | Tabla 6.4/6.5 fusionadas en un `\caption`; fuentes de precios como `tablenote`; `adjustwidth` anidado arreglado |
+| L p.80 | Cross-refs de IdeM en Cap. 6 → `\autoref{section:6-IngenieriaMuestra}` (label nuevo) |
+| L p.82 | En §6.6: "se celebro"→"celebró", "Este presentación"→"Esta", "entusiasmo alcance"→"entusiasmo, el alcance", fragmento unido |
+| L p.99 | UEFI/URI: nombres correctos confirmados (UEFI = Unidad de Enseñanza de FIng; URI = Unidad de Recursos Informáticos). El compilado ya los usa bien. |
+| — | Bugs de duplicación: "UdelaR) OpenFing", "Let's EncryptLet's Encrypt", frase de FAISS comentada, heading "carecen relación", `"Mi Nube"` comillas rectas |
+
 ### 🔲 Pendientes
 
-**Contenido / decisión (lo que pesa):**
-- **T p.9** — reordenar el Resumen antes del índice + ampliarlo con datos del corpus e IdeM 2025.
-- **L p.73/74** — inconsistencia 24 vs 16 preguntas: uniformar y explicar "preguntas únicas" vs "consultas".
-- **T p.6** — anexo nuevo de planificación (Gantt inicial/final, % dedicación, horas, demoras).
-- **L p.93** — reestructurar Anexo IdeM a solo el póster + ajustar los `\autoref` que lo citan.
-- **L p.99 / T** — UEFI / URI. **Casi resuelto**: los nombres correctos son **UEFI = Unidad de Enseñanza de Facultad de Ingeniería** y **URI = Unidad de Recursos Informáticos** (fing.edu.uy/es/sysadmin), dos unidades distintas reales. El documento compilado ya los usa bien (`3-Requisitos:180`, `7-Conclusiones:24`). "Unidad de Repositorios Institucionales" era texto del commit `init` (25/04) y solo sobrevive en `7-TrabajoAFuturo.tex:5` (huérfano, no compila). Falta solo: (a) opcional, agregar la sigla "(URI)" en `3-Requisitos:180`; (b) borrar/arreglar los huérfanos.
-- **L p.99** — referenciar el Anexo de Estimaciones desde el cuerpo compilado.
-- **T p.83** — añadir referencia a la evidencia cualitativa de IdeM en Cap. 7.
+**Necesitan input / datos de ustedes:**
+- **T p.6** — anexo de planificación (Gantt inicial/final, % por tarea-macro, horas, comentario de demoras).
 - **Diego** — párrafo sobre Gemini en la sección de declaración de IA.
+- **Confirmar** — borrar `8-Conclusiones.tex` y `7-TrabajoAFuturo.tex` (huérfanos, no compilan; el error conceptual de p.86 también vive ahí).
+- **L p.93** — confirmar que el relato de IdeM ya está completo en §6.6 para dejar el anexo con solo el póster (y ajustar los `\autoref` que citan al anexo).
 
-**Redacción corta / dudas de Libertad:**
-- **T p.27** — "deseable?" sobre "comportamiento esperado / deseado" (no localizado, revisar RNF).
-- **T p.37** — "ya que?": hacer explícito el nexo causal entre las dos oraciones sobre ASR en inglés.
-
-**Cap. 6 — tablas y cross-refs:**
-- **L p.68** — notas al pie dentro de las tablas del dataset no se ven a dónde apuntan.
-- **L p.68** — primera aparición de "PLN" sin expandir (verificar).
-- **L p.73** — "validar la coherencia y el sesgo del juez" → "sesgos o…" (redacción).
-- **L p.79** — Tabla 6.4 + 6.5 son dos `\caption` de una sola tabla: unificar.
-- **T p.79** — achicar la letra de esa tabla para que entre.
-- **L p.80** — cross-refs a "sección 6.6": los `\autoref` a la experiencia de IdeM deben apuntar a §6.6, no solo al anexo.
-
-**Cap. 7 — anclas de una palabra (hay que mirar el PDF de Luis al lado):**
-- **L p.82** — "." (puntuación), "hubo" (forma verbal), "prototipo" (concordancia), ", el" (falta coma + artículo en la serie de la línea 14).
-
-**Otros:**
-- **T p.43** — agrandar la Figura 4.1 (overview).
-- **L p.51** — "entre dos y cuatro veces" vs "cinco": verificar contra el dato real.
-- **Estructural** — borrar `8-Conclusiones.tex` y `7-TrabajoAFuturo.tex` (huérfanos, duplican y tienen el error de p.86); revisar `\label{chapter:8-Conclusiones}`.
-- **Transversal** — pase global de comillas `` ``…'' `` (falta fuera de Cap. 4) y de tildes en "Ingeniería"/"Computación" en tablas y captions.
+**Que puedo hacer yo (2ª ronda):**
+- **L p.99** — referenciar el Anexo de Estimaciones desde el cuerpo (ya lo cita `7-Conclusiones:24`; agregar en Cap. 3 donde se habla de la UEFI).
+- **L p.82** — "." y "hubo": esa zona se reescribió y movió a §6.6; verificar si aún aplican.
+- **Anexo 2 (Estimaciones)** — comillas rectas → `` ``…'' ``, tildes ("Numero", "ultimo", "proprios"), oraciones incompletas, tabla en inglés, "2835 videos" → 4.339. Es el archivo más flojo (~28%).
+- **Estructural** — revisar `\label{chapter:8-Conclusiones}` en `7-Conclusiones.tex:2`.
+- **Opcional** — agregar la sigla "(URI)" en `3-Requisitos:180`.
+- Nota: el resto del documento compilado está limpio de comillas rectas y de tildes faltantes; el debe está solo en Anexo 2.
 
 ---
 
