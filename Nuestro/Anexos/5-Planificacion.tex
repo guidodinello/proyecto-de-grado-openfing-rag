@@ -1,0 +1,53 @@
+\label{chapter:A-Planificacion}
+
+El proyecto no siguió un diagrama de Gantt formal. La planificación quedó documentada en un cronograma tentativo redactado en julio de 2025, que dividía la fase de construcción del sistema en ocho etapas mensuales, entre marzo y octubre de 2025, con una dedicación estimada de quince horas semanales por integrante. No se llevó un registro formal de horas trabajadas, por lo que las cifras de este anexo se apoyan en el tiempo de calendario transcurrido en cada etapa y en la distribución de contribuciones en los repositorios de código, y no en un cómputo de esfuerzo.
+
+\section{Cronograma planificado frente a la ejecución real}
+
+El trabajo efectivo se extendió bastante más allá de lo previsto, desde una etapa exploratoria iniciada a mediados de 2024 hasta la defensa en setiembre de 2026. El cronograma de julio de 2025 no contemplaba la etapa exploratoria previa ni los períodos de baja actividad motivados por compromisos externos de los integrantes, como cursos, exámenes, vacaciones y trabajo. La fase de construcción del sistema, planificada en varios meses, se concentró finalmente entre julio y octubre de 2025, mientras que la experimentación y la redacción del informe, previstas para fines de 2025, se realizaron durante 2026.
+
+\begin{table}[htbp]
+    \centering
+    {\small\setlength{\tabcolsep}{4pt}
+    \begin{tabular}{@{}p{4.0cm}p{2.6cm}p{2.6cm}r@{}}
+        \toprule
+        \textbf{Etapa} & \textbf{Planificado} & \textbf{Real} & \textbf{\%} \\
+        \midrule
+        Exploración y pruebas de concepto & No contemplada & ago.\ 2024 -- jun.\ 2025 & 42 \\
+        Diseño e implementación del sistema & mar.\ -- jul.\ 2025 & jul.\ -- oct.\ 2025 & 15 \\
+        Baja actividad por compromisos externos & No contemplada & nov.\ 2025 -- mar.\ 2026 & 19 \\
+        Ajustes finales, despliegue y procesamiento del corpus completo & ago.\ 2025 & abr.\ -- jun.\ 2026 & 12 \\
+        Experimentación, redacción del informe y defensa & set.\ -- oct.\ 2025 & jul.\ -- set.\ 2026 & 12 \\
+        \bottomrule
+    \end{tabular}}
+    \caption{Comparación entre el cronograma tentativo de julio de 2025 y la ejecución real del proyecto. La última columna indica el porcentaje aproximado del tiempo total de calendario que ocupó cada etapa.}
+    \label{tab:planificacion-cronograma}
+\end{table}
+
+\section{Dedicación por tarea}
+
+La \autoref{tab:planificacion-dedicacion} resume el peso relativo de las distintas tareas dentro del tiempo de desarrollo del sistema, sin incluir la redacción del informe. La estimación surge de la duración de cada etapa y de la cantidad de contribuciones registradas en los repositorios de código, y debe leerse como una aproximación y no como una medición.
+
+\begin{table}[htbp]
+    \centering
+    {\small\setlength{\tabcolsep}{4pt}
+    \begin{tabular}{@{}p{9.2cm}r@{}}
+        \toprule
+        \textbf{Tarea macro} & \textbf{\%} \\
+        \midrule
+        Investigación y pruebas de concepto (estado del arte, transcripción y scraping exploratorios) & 30 \\
+        Backend, API y autenticación & 18 \\
+        Pipeline de transcripción (ASR, normalización, orquestación) & 12 \\
+        Recuperación e indexación (representaciones vectoriales, base vectorial, fragmentación) & 12 \\
+        Interfaz de usuario & 12 \\
+        Descarga y scraping de OpenFing & 8 \\
+        Despliegue e infraestructura & 8 \\
+        \bottomrule
+    \end{tabular}}
+    \caption{Distribución aproximada de la dedicación por tarea macro durante el desarrollo del sistema.}
+    \label{tab:planificacion-dedicacion}
+\end{table}
+
+\section{Comentario sobre las demoras}
+
+La principal causa de desvío respecto al cronograma fue que el alcance del procesamiento resultó más amplio de lo estimado en la etapa de planificación. El preprocesamiento del corpus completo de OpenFing demandó un tiempo de cómputo considerable que condicionó los ciclos de experimentación con distintas configuraciones. A esto se sumaron varios meses con dedicación baja o nula por compromisos externos de los integrantes, y un rediseño del sitio de OpenFing durante 2026 que obligó a rehacer parte del componente de scraping. Como consecuencia, la fase experimental quedó comprimida y la evaluación del componente de pregunta y respuesta sobre el corpus completo no alcanzó la profundidad prevista, tal como se señala en el \autoref{chapter:7-Conclusiones}. Una estimación más cuidadosa de los costos computacionales al inicio del proyecto habría permitido distribuir mejor el tiempo disponible.
