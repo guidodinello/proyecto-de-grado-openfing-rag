@@ -15,7 +15,7 @@ main.tex                  # Root document, includes all chapters
 prgrado.cls               # Custom FING thesis class
 referencias.bib           # Global bibliography
 Nuestro/
-  Capitulos/              # Main chapters (numbered 0–8)
+  Capitulos/              # Main chapters
     0-Resumen.tex
     1-Introduccion.tex
     2-MarcoTeorico.tex
@@ -23,14 +23,15 @@ Nuestro/
     4-Arquitectura.tex
     5-Implementacion.tex
     6-Experimentacion.tex
-    7-TrabajoAFuturo.tex
-    8-Conclusiones.tex
-  Anexos/                 # Appendices (numbered 0–4)
+    7-Conclusiones.tex     # incluye \section{Trabajo a futuro}
+    # 7-TrabajoAFuturo.tex y 8-Conclusiones.tex fueron huerfanos, borrados 2026-08-30
+  Anexos/                 # Appendices
     0-IDM.tex
     1-Prompting.tex
     2-EstimacionesParaOpenFing.tex
-    3-Manual_De_Usuario.tex
+    3-Manual_De_Usuario.tex   # comentado en main.tex, no compila
     4-Recursos.tex
+    5-Planificacion.tex       # agregado 2026-08-31 (comentario Libertad p.6)
   Imagenes/               # Figures used in chapters
   Tablas/                 # Table definitions
 figs/                     # Additional figures
