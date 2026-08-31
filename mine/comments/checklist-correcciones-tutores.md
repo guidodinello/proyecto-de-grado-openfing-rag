@@ -97,23 +97,23 @@ misma página. El requisito de la declaración de IA cuenta aparte.)
 
 ### 🔲 Pendientes
 
-**Necesitan input / datos de ustedes (bloqueantes):**
-- **T p.6 — anexo de planificación**: Gantt inicial y final, % de dedicación por tarea-macro, estimación de horas (si existe), comentario sobre las demoras. Solo ustedes tienen estos datos. Es el ítem más grande.
-- **Diego — párrafo de Gemini** en la sección de Declaración de Uso de IA (hay `% TODO (Diego)` en `1-Introduccion.tex`).
-- **Diego — párrafo de tests automatizados** (§Trabajo a futuro): lo borró él a propósito el 19/7. Preguntarle el motivo. Si va, `git revert b7d4e26`.
-- **T p.9 (Anexo 2) — dato de videos**: el Anexo 2 dice "2835 videos", el real es 4.339 clases / 239 cursos. ¿Confirmo el reemplazo? (parece error factual, pero conviene chequear de dónde salió 2835).
+**Necesitan input / datos de ustedes:**
+- **T p.6 — anexo de planificación**: Gantt inicial y final, % de dedicación por tarea-macro, estimación de horas, comentario sobre las demoras. Yo armo el `.tex` y el `\input`, ustedes ponen los datos. Es el ítem más grande que queda.
+- **Diego — párrafo de Gemini** (hay `% TODO (Diego)` en `1-Introduccion.tex`).
+- **Diego — párrafo de tests automatizados**: lo borró él a propósito el 19/7. Preguntarle el motivo. Si va: `git revert b7d4e26`.
+- **Dato "2835 videos"** en el Anexo de Estimaciones: chequear de dónde salió (¿videos vs. clases? el corpus final son 4.339 clases / 239 cursos). No lo toqué.
 
-**Que puedo hacer yo, revisan ustedes:**
-- **L p.93** — renombrar Anexo 0-IDM a "Póster utilizado en Ingeniería de Muestra", dejar solo el póster (el relato ya está en §6.6), y ajustar los `\autoref` que apuntan al anexo. Verifico yo que §6.6 esté completo antes.
-- **L p.99** — referenciar el Anexo de Estimaciones también desde Cap. 3 (ya lo cita `7-Conclusiones:24`).
-- **L p.82** — "." y "hubo": la zona se reescribió y movió a §6.6; verificar si aún aplican.
-- **Anexo 2 (Estimaciones)** — pase de comillas rectas → `` ``…'' ``, tildes ("Numero", "ultimo", "proprios"), oraciones incompletas, tabla en inglés → español. Es el archivo más flojo (~28%).
-- **Opcional** — agregar la sigla "(URI)" en `3-Requisitos:180`; renombrar `\label{chapter:8-Conclusiones}` (funciona como está).
+**Menores que puedo hacer:**
+- Anexo de Estimaciones: el footnote a Wikipedia sobre WER (`es.wikipedia.org`) no es fuente académica; se podría reemplazar por `\cite{ASR_Accuracy}` o `\cite{itoh2015metric}`.
+- Renombrar `\label{chapter:8-Conclusiones}` en `7-Conclusiones.tex:2` (cosmético, funciona igual).
 
-### ✅ Cerrados desde el último estado
-- Huérfanos `8-Conclusiones.tex` y `7-TrabajoAFuturo.tex` **borrados** (commit `7aca49e`).
-- Párrafo de tests: forensics completo — lo borró Diego el 19/7 en Overleaf (v8036→v8041), edición dirigida. Mi re-add revertido (`b7d4e26`).
-- 24 vs 16 preguntas: resuelto (16 únicas → 24 consultas), sin necesitar input.
+### ✅ Cerrados en esta ronda (sesión 4)
+- **L p.93** — Anexo IdeM renombrado a "Póster utilizado en Ingeniería de Muestra", dejado con solo el póster (el relato está en §6.6), `\autoref` ajustados, `fig:placeholder` → `fig:IDM-poster`.
+- **L p.99** — Anexo de Estimaciones ahora referenciado también desde Cap. 3 (reuniones con la UEFI).
+- **"(URI)"** — sigla agregada en `3-Requisitos` + footnote URL corregida a la página oficial de la URI.
+- **L p.82** — "." y "hubo": N/A, esa zona se reescribió y movió a §6.6.
+- **Anexo de Estimaciones** — pase completo: comillas rectas → `` ``…'' ``, tildes, oraciones incompletas, listas de métricas/config normalizadas, tabla y caption traducidos al español.
+- Huérfanos borrados; forensics del párrafo de tests completo; 24 vs 16 resuelto.
 
 ---
 
