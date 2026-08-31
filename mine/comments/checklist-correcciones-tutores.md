@@ -25,6 +25,87 @@ Fuente: anotaciones extraídas de los dos PDF en `mine/comments/`.
 - Apellido de Libertad: el correcto es **"Tansini"** (una n), como marcó Luis en su primer
   comentario. Unificado en `main.tex` y `Estructura.tex` (sesión 2).
 
+## ESTADO al 2026-08-30 (post sesión 2, ya subido a Overleaf)
+
+### ✅ Resueltos (18)
+
+| Coment. | Qué era |
+|---|---|
+| L p.1 | Apellido "Tansinni" → "Tansini" (main.tex + Estructura.tex) |
+| T p.9 | "falencias" → "cajas negras / riesgos" (Resumen) |
+| T p.9 | "distintas posibles arquitecturas las cuales…" reescrito (Resumen) |
+| T p.16 | Oración mal ensamblada "OpenFing pipeline implementado procesó" → punto y seguido (Intro) |
+| L p.20 | Cita Russell & Norvig: autor en bib → "{Russell and Norvig}" (verificar render) |
+| L p.22 | Borrado "Vaswani et al." redundante (Cap. 2) |
+| T p.22 | "pesos matemáticos" → "pesos en funciones matemáticas" (Cap. 2) |
+| L p.38 | "señalizan" → "indican" (Cap. 3) |
+| L p.38 | "cercano es" → "cercana es" (Cap. 3) |
+| L p.38 | `\cite{Morris2004}` movido al final de la definición (Cap. 3) |
+| T p.33 | Frase "En los capitulos… y se explican…" eliminada (Cap. 3) |
+| T p.33 | "para fundamentar las decisiones" → "para respaldar adecuadamente la toma de decisiones" (Cap. 3) |
+| L p.40 | "UEFI(" → "UEFI (" (Cap. 3) |
+| T p.40 | "afinamiento" → "refinamiento" (Cap. 3) |
+| L p.40 | "Por lo tanto,se" → "Por lo tanto, se" (Cap. 3) |
+| L p.46 | `\autoref` al anexo del prompt de transcripción (Cap. 4) |
+| L p.48 | Comillas rectas → `` ``…'' `` en la línea del "ruido visual" (Cap. 4) |
+| L p.49 | `\autoref` al anexo del prompt del asistente en "Construcción del prompt" (Cap. 4) |
+| L p.68 | "posee" → "poseen" (Cap. 6) |
+| L p.74 | "tabla,(respuesta, contexto, etc)" → "tabla (respuesta, contexto, etc.)" (Cap. 6) |
+| L p.78 | "consulta(30 de mayo" → "consulta (30 de mayo" (Cap. 6) |
+| L p.82 | "poster" → "póster", "Ingenieria" → "en Ingeniería" (Cap. 6) |
+| L p.83 | "no es un impedimento" → "no son un impedimento" (Cap. 7) |
+| L p.84 | "El proyecto valida… abriendo" → "El proyecto muestra… lo que abre" (Cap. 7) |
+| T p.84 | "educativas basadas en IA" → "educativas de tipo RAG basadas en IA" (Cap. 7) |
+| L p.85 | "de manera online. Desarrollando" → "…online, desarrollando" + "UDELAR" → "UdelaR" (Cap. 7) |
+| L p.85 | "La integración garantizaría…" y "Por lo que permitir segmentar…, se garantiza que…" reescritas (Cap. 7) |
+| Nuevo | Sección "Declaración de Uso de Herramientas de IA" agregada en Cap. 1 |
+
+(La tabla cuenta ~28 líneas porque varios comentarios de Luis marcaban varias cosas en la
+misma página. El requisito de la declaración de IA cuenta aparte.)
+
+### 🔲 Pendientes
+
+**Contenido / decisión (lo que pesa):**
+- **T p.9** — reordenar el Resumen antes del índice + ampliarlo con datos del corpus e IdeM 2025.
+- **L p.86** — error conceptual del párrafo de Re-Ranking (similitud vectorial SÍ es semántica; lo que no garantiza es relevancia, y hay que medirlo). Cap. 7.
+- **L p.86** — párrafo nuevo en Trabajo a Futuro: fine-tuning con el corpus de preguntas.
+- **L p.73/74** — inconsistencia 24 vs 16 preguntas: uniformar y explicar "preguntas únicas" vs "consultas".
+- **T p.6** — anexo nuevo de planificación (Gantt inicial/final, % dedicación, horas, demoras).
+- **L p.93** — reestructurar Anexo IdeM a solo el póster + ajustar los `\autoref` que lo citan.
+- **L p.99 / T** — unificar sigla y expansión de UEFI / URI en todo el documento (hoy: "Unidad de Enseñanza de FIng" vs "Unidad de Recursos Informáticos" vs "Unidad de Repositorios Institucionales").
+- **L p.99** — referenciar el Anexo de Estimaciones desde el cuerpo compilado.
+- **T p.83** — añadir referencia a la evidencia cualitativa de IdeM en Cap. 7.
+- **Diego** — párrafo sobre Gemini en la sección de declaración de IA.
+
+**Citas faltantes (Libertad):**
+- **T p.15/16** — citas para: alucinaciones, riesgo educativo, OpenFing (nota al pie), ASR.
+- **T p.15/16** — "(RAG por sus siglas en inglés)" y "(ASR por sus siglas en inglés)" en la primera mención.
+- **T p.34** — citas para API REST, FAISS, pgvector, Elasticsearch.
+
+**Redacción corta / dudas de Libertad:**
+- **T p.15** — "conjunto de documentos confiables o corpus curado"; "evitando así" → "mitigando".
+- **T p.27** — "deseable?" sobre "comportamiento esperado / deseado" (no localizado, revisar RNF).
+- **T p.37** — "ya que?": hacer explícito el nexo causal entre las dos oraciones sobre ASR en inglés.
+
+**Cap. 6 — tablas y cross-refs:**
+- **L p.68** — notas al pie dentro de las tablas del dataset no se ven a dónde apuntan.
+- **L p.68** — primera aparición de "PLN" sin expandir (verificar).
+- **L p.73** — "validar la coherencia y el sesgo del juez" → "sesgos o…" (redacción).
+- **L p.79** — Tabla 6.4 + 6.5 son dos `\caption` de una sola tabla: unificar.
+- **T p.79** — achicar la letra de esa tabla para que entre.
+- **L p.80** — cross-refs a "sección 6.6": los `\autoref` a la experiencia de IdeM deben apuntar a §6.6, no solo al anexo.
+
+**Cap. 7 — anclas de una palabra (hay que mirar el PDF de Luis al lado):**
+- **L p.82** — "." (puntuación), "hubo" (forma verbal), "prototipo" (concordancia), ", el" (falta coma + artículo en la serie de la línea 14).
+
+**Otros:**
+- **T p.43** — agrandar la Figura 4.1 (overview).
+- **L p.51** — "entre dos y cuatro veces" vs "cinco": verificar contra el dato real.
+- **Estructural** — borrar `8-Conclusiones.tex` y `7-TrabajoAFuturo.tex` (huérfanos, duplican y tienen el error de p.86); revisar `\label{chapter:8-Conclusiones}`.
+- **Transversal** — pase global de comillas `` ``…'' `` (falta fuera de Cap. 4) y de tildes en "Ingeniería"/"Computación" en tablas y captions.
+
+---
+
 ## Notas de estructura detectadas al cruzar (importante)
 
 - El capítulo de conclusiones que compila es **`Nuestro/Capitulos/7-Conclusiones.tex`** (único `\input` en `main.tex:247`). Contiene además `\section{Trabajo a futuro}`.
