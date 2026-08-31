@@ -58,6 +58,9 @@ Fuente: anotaciones extraídas de los dos PDF en `mine/comments/`.
 | T p.84 | "educativas basadas en IA" → "educativas de tipo RAG basadas en IA" (Cap. 7) |
 | L p.85 | "de manera online. Desarrollando" → "…online, desarrollando" + "UDELAR" → "UdelaR" (Cap. 7) |
 | L p.85 | "La integración garantizaría…" y "Por lo que permitir segmentar…, se garantiza que…" reescritas (Cap. 7) |
+| L p.48 | Cortada la frase "evita el ruido visual de agregar fuentes y referencias…" (Cap. 4) |
+| L p.86 | Reescrito el párrafo de Re-Ranking: los embeddings SÍ capturan semántica; lo que no garantizan es relevancia para la consulta puntual, y eso hay que medirlo con el set de preguntas anotadas (Cap. 7) |
+| L p.86 | Agregado párrafo: el mismo set de preguntas habilita ajuste fino del modelo de embeddings sobre el dominio de OpenFing (Cap. 7) |
 | Nuevo | Sección "Declaración de Uso de Herramientas de IA" agregada en Cap. 1 |
 
 (La tabla cuenta ~28 líneas porque varios comentarios de Luis marcaban varias cosas en la
@@ -67,12 +70,10 @@ misma página. El requisito de la declaración de IA cuenta aparte.)
 
 **Contenido / decisión (lo que pesa):**
 - **T p.9** — reordenar el Resumen antes del índice + ampliarlo con datos del corpus e IdeM 2025.
-- **L p.86** — error conceptual del párrafo de Re-Ranking (similitud vectorial SÍ es semántica; lo que no garantiza es relevancia, y hay que medirlo). Cap. 7.
-- **L p.86** — párrafo nuevo en Trabajo a Futuro: fine-tuning con el corpus de preguntas.
 - **L p.73/74** — inconsistencia 24 vs 16 preguntas: uniformar y explicar "preguntas únicas" vs "consultas".
 - **T p.6** — anexo nuevo de planificación (Gantt inicial/final, % dedicación, horas, demoras).
 - **L p.93** — reestructurar Anexo IdeM a solo el póster + ajustar los `\autoref` que lo citan.
-- **L p.99 / T** — unificar sigla y expansión de UEFI / URI en todo el documento (hoy: "Unidad de Enseñanza de FIng" vs "Unidad de Recursos Informáticos" vs "Unidad de Repositorios Institucionales").
+- **L p.99 / T** — UEFI / URI. **Casi resuelto**: los nombres correctos son **UEFI = Unidad de Enseñanza de Facultad de Ingeniería** y **URI = Unidad de Recursos Informáticos** (fing.edu.uy/es/sysadmin), dos unidades distintas reales. El documento compilado ya los usa bien (`3-Requisitos:180`, `7-Conclusiones:24`). "Unidad de Repositorios Institucionales" era texto del commit `init` (25/04) y solo sobrevive en `7-TrabajoAFuturo.tex:5` (huérfano, no compila). Falta solo: (a) opcional, agregar la sigla "(URI)" en `3-Requisitos:180`; (b) borrar/arreglar los huérfanos.
 - **L p.99** — referenciar el Anexo de Estimaciones desde el cuerpo compilado.
 - **T p.83** — añadir referencia a la evidencia cualitativa de IdeM en Cap. 7.
 - **Diego** — párrafo sobre Gemini en la sección de declaración de IA.
