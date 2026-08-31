@@ -264,12 +264,13 @@ A continuación, se presenta la estimación económica detallada para un volumen
 
 
 \begin{table}[ht]
-\label{6-Precios-Tabla}
-\begin{adjustwidth}{-3.5cm}{0cm} % Expande el margen izquierdo y derecho 1.8cm temporalmente
+\begin{adjustwidth}{-3.5cm}{0cm} % Expande el margen izquierdo y derecho temporalmente
 \centering
 \begin{threeparttable}
-\caption{Comparación de modelos fundacionales según proveedor, costo y capacidades.}
+\caption{Comparación de modelos fundacionales según proveedor y costo, para un volumen proyectado de 1000 consultas con las métricas de tokens promedio (P Prom, R Prom) y máximas (P Máx, R Máx) obtenidas en el análisis muestral. Los precios corresponden al costo en dólares por millón de tokens reportado por cada proveedor al momento de la consulta (30 de mayo de 2026). Para Gemini 2.5 Pro, que aplica precio dinámico según el volumen de tokens, se consideró la tarifa de entrada para solicitudes de menos de 200.000 tokens de contexto, acorde al tamaño de las consultas del experimento.}
+\label{6-Precios-Tabla}
 
+\footnotesize
 \begin{tabular}{l l c c c c c c}
 \toprule
 \textbf{Modelo} &
@@ -298,22 +299,19 @@ GPT-5.4 Nano & OpenAI & 0.20 & 1.25 & 0.236 & 0.506 & 0.254 & 0.877 \\
 GPT-4.1 & OpenAI & 2.00 & 8.00 & 2.358 & 3.241 & 2.536 & 5.616 \\
 GPT-5 Pro & OpenAI & 15.00 & 120.00 & 17.689 & 48.615 & 19.020 & 84.240 \\
 Gemini 3.5 Flash & Google & 1.50 & 9.00 & 1.769 & 3.646 & 1.902 & 6.318 \\
-Gemini 2.5 Pro & Google & 1.25 & 10.00 & 1.474 & 4.051 & 1.585 & 7.02\\
+Gemini 2.5 Pro & Google & 1.25 & 10.00 & 1.474 & 4.051 & 1.585 & 7.02 \\
 
 \bottomrule
 \end{tabular}
-\begin{adjustwidth}{3.5cm}{2.5cm}
 \begin{tablenotes}
 \footnotesize
-\item OpenAI API Pricing, Gemini API Pricing, Claude API Pricing, Hugging Face Pricing \footnote{\url{https://developers.openai.com/api/docs/pricing},\url{https://ai.google.dev/gemini-api/docs/pricing},\url{https://platform.claude.com/docs/en/about-claude/pricing},\url{https://huggingface.co/inference/models}},  
-\caption{ Los precios corresponden al costo en dólares por millón de tokens reportado por cada proveedor al momento de la consulta. Para Gemini 2.5 Pro el precio es dinámico dependiendo de los tokens utilizados. Se consideró el costo de entrada para solicitudes menores a 200.000 tokens de contexto debido a la naturaleza de queries realizadas en el experimento tienen severamente menos tokens a la cota de precio de Google. }
+\item Tarifas publicadas por cada proveedor: OpenAI (\url{https://developers.openai.com/api/docs/pricing}), Google (\url{https://ai.google.dev/gemini-api/docs/pricing}), Anthropic (\url{https://platform.claude.com/docs/en/about-claude/pricing}) y Hugging Face (\url{https://huggingface.co/inference/models}).
 \end{tablenotes}
-\end{adjustwidth}
 \end{threeparttable}
 \end{adjustwidth}
 \end{table}
 
-A remarcar, los valores de la tabla \autoref{6-Precios-Tabla} representan el precio a la fecha de consulta (30 de mayo de 2026). El mercado de los modelos de lenguaje comerciales es dinámico y se caracteriza por una alta fluctuación en las estructuras tarifarias. Los valores expuestos en la tabla pueden verse modificados. 
+Los valores de la \autoref{6-Precios-Tabla} representan el precio a la fecha de consulta. El mercado de los modelos de lenguaje comerciales es dinámico y se caracteriza por una alta fluctuación en las estructuras tarifarias, por lo que los valores expuestos pueden verse modificados.
 
 En la \autoref{6-Precios-Tabla}, se puede observar la gran varianza de precios que se puede encontrar en los costos de inferencia de los distintos modelos comerciales. Los modelos representados en la tabla, son modelos altamente populares y propietarios de las empresas que están liderando comercialmente en inteligencia artificial generativa. Los precios de HuggingFace son sustancialmente menores a los precios del resto de los modelos. A su vez, el modelo elegido (Meta-Llama-3-8B-Instruct) sería hasta 10 veces más barato que Qwen/Qwen2.5-72B-Instruct, otro modelo cuyo funcionamiento se evaluó. 
 

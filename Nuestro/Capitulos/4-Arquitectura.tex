@@ -4,12 +4,14 @@ En este capítulo se describe la arquitectura del sistema, detallando los compon
 
 La \autoref{fig:Arquitectura_Overview} presenta una vista general del pipeline completo antes de entrar en el detalle de cada componente. El sistema se organiza en dos fases, una de ingesta que corre de forma offline para indexar el contenido de OpenFing, y otra de consulta que se ejecuta ante cada pregunta del estudiante. Las secciones siguientes describen cada componente en profundidad.
 
-\begin{figure}[htbp]
+\begin{landscape}
+\begin{figure}[p]
     \centering
     \includegraphics[width=\linewidth]{Nuestro/Imagenes/Arquitectura/Overview.png}
     \caption{Vista general del pipeline del sistema, con las fases de ingesta y consulta. Ilustración propia.}
     \label{fig:Arquitectura_Overview}
 \end{figure}
+\end{landscape}
 
 
 \section[Frontend]{Frontend}
@@ -122,7 +124,7 @@ El frontend recibe la respuesta junto con los metadatos de trazabilidad de cada 
 
 Para ilustrar cómo interactúan estas etapas en la práctica, se describen tres casos que cubren los caminos principales del flujo.
 
-En el primer caso, un estudiante autenticado pregunta \textit{``¿Qué es un árbol AVL?''} sin historial previo. La consulta tiene cuatro palabras y no hay historial, por lo que el heurístico no omite la recuperación. El sistema ejecuta la búsqueda vectorial sobre el corpus completo, recupera los cuatro fragmentos más similares, ensambla el bloque de contexto y construye el prompt. La respuesta generada y sus fuentes se almacenan en PostgreSQL, y el frontend las presenta con los datos de trazabilidad.
+En el primer caso, un estudiante autenticado pregunta \textit{``¿Qué es un árbol AVL?''} sin historial previo. La consulta tiene cinco palabras y no hay historial, por lo que el heurístico no omite la recuperación. El sistema ejecuta la búsqueda vectorial sobre el corpus completo, recupera los cuatro fragmentos más similares, ensambla el bloque de contexto y construye el prompt. La respuesta generada y sus fuentes se almacenan en PostgreSQL, y el frontend las presenta con los datos de trazabilidad.
 
 \begin{figure}[htbp]
     \centering
