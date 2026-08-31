@@ -76,6 +76,21 @@ Before running the sync, everything uncommitted must be committed (the rsync ove
 `.tex`/`.bib`). Before assuming Overleaf is ahead or behind, extract the zip to a temp dir and
 `diff` it against `HEAD` — do not run the sync blindly.
 
+### Downloading the project zip
+
+`sync-overleaf.sh` defaults to `../Proyecto_de_Grado_INCO_InCo_FIng_UdelaR.zip`. The user
+normally downloads it by hand from the Overleaf UI, but it can also be fetched directly:
+
+```
+GET https://www.overleaf.com/project/<PROJECT_ID>/download/zip
+```
+
+Auth: only the session cookie is needed (no CSRF token for this GET) — a browser `User-Agent`
+plus `Cookie: overleaf_session2=...; GCLB=...`. The cookie expires, so re-ask the user for a
+fresh one (from devtools Network tab on any `overleaf.com` request) if the response is HTML/401
+instead of a zip. Save to the default path above so `sync-overleaf.sh` picks it up with no
+argument.
+
 ### Verify before assuming — do not undo/redo edits without understanding why they were made
 
 When something looks wrong, missing, or "lost" (a paragraph gone, a section shorter than
