@@ -43,6 +43,4 @@ Otra mejora a futuro consiste en incorporar \textit{streaming} de tokens en la g
 
 El corpus actual indexa únicamente el contenido textual de las transcripciones automáticas. Sin embargo, las clases de OpenFing incluyen diapositivas, diagramas y escritura en pizarra que contienen información complementaria no capturada en el texto transcripto. Extender el índice vectorial para incorporar representaciones de imágenes mediante modelos de visión y lenguaje podría enriquecer el contexto disponible para el asistente, en particular en consultas sobre conceptos que se explican principalmente a través de esquemas visuales o fórmulas escritas en pizarra.
 
-Por último, el pipeline de procesamiento carece actualmente de una suite de tests automatizados que verifique el comportamiento esperado de cada componente de forma aislada y en integración. Añadir tests unitarios para los módulos de fragmentación, vectorización y recuperación, junto con tests de regresión sobre el pipeline RAG completo, reduciría el riesgo de introducir fallas silenciosas al modificar o extender el sistema.
-
 
