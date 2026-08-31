@@ -7,6 +7,23 @@ Fuente: anotaciones extraídas de los dos PDF en `mine/comments/`.
 
 `p.` = página del PDF. Los números de línea `.tex` son del estado del repo al momento de generar este checklist; verificar antes de editar.
 
+
+## Alcance de las correcciones (2026-08-30, revisado)
+
+Regla acordada con los autores: **solo se aplican cambios ligados a un comentario concreto de
+los tutores.** Nada de mejoras de `mine/todos.md` ni de iniciativa propia. Ver también la
+sección "Verify before assuming" del `CLAUDE.md`.
+
+Revertido tras salirse de esa regla:
+- `2-EstimacionesParaOpenFing.tex` — rewrite completo (los tutores solo pidieron referenciarlo).
+- Agradecimientos de `main.tex` — restaurado el placeholder (solo se mantiene el reorden Resumen/índice de T p.9).
+- `0-IDM.tex` — solo se renombró el `\chapter` (L p.93); se revirtió el rename del label, `fig:placeholder`, el caption y la oración agregada.
+- Cap. 2 §OpenFing y Cap. 3 §ASR — recortados a la marca literal del tutor.
+
+Se mantienen (avalados por los autores): reescrituras chicas en Cap. 3 §Requisitos y Cap. 6 §6.6,
+el Resumen ampliado, y tres arreglos de typos claros no marcados por nadie ("OpenFing OpenFing",
+"Let's EncryptLet's Encrypt", heading "carecen relación").
+
 ## Contexto y plazos (actualizado 2026-08-30)
 
 - Veredicto de los tutores sobre esta entrega: "el informe está muy bien, casi terminado";
