@@ -8,6 +8,57 @@ Fuente: anotaciones extraídas de los dos PDF en `mine/comments/`.
 `p.` = página del PDF. Los números de línea `.tex` son del estado del repo al momento de generar este checklist; verificar antes de editar.
 
 
+## ⭐ ESTADO FINAL (2026-08-31, sesión 5)
+
+**Todos los comentarios de tutores están aplicados y commiteados.** Verificado además por una
+review independiente (sesión Claude Sonnet 5 vía herdr, 2026-08-31): 62 OK, 0 parciales,
+0 no aplicados, 2 no verificables (highlights sin texto = marcas de lectura). Reporte en
+`mine/reviews/review-independiente-correcciones-tutores.md`.
+
+Últimas marcas cerradas: L p.82 "prototipo" (commit `e6c3b6c`); T p.15 "corpus curado"
+(commit `43002fe`, aposición en la definición de RAG de la intro); T p.71 "optimizar"
+(commit `a15ea0c`, frase vaga sobre "optimizar el procesamiento" acortada). Las 2 marcas
+sin texto restantes eran auxiliares de T14 (p.16) y T25 (p.40), ya cerradas.
+
+Audit de precisión de anclaje (marcas cortas verificadas contra el PDF con zoom del usuario, 2026-08-31):
+- **p.51 "cinco"**: OK. El resaltado (bloque amarillo) está sobre "cuatro" en "La consulta tiene
+  cuatro palabras" (ejemplo AVL). Se cambió a "cinco"; "¿Qué es un árbol AVL?" = 5 palabras.
+- **p.73 "sesgos o"**: estaba MAL aplicada. Es un caret de inserción justo después de
+  "introducirían" (no un resaltado sobre "el sesgo del juez" al final del párrafo). La nota
+  "sesgos o" es el texto a insertar. Corregido en `e86b65f`:
+  "...introducirían sesgos o evaluaciones incorrectas..." y se revirtió el cambio no marcado
+  ("los sesgos del juez" -> "el sesgo del juez"). En p.73 hay otra marca (bloque sobre
+  "24 preguntas") que es L19 (24 vs 16), ya resuelta.
+- **p.82 "." y "hubo"**: son las dos marcas finas sobre "...con el público, entre ellos, varios
+  estudiantes, actuales profesores...". Puntuación / flujo de esa construcción. Cubiertas por la
+  reescritura de §6.6: se partió en dos oraciones ("En esta ocasión, el grupo compartió con el
+  público un prototipo del chatbot asistente. Entre el público se encontraban varios
+  estudiantes, profesores actuales...").
+Conclusión del audit: de las 69 marcas, 1 estaba mal aplicada (p.73), ya corregida. El resto OK.
+La review independiente comparte el mismo método de extracción por coordenadas, así que no
+cubre este tipo de error; este audit se hizo con el usuario mirando el PDF directamente.
+
+**Falta re-subir a Overleaf:** `1-Introduccion.tex` (43002fe) y `6-Experimentacion.tex` (a15ea0c, e86b65f).
+
+Solo restan dos ítems que dependen de los autores, no de correcciones de redacción:
+1. **Validar los % de las dos tablas** del nuevo anexo de planificación (`Nuestro/Anexos/5-Planificacion.tex`). Son estimación (tiempo de calendario + distribución de commits), no medición.
+2. **Párrafo de Gemini** de Diego (`% TODO (Diego)` en `1-Introduccion.tex`).
+
+**Archivos para subir a Overleaf** (modificados desde `36b3cd6`):
+`main.tex`, `referencias.bib`, `Nuestro/Anexos/{0-IDM, 1-Prompting, 2-EstimacionesParaOpenFing}.tex`,
+`Nuestro/Anexos/5-Planificacion.tex` (NUEVO), `Nuestro/Otros_Documentos/Estructura.tex`,
+`Nuestro/Capitulos/{0-Resumen, 1-Introduccion, 2-MarcoTeorico, 3-RequisitosDelSistema, 4-Arquitectura, 6-Experimentacion, 7-Conclusiones}.tex`.
+Huérfanos borrados (`7-TrabajoAFuturo.tex`, `8-Conclusiones.tex`): no estaban en Overleaf.
+
+Cerrados sin acción: párrafo de tests automatizados (Diego lo sacó a propósito el 19/7);
+dato "2835 videos" del Anexo de Estimaciones (no es comentario de tutor, hallazgo interno,
+fuera de alcance de esta ronda).
+
+Fuentes del anexo de planificación: `mine/comments/cronograma/timeline-reconstruido.md`,
+`Cronograma Tentativo.md`, `chat.md` (WhatsApp con tutores, abr–set 2026, contexto no citado).
+
+---
+
 ## Alcance de las correcciones (2026-08-30, revisado)
 
 Regla acordada con los autores: **solo se aplican cambios ligados a un comentario concreto de
@@ -75,11 +126,13 @@ el Resumen ampliado, y tres arreglos de typos claros no marcados por nadie ("Ope
 | T p.84 | "educativas basadas en IA" → "educativas de tipo RAG basadas en IA" (Cap. 7) |
 | L p.85 | "de manera online. Desarrollando" → "…online, desarrollando" + "UDELAR" → "UdelaR" (Cap. 7) |
 | L p.85 | "La integración garantizaría…" y "Por lo que permitir segmentar…, se garantiza que…" reescritas (Cap. 7) |
-| L p.48 | Cortada la frase "evita el ruido visual de agregar fuentes y referencias…" (Cap. 4) |
+| L p.48 | ~~Cortada la frase "evita el ruido visual…"~~ REVERTIDO en lectura final 2026-08-31: las 3 marcas de Luis eran sobre glifos de comilla recta (ya corregidos a `` ``…'' ``), no sobre la frase. La oración se restauró con comillas LaTeX. (Cap. 4 §4.5.2) |
+| T p.15 | Cita para "(LLMs)" → `\cite{Zhao2023LLMSurvey}` (Intro) — 4º "ref" de p.15, detectado en lectura final 2026-08-31 |
+| T p.15 | Highlight sobre "una tendencia" + nota "riesgo": reformulado a "presentan un riesgo conocido, las alucinaciones" (Intro). La ronda previa lo había mapeado mal a la frase "Este riesgo se agrava"; corregido en lectura final 2026-08-31 |
 | T p.15 | Cita para alucinaciones → `\cite{ji2023survey}` (Intro) |
 | T p.15 | Cita para riesgo en contexto educativo → `\cite{kasneci2023chatgpt}` (Intro) |
 | T p.15 | "(RAG, por sus siglas en inglés)" + `\cite{lewis2020retrieval}` en la primera mención (Intro) |
-| T p.15 | Cita para OpenFing → `\cite{misc_OpenFing}` (Intro) |
+| T p.15 | OpenFing → nota al pie `\footnote{\url{https://open.fing.edu.uy/about/}}` (Intro), consistente con Cap. 2 L9 y con la nota literal "pie de página" de Libertad. Antes era `\cite{misc_OpenFing}`; cambiado en lectura final 2026-08-31 |
 | T p.16 | "(ASR, por sus siglas en inglés)" + `\cite{SpeechandLanguageProcessing}` (Intro) |
 | T p.34 | Citas en la lista de tecnologías: `fielding2000rest` (API REST), `misc_pgvector`, `douze2025faiss` (FAISS, además se descomentó la frase que estaba rota), `gormley2015elasticsearch` (Cap. 3) |
 | T p.15 | "conjunto de documentos confiables / corpus curado" y "evitando así"→"mitigando": N/A, esas frases ya no están en la intro reescrita |
@@ -114,21 +167,30 @@ misma página. El requisito de la declaración de IA cuenta aparte.)
 
 ### 🔲 Pendientes
 
-**Necesitan input / datos de ustedes:**
-- **T p.6 — anexo de planificación**: Gantt inicial y final, % de dedicación por tarea-macro, estimación de horas, comentario sobre las demoras. Yo armo el `.tex` y el `\input`, ustedes ponen los datos. Es el ítem más grande que queda.
-- **Diego — párrafo de Gemini** (hay `% TODO (Diego)` en `1-Introduccion.tex`).
-- **Diego — párrafo de tests automatizados**: lo borró él a propósito el 19/7. Preguntarle el motivo. Si va: `git revert b7d4e26`.
-- **Dato "2835 videos"** en el Anexo de Estimaciones: chequear de dónde salió (¿videos vs. clases? el corpus final son 4.339 clases / 239 cursos). No lo toqué.
+- **Diego — párrafo de Gemini**: queda el `% TODO (Diego)` en `1-Introduccion.tex` tal cual; lo agrega Diego.
 
-**Menores que puedo hacer:**
-- Anexo de Estimaciones: el footnote a Wikipedia sobre WER (`es.wikipedia.org`) no es fuente académica; se podría reemplazar por `\cite{ASR_Accuracy}` o `\cite{itoh2015metric}`.
-- Renombrar `\label{chapter:8-Conclusiones}` en `7-Conclusiones.tex:2` (cosmético, funciona igual).
+**T p.6 — anexo de planificación: BORRADOR HECHO (sesión 5), pendiente revisión de los autores:**
+- Nuevo `Nuestro/Anexos/5-Planificacion.tex` + `\chapter`/`\input` en `main.tex` (último anexo) + referencia desde `7-Conclusiones.tex:16`. Commit `729596b`.
+- No hubo Gantt formal. Se usa tabla plan (cronograma tentativo jul 2025) vs. real + tabla de % por tarea-macro + párrafo de demoras.
+- Timeline reconstruido de los 4 repos de código: ver `mine/comments/cronograma/timeline-reconstruido.md`.
+- **Números a validar por Diego y Guido**: los % de ambas tablas son estimación (tiempo de calendario + distribución de commits), no medición. Revisar antes de la entrega.
+- Fuentes: `mine/comments/cronograma/Cronograma Tentativo.md` (plan) + `chat.md` (WhatsApp con tutores, solo abr–set 2026, usado como contexto no citado).
+- **Subir a Overleaf**: `Nuestro/Anexos/5-Planificacion.tex` (nuevo), `main.tex`, `7-Conclusiones.tex`. No requiere paquetes nuevos (solo `booktabs`, ya cargado).
+
+**Cerrados (decisión de los autores, sesión 5):**
+- **Párrafo de tests automatizados**: NO va. Confirmado vía Overleaf API que Diego lo sacó a propósito el 19/7 (v8036→v8041). No se reintroduce.
+- **Dato "2835 videos"** (`2-EstimacionesParaOpenFing.tex:66`): NO hay comentario de ningún tutor sobre este número. Es un hallazgo de las revisiones internas (`mine/reviews/*`, `mine/todos.md`), no de la ronda de correcciones. Fuera de alcance de esta ronda; se deja intacto.
+
+**Menores — hechos (sesión 5):**
+- ✅ Anexo de Estimaciones: footnote a Wikipedia sobre WER reemplazado por `\cite{ASR_Accuracy}` en el caption de la figura WordErrorRate.
+- ✅ `\label{chapter:8-Conclusiones}` → `\label{chapter:7-Conclusiones}` en `7-Conclusiones.tex:2` + el `\autoref` correspondiente en `1-Introduccion.tex:78`.
 
 ### ✅ Cerrados en esta ronda (sesión 4)
 - **L p.93** — Anexo IdeM renombrado a "Póster utilizado en Ingeniería de Muestra", dejado con solo el póster (el relato está en §6.6), `\autoref` ajustados, `fig:placeholder` → `fig:IDM-poster`.
 - **L p.99** — Anexo de Estimaciones ahora referenciado también desde Cap. 3 (reuniones con la UEFI).
 - **"(URI)"** — sigla agregada en `3-Requisitos` + footnote URL corregida a la página oficial de la URI.
 - **L p.82** — "." y "hubo": N/A, esa zona se reescribió y movió a §6.6.
+- **L p.82** — "prototipo" (commit `04e7475`): Luis quería aclarar que lo mostrado en IdeM (oct 2025) era un prototipo, no la versión final. Agregado en `6-Experimentacion.tex` §6.6: "el grupo compartió con el público un prototipo del chatbot asistente, que a esa altura no constituía todavía la versión final del sistema".
 - **Anexo de Estimaciones** — pase completo: comillas rectas → `` ``…'' ``, tildes, oraciones incompletas, listas de métricas/config normalizadas, tabla y caption traducidos al español.
 - Huérfanos borrados; forensics del párrafo de tests completo; 24 vs 16 resuelto.
 
