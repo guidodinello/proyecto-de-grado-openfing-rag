@@ -1,29 +1,31 @@
 flowchart TD
-    OF[(OpenFing\nPlatform)] -->|URLs & metadata| SC[Scraper]
-    SC -->|video index| DL[Downloader]
-    DL -->|video files| TR[Transcriber\nWhisper]
-    TR -->|texto + timestamps| EMB[Embeddings\nMultilingual]
-    EMB -->|vectores| VDB[(PostgreSQL\n+ PGVector)]
-
-    subgraph Backend · FastAPI
-        GEN[Generator\nLangChain + Mistral]
-        VDB -->|chunks relevantes| GEN
+    subgraph INGESTA [Ingesta - offline]
+        direction LR
+        OF[(OpenFing\nPlataforma)] -->|URLs y metadatos| SC[Scraper]
+        SC -->|índice de videos| DL[Downloader]
+        DL -->|archivos de audio| TR[Transcriber\nfaster-whisper]
+        TR -->|texto + timestamps| EMB[Embeddings\nmultilingual-e5-base]
     end
 
-    subgraph Frontend · React + TS
+    EMB -->|vectores| VDB[(PostgreSQL\n+ pgvector)]
+
+    subgraph CONSULTA [Consulta - runtime]
+        direction LR
+        GEN[Generator\nLangChain + Llama 3.1 8B]
         UI[Chat UI]
+        USER([Estudiante])
+        USER -->|pregunta| UI
+        UI -->|consulta| GEN
+        GEN -->|respuesta + fuentes| UI
+        UI -->|respuesta| USER
     end
 
-    USER([Estudiante]) -->|pregunta| UI
-    UI -->|JWT auth + query| GEN
-    GEN -->|respuesta + fuentes| UI
-    UI --> USER
+    VDB -->|chunks relevantes| GEN
 
     style OF fill:#f5f5f5
     style VDB fill:#dbeafe
     style USER fill:#dcfce7
 
-
-El pipeline tiene dos fases:
-- **Ingesta** (fila superior): Scraper → Downloader → Transcriber → Embeddings → VectorDB — corre offline para indexar todo el contenido de OpenFing.
-- **Consulta** (fila inferior): el estudiante envía una pregunta → Generator recupera chunks relevantes → el LLM genera una respuesta fundamentada con referencias a las clases fuente → se retorna a la UI.
+%% El pipeline tiene dos fases:
+%% - Ingesta (fila superior): Scraper -> Downloader -> Transcriber -> Embeddings -> PostgreSQL/pgvector, corre offline para indexar todo el contenido de OpenFing.
+%% - Consulta (fila inferior): el estudiante envia una pregunta, Generator recupera chunks relevantes de pgvector y el LLM genera una respuesta fundamentada con referencias a las clases fuente, que se retorna a la UI.

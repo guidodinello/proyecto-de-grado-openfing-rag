@@ -6,3 +6,6 @@ scripts/
 mine/citation-audits/**
 !mine/citation-audits/**/
 !mine/citation-audits/**/resumen.md
+
+mine/presentation/audio/*.mp3
+mine/presentation/audio/*.srt

@@ -8,6 +8,21 @@ LaTeX thesis document for a grade project (Proyecto de Grado) at FING/UdelaR. Th
 
 The source code for the system itself lives in a sibling directory (`../tesis`), not here.
 
+## Current phase: Defense prep (since 2026-09-06)
+
+The informe (PDF) was sent to the tribunal and is **frozen** — no more content edits happen
+here in this phase. Work has shifted to preparing the oral defense (presentation + Q&A),
+tracked in `mine/presentation/`. **Start at `mine/presentation/README.md`** for the folder
+index, then `mine/presentation/WORKFLOW.md` for the per-slide process (source chapters →
+three framing questions → two parallel fork proposals → consolidation → advisor check →
+hand-off to Google Slides → iterate on screenshots → re-sync) before doing any defense-prep
+work.
+
+The `## Writing Guidelines` / `## Writing Style` sections below describe the *prior* phase
+(writing the .tex chapters) and the Overleaf sync workflow is now mostly historical unless the
+tribunal requests a content correction. Keep them for reference, but the active work in this
+phase is the two files above, not the `.tex` chapters.
+
 ## Document Structure
 
 ```

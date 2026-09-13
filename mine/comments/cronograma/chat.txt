@@ -1,0 +1,197 @@
+Messages and calls are end-to-end encrypted. No one outside of this chat, not even WhatsApp, can read or listen to them.
+[4/26/26, 2:52:17 PM] Diego PIS Fing: Hola! Perdon que los molestamos un domingo. 
+Tenemos una duda puntual de una cosa que nos señalaste, Libertad.
+[4/26/26, 2:52:56 PM] Diego PIS Fing: En el capitulo 3, no nos queda claro bien que son requisitos del sistema y requisitos del proyecto.
+[4/26/26, 2:55:58 PM] Diego PIS Fing: Osea, los requisitos funcionales del sistema, los tenemos. Pero los requisitos no funcionales, nos esta constado hacer la distinción.
+[4/26/26, 4:55:28 PM] +598 91 612 733: <image omitted>
+[4/26/26, 4:55:48 PM] +598 91 612 733: Hola!
+Por ejemplo 3.1.3
+[4/26/26, 4:57:14 PM] +598 91 612 733: This message was deleted
+[4/26/26, 5:00:03 PM] +598 91 612 733: "Analizar y comparar diferentes algoritmos y técnicas de búsqueda para determinar cuál ofrece mejores resultados en términos de precisión, relevancia y eciencia en la recuperación de información." es un objetivo del proyecto de ustedes.
+
+El requerimiento para el sistema es utilizar un método de búsqueda con alta precisión, relevancia y eciencia...
+[4/26/26, 5:01:12 PM] +598 91 612 733: Espero que sirva!!
+[4/26/26, 8:28:19 PM] You: gracias!
+[4/29/26, 6:00:58 PM] Diego PIS Fing: Buenas!
+[4/29/26, 6:01:16 PM] Diego PIS Fing: les queriamos enviar un avance significativo que relizamos.
+[4/29/26, 6:01:32 PM] Diego PIS Fing: Aún quedan cosas por hacer que las estamos realizando
+[4/29/26, 6:01:45 PM] Diego PIS Fing: pero les paso un documento con los avances.
+[4/29/26, 6:08:32 PM] Diego PIS Fing: <document omitted> Proyecto_de_Grado_INCO_InCo_FIng_UdelaR.pdf
+[4/29/26, 6:08:59 PM] Diego PIS Fing: En los proximos dias les pasamos un avance, principalemente dentro del capitulo de la evaluacion.
+[5/6/26, 12:51:02 PM] +598 91 612 733: Hola, cómo andan?
+[5/6/26, 12:51:10 PM] +598 91 612 733: Nos vemos hoy?
+[5/6/26, 12:51:24 PM] +598 91 612 733: No me dio tiempo de leer😬
+[5/6/26, 12:51:33 PM] +598 91 612 733: Es 13.15?
+[5/6/26, 12:52:50 PM] Diego PIS Fing: Hola! Todo bien?
+[5/6/26, 12:53:01 PM] Diego PIS Fing: No pasa nada, lo enviamos con poco tiempo
+[5/6/26, 12:53:26 PM] Diego PIS Fing: Si sería hoy, 1:15 si
+[5/6/26, 12:57:06 PM] +598 99 631 501: Hola, no lo tenía en la agenda pero estoy 👍
+[5/6/26, 1:00:37 PM] Diego PIS Fing: Yo en la reunión pasada me confundí y dije el proximo miercoles
+[5/6/26, 1:01:22 PM] Diego PIS Fing: Igual, nosotros, más allá de este documento, no tenemos mucha cosa para comentar.
+[5/6/26, 1:01:46 PM] Diego PIS Fing: Si quieren la dejamos para la proxima semana.
+[5/6/26, 1:02:22 PM] +598 91 612 733: Como quieran
+[5/6/26, 1:03:04 PM] Diego PIS Fing: Osea dije miercoles 13, en vez de hoy que seria dos semanas después de la reu pasada.
+[5/6/26, 1:04:56 PM] Diego PIS Fing: Dale, la dejamos semana que viene.
+[5/6/26, 1:10:12 PM] +598 91 612 733: Por mi está bien, capaz Luis llegó a leerlo...
+[5/6/26, 1:11:45 PM] +598 99 631 501: No, no llegué a leer todavía
+[5/6/26, 1:11:55 PM] +598 99 631 501: La semana que viene yo no puedo estar porque estaré en una conferencia
+[5/6/26, 1:14:23 PM] +598 91 612 733: Te parece bien si me reuno yo y vos mandás comentarios por mail o por acá?
+[5/6/26, 1:14:39 PM] +598 99 631 501: Sí, yo voy a estar leyendo esta versión y les mando comentarios
+[5/6/26, 1:16:21 PM] You: You deleted this message
+[5/6/26, 1:16:22 PM] You: You deleted this message
+[5/6/26, 1:24:49 PM] You: recien leo los msjs de arriba
+[5/11/26, 6:48:16 PM] Diego PIS Fing: Hola buenas!!
+[5/11/26, 6:48:18 PM] Diego PIS Fing: Me estoy dando cuenta que me falto un corchete en el capitulo 3
+[5/11/26, 6:48:20 PM] Diego PIS Fing: y como resultado, quedó cortado a la mitad
+[5/11/26, 6:48:22 PM] Diego PIS Fing: Envió un nuevo doc que es el anterior solo que con el capitulo 3 completo.
+[5/11/26, 6:48:49 PM] Diego PIS Fing: <document omitted> Proyecto_de_Grado_INCO_InCo_FIng_UdelaR.pdf
+[5/11/26, 6:49:18 PM] Diego PIS Fing: me dejó en banda el latex :/
+[5/11/26, 6:49:33 PM] Diego PIS Fing: De paso, ojala tengas buena conferencia Luis!
+[5/11/26, 6:50:43 PM] +598 99 631 501: Gracias!
+[5/11/26, 6:50:51 PM] +598 99 631 501: Justo había terminado de leer el capítulo 2, lo mando con comentarios
+[5/11/26, 6:51:05 PM] +598 99 631 501: <document omitted> Proyecto_de_Grado_INCO_InCo_FIng_UdelaR_20260429_comments.pdf
+[5/11/26, 6:51:13 PM] +598 99 631 501: Así luego ya puedo leer desde el capítulo 3 completo 😁
+[5/11/26, 7:00:15 PM] Diego PIS Fing: Buenazo!!
+[5/13/26, 1:01:06 PM] +598 91 612 733: Hola ¿nos vemos por este enlace?
+[5/13/26, 1:01:21 PM] +598 91 612 733: o les mando comentarios en el pdf?
+[5/13/26, 1:02:45 PM] You: como prefieran
+[5/13/26, 1:03:24 PM] You: por mi nos podemos reunir si hay algun comentario que sea mas facil charlarlo
+[5/13/26, 1:03:55 PM] +598 91 612 733: ok, me conecto😁
+[5/13/26, 1:05:02 PM] You: buenazo entro entonces
+[5/13/26, 1:46:27 PM] Diego PIS Fing: Ah! me corto zoom!
+[5/13/26, 1:51:44 PM] +598 91 612 733: <document omitted> algunos comentarios que estuvimos viendo recién
+[5/13/26, 1:57:15 PM] You: en vez de por mail dejo el punteo por aca
+
+* el indice se borro
+* invertir orden funcionales y no funcionlaes
+* no ser tan generico en la parte de requisitos no funcionales, mas lo que se espera que pueda ver/hacer el usuario
+* en la parte de diseno una subsection del flujo principal
+* mencionar otros usuarios (como el que corre el sync) no solo los estudiantes
+* cambiar requerimiento/requisito del proyecto a objetivos del proyecto? pensarlo, capaz mover la seccion mas arriba asi le da una intro/guia al lector
+* revisar si pusimos ilustracion propia en las imagenes
+* experimentacion hablar de deploy en mi nube antel
+* ultimas secciones armarlas bien, aunque sea con contenido de relleno pero que por lo menos quede clara la estructura de esa ultima seccion
+* reunion en dos semanas pero mejor mandar esos cambio antes si podemos (capaz lunes?)
+* alternativas de whisper en la seccion de implementacion y tecnologias, experimentacion dejar mas focalizado en el sistema/producto final
+[5/17/26, 6:52:24 PM] Diego PIS Fing: Buenas! En la reu pasada hice una pregunta que no me la respuesta. Nosotros cuando decidimos acerca de un parametro o estrategia a partir de una experimentación sin datos formales , justificamos nuestra decision en experimentación o en implementación.
+[5/17/26, 6:57:18 PM] Diego PIS Fing: Por ejemplo, nos pasa con estrategía de chunking, que realizar chunking sentimental era muy lento, por eso fuimos con recursivo. También nos pasó que el modelo de lenguaje que comenzamos con uno, pero el modelo era mucho más limitado en sentido de lo que prove la api key
+[5/17/26, 7:07:21 PM] +598 91 612 733: En implementación
+[5/17/26, 7:20:00 PM] Diego PIS Fing: GRacias!
+[5/17/26, 7:27:35 PM] +598 91 612 733: O antes
+[5/19/26, 3:31:58 PM] Diego PIS Fing: Buenas!!
+[5/19/26, 3:35:56 PM] Diego PIS Fing: <document omitted> Dos cosas, una les pasamos otro avance. Se realizaron la mayoria de cambios "simples" del capitulo uno y dos que nos enviaron en las correciones pasadas. Los que no implementamos son principalmente por dudas que nos quedaron o por que no nos ha dado el tiempo aun. Igualmente lo principalmente que cambio es el capitulo de implementacion y el capitulo de experimentacion, que son los capitulos que nos gustarian que mas revisen .
+[5/19/26, 3:38:35 PM] Diego PIS Fing: Lo otro es recordar que habiamos fijado una reunion para mañana!
+[5/20/26, 1:08:52 PM] Diego PIS Fing: Buenas! 
+estoy en este enlace. 
+https://zoom.us/j/99840828479?pwd=F8aN77qgb6ITzMThWMrTlMiLeKBxcA.1
+[5/20/26, 1:09:30 PM] +598 91 612 733: hola, pensé que era 13.15
+[5/20/26, 1:09:31 PM] +598 99 631 501: Ahhh ok yo estaba en el otro link
+[5/20/26, 1:09:43 PM] +598 91 612 733: ya me sumo
+[5/20/26, 1:09:58 PM] Diego PIS Fing: ajjajaj la verdad que a mi nunca me quedo muy claro a que hora la hemos fijado ajajaj
+[5/20/26, 1:10:05 PM] Diego PIS Fing: ha cambiado mucho ajjajaj
+[5/20/26, 1:14:29 PM] You: buenass yo al final no me puedo sumar hoy
+[5/20/26, 1:14:50 PM] +598 91 612 733: ok
+[6/1/26, 8:21:35 AM] Diego PIS Fing: Buenas!!
+[6/1/26, 8:22:02 AM] Diego PIS Fing: Les adjunto un primer borrador versión "final"
+[6/1/26, 8:22:06 AM] Diego PIS Fing: <document omitted> Proyecto_de_Grado_INCO_InCo_FIng_UdelaR.pdf
+[6/1/26, 8:25:14 AM] Diego PIS Fing: Lo que cambió bien fue: cap3(requisitos), se reordeno como habiamos quedado en reus pasadas
+cap6(experimentacion), se añadieron secciónes de discución de la arquitectura costos,latencia etc. 
+y cap 8(conclusiones) se cambiarón para reflejar todos los cambios que tuvo la tesis.
+[6/1/26, 9:39:11 PM] You: <document omitted> perdon por el spam 😁
+
+pero si no lo empezaron a leer prefieran esta version que recien corregimos algunas faltas de ortografia y agregamos un par de puntos mas a la seccion de trabajo a futuro
+[6/3/26, 1:11:36 PM] +598 91 612 733: Hola, este enlace?
+[6/3/26, 1:12:14 PM] +598 99 631 501: Buenas, tenemos hoy? No lo tenía en el calendar
+[6/3/26, 1:12:32 PM] +598 99 631 501: No es la primera vez que me pasa, alguien me puede mandar la invitación?
+[6/3/26, 1:13:16 PM] Diego PIS Fing: Beunas! perdón si, seria ese enlace que dice libertad
+[6/7/26, 1:32:45 PM] Diego PIS Fing: Buenas! Libertad, perdí pdf con tus comentarios. Creo que quedaron el en chat de zoom y se borraron. Los podrias volver a pasar porfavor?
+[6/7/26, 2:36:04 PM] Diego PIS Fing: Ahí lo llegué a encontrar!! disculpa
+[6/7/26, 2:39:59 PM] +598 91 612 733: No, tranqui,  lo iba a buscar 😁
+[6/17/26, 10:02:30 AM] Diego PIS Fing: https://calendar.app.google/DNShxyCvTZAbZDVS8
+[6/17/26, 10:02:34 AM] Diego PIS Fing: Buenas!
+[6/17/26, 10:02:39 AM] Diego PIS Fing: este es el link al calendar
+[6/17/26, 10:03:07 AM] Diego PIS Fing: igualmente nos sumariamos por este link
+[6/19/26, 4:54:59 PM] +598 99 631 501: Buenas, les mandé comentarios al informe por mail
+[6/19/26, 5:53:46 PM] You: buenisimo gracias!
+[6/24/26, 1:10:17 PM] Diego PIS Fing: Buenas! perdón que les compartí hace poco la meet, acabo de descubrir que es posible duplicar meets en google y bueno, facilito eso
+[6/24/26, 1:10:35 PM] Diego PIS Fing: nos sumamos por este link como la semana pasada
+[7/8/26, 1:13:04 PM] +598 99 631 501: Hola, cómo van con el informe? Hoy tenemos reunión o no hay nada que discutir?
+[7/8/26, 1:13:49 PM] Diego PIS Fing: Buenas Todo bien?
+[7/8/26, 1:15:51 PM] Diego PIS Fing: This message was deleted
+[7/8/26, 1:16:50 PM] Diego PIS Fing: estoy en este zoom
+[7/8/26, 1:21:26 PM] +598 91 612 733: Hola, disculpen,  time parcial hoy y todavía estamos en vueltas
+[7/8/26, 1:21:52 PM] +598 91 612 733: Ta tienen una nueva versión del informe?
+[7/8/26, 1:24:19 PM] +598 99 631 501: Estoy conectado
+[7/22/26, 12:45:50 PM] Diego PIS Fing: Buenas!! Como estan? Todo bien? Les adjunto una nueva version. Tiene todas las correciones marcadas en los anteriores dos pdf. Perdon la demora. 
+Hay una cosa que si estaría faltando y una cosa que a mi me hace ruido aun. 
+Me estaría faltando acceder a cada url, verificar que la info citada siga estando y que no se haya modificado nada y agregar la url de ultima visita en la documentacion. 
+Y me estaría haciendo ruido el capitulo de Introduccion, todavia no me cierra bien que incluir.
+[7/22/26, 12:49:07 PM] Diego PIS Fing: <document omitted> Proyecto_de_Grado_INCO_InCo_FIng_UdelaR.pdf
+[7/22/26, 12:54:47 PM] +598 91 612 733: Ok recibido, muchas gracias!
+[7/22/26, 12:55:56 PM] +598 91 612 733: En cuanto a que cada url siga activa, creo que no es necesario,  lo importante es que sea correcta y que en el momento que la usaron si estaba, por eso la fecha...
+[7/22/26, 12:56:21 PM] +598 91 612 733: La introducción se puede seguir trabajando 😁
+[7/22/26, 12:56:29 PM] Diego PIS Fing: Si, varias fechas aún no han sido incluidas
+[7/22/26, 12:56:43 PM] +598 91 612 733: Aprox
+[7/22/26, 12:56:53 PM] Diego PIS Fing: Pero las agrego
+[8/20/26, 1:28:11 PM] +598 91 612 733: Hola, cómo andan?
+[8/20/26, 1:28:27 PM] +598 91 612 733: Hace tiempo que no tenemos noticias de ustedes...
+[8/21/26, 8:42:16 PM] Diego PIS Fing: Hola!! Todo bien?
+[8/21/26, 8:42:56 PM] Diego PIS Fing: Disculpen la demora! Yo estaba bajo la impresión de que ustedes nos avisaban en cuanto esté corregida.
+[8/21/26, 8:45:21 PM] +598 91 612 733: No sabíamos que había una nueva versión para corregir 😬
+[8/21/26, 8:45:59 PM] Diego PIS Fing: Es está de acá
+[8/21/26, 8:46:23 PM] Diego PIS Fing: Ajajaj a mi ya me parecia raro pero ta no se.
+[8/21/26, 8:46:44 PM] Diego PIS Fing: Esa tiene todas las correciones, tanto las tuyas Luís como las tuyas libertad
+[8/21/26, 8:47:08 PM] +598 91 612 733: Ok, revisamos y nos comunicamos!!!
+[8/21/26, 8:47:32 PM] +598 91 612 733: Disculpen, se me pasó 🤦🏻‍♀️
+[8/21/26, 8:48:50 PM] Diego PIS Fing: Si quieren podemos igualmente mantener una reunión como para compartir avances,  tener una comunicación más activa y que cualquier correccióna aplicar la podamos hacer lo antes posible. En si yo tampoco consulté de tener otra reunión y ademas está version no la envie por mail.
+[8/21/26, 9:01:32 PM] +598 99 631 501: Ah mí se me re pasó también! Este finde lo reviso
+[8/22/26, 2:37:21 PM] +598 99 631 501: Buenas, no me deja bajar el pdf 😢 Me lo mandan de nuevo?
+[8/22/26, 2:37:48 PM] You: buenaas
+[8/22/26, 2:37:52 PM] You: ahi lo reenvio
+[8/22/26, 2:38:18 PM] You: <document omitted> Proyecto_de_Grado_INCO_InCo_FIng_UdelaR-5_260822_143804.pdf
+[8/22/26, 2:41:06 PM] +598 99 631 501: Bárbaro, ahora sí 👍
+[8/23/26, 7:00:04 PM] +598 99 631 501: <document omitted> 202608221438_Proyecto_de_Grado_INCO_InCo_FIng_UdelaR_20260822_143804_comments.pdf
+[8/23/26, 7:00:26 PM] +598 99 631 501: Buenas, cómo están? Les envío el PDF con comentarios. Libertad también va a enviar otro pdf con los suyos
+[8/23/26, 7:00:53 PM] +598 99 631 501: El informe está muy bien! Creemos que ya está casi terminado. Los comentarios que tiene ahora son errores chicos y correcciones pequeñas de redacción
+[8/23/26, 7:01:09 PM] +598 99 631 501: Por favor corríjanlos todos, si tienen duda de alguno pregunten, pero en general son todas cosas fáciles
+[8/23/26, 7:02:31 PM] +598 91 612 733: Estamos de acuerdo con Luis en esto!!! Muy buen trabajo!!
+[8/23/26, 7:02:43 PM] +598 91 612 733: En un ratito les mando mis comentarios
+[8/23/26, 7:03:01 PM] You: buenisimo muchas gracias!
+[8/23/26, 7:26:40 PM] +598 91 612 733: <document omitted> 20260823_Proyecto_de_Grado_INCO_InCo_FIng_UdelaR-5_260822_143804.pdf
+[8/26/26, 2:23:09 PM] +598 91 612 733: Hola, cómo andan?
+[8/26/26, 2:23:45 PM] +598 91 612 733: Con Luis estuvimos buscando tribunal 💪
+[8/26/26, 2:24:58 PM] +598 91 612 733: Si les parece que pueden tener las correcciones prontas para principios de la semana que viene, pensamos que se puede organizar la defensa para la semana del 14/9, qué opinan?
+[8/26/26, 2:26:16 PM] Diego PIS Fing: Hola!!  Como estan todo bien??
+[8/26/26, 2:26:22 PM] Diego PIS Fing: Por mi está perfercto!!
+[8/26/26, 2:27:35 PM] +598 91 612 733: Veamos qué dice Guido y en caso afirmativo, avanzamos con la coordinación
+[8/26/26, 2:27:44 PM] Diego PIS Fing: Tendríamos que hacer un poco ya la presentación no?
+[8/26/26, 2:29:03 PM] Diego PIS Fing: Querrian organizar quizas una reunion para está o la proxima semana? Asi nos guian un poco acerca de que cosas deberiamos incluir que cosas quizas mejor omitirlas
+[8/26/26, 2:34:37 PM] +598 99 631 501: Hola, vamos por partes. Ahora tienen que corregir las cosas que les mandamos del informe. Son fáciles pero son unas cuantas. Les parece bien apuntar a tener todo corregido para el 1/9?
+[8/26/26, 2:35:33 PM] +598 99 631 501: En segundo lugar, el tribunal que tenemos definido por ahora es:
+- Guillermo Moncecchi
+- Raquel Sosa
+- Ignacio Sastre
+Ellos confirmaron que pueden la semana del 14/9
+Les parece bien? Todavía lo tenemos que validarlo con la comisión de proyecto pero no creemos que haya drama
+[8/26/26, 2:37:00 PM] +598 99 631 501: Y cuando nos confirmen esto, les pasamos los datos al tribunal para que ellos definan qué día va a ser la defensa. Eso lo van a definir ellos porque se imaginarán que es difícil encontrar un día y hora que les sirva a los tres del tribunal, así que les vamos a pedir a ustedes que estén prontos y vayan avisando para pedirse un día libre en esa semana para el trabajo, que todavía no sabemos cuál es
+[8/26/26, 2:38:55 PM] +598 91 612 733: Después vemos lo de la presentación
+[8/26/26, 2:39:26 PM] +598 91 612 733: Capaz un ensayo presencial unos días antes de la defensa
+[8/26/26, 2:46:25 PM] +598 99 631 501: Sí, ensayo siempre viene bien 😊
+[8/26/26, 2:52:35 PM] Diego PIS Fing: En esto si!!
+[8/26/26, 2:52:40 PM] Diego PIS Fing: re llegamos!!
+[8/26/26, 2:53:04 PM] Diego PIS Fing: Si a guido le viene bien estonces perfecto!!
+[8/26/26, 3:51:23 PM] You: dale perfecto
+[8/26/26, 3:51:26 PM] You: sii llegamos bien
+[8/26/26, 3:55:56 PM] +598 99 631 501: Genial! 💪 Ya vamos a ir consultando al tribunal y a la comisión de proyecto de grado
+[8/27/26, 5:36:51 PM] +598 99 631 501: Buenas, creo que no hablamos de esto antes, pero ahora hay un requisito nuevo en los proyectos de grado de que en el informe tienen que aclarar el uso de IA que hicieron
+[8/27/26, 5:36:54 PM] +598 99 631 501: <image omitted>
+[8/27/26, 5:37:03 PM] +598 99 631 501: Viene de este documento en el eva
+[8/27/26, 5:37:04 PM] +598 99 631 501: https://eva.fing.edu.uy/pluginfile.php/116451/mod_resource/content/2/Uso%20%C3%A9tico%20de%20la%20IA%20en%20el%20PG%20-%202026.pdf
+[8/27/26, 5:38:05 PM] +598 99 631 501: Por favor incluyan esta sección en el informe (yo la pondría en el capítulo de introducción, antes de "Organización del documento") así ya lo podemos ver con Libertad antes de la entrega final
+[8/27/26, 5:51:00 PM] You: perfecto
+[8/29/26, 6:24:11 PM] +598 91 612 733: Hola, cómo andan?
+[8/29/26, 6:26:11 PM] +598 91 612 733: Finalmente,  fijamos la defensa para el jueves 17/9 a las 18:30 💪 con el tribunal que les comentó Luis.
+En cuanto puedan, manden la última versión del informe así la revisamos y la mandamos al tribunal😁
+[8/29/26, 7:17:35 PM] +598 99 631 501: Tenemos el salón 701 para el 17/9
+[8/29/26, 7:17:43 PM] +598 99 631 501: Luego coordinamos para hacer un ensayo
+[8/29/26, 7:18:12 PM] +598 99 631 501: Ahora métanle a las correcciones del informe, si lo pueden mandar para este martes 1/9 estaría perfecto
