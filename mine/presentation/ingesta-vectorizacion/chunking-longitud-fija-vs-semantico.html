@@ -1,0 +1,95 @@
+<title>Chunking Semántico</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+  body{ background:#EEF1F5; color:#1E2430; font-family:'IBM Plex Sans', system-ui, sans-serif;
+        display:flex; flex-direction:column; align-items:center; gap:16px; padding-block:40px; }
+  h1{ font-size:15px; font-weight:600; letter-spacing:.02em; color:#5B6472; margin:0; text-transform:uppercase; }
+  .frame{ background:#fff; border-radius:10px; padding:20px 24px; box-shadow:0 2px 10px rgba(30,36,48,.08); max-width:100%; overflow-x:auto; }
+</style>
+<h1>Diapo &middot; Indexación &middot; longitud fija vs. chunking semántico</h1>
+<div class="frame">
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="310" viewBox="0 0 760 310" font-family="'IBM Plex Mono', monospace">
+  <rect width="760" height="310" fill="#ffffff"/>
+  <defs>
+    <pattern id="hatch" width="6" height="6" patternTransform="rotate(45)" patternUnits="userSpaceOnUse">
+      <rect width="6" height="6" fill="#8B2E2E" opacity="0.12"/>
+      <line x1="0" y1="0" x2="0" y2="6" stroke="#8B2E2E" stroke-width="2"/>
+    </pattern>
+  </defs>
+
+  <!-- ============ FIXED LENGTH (top, problem) ============ -->
+  <text x="30" y="30" font-family="'IBM Plex Sans',sans-serif" font-size="13" font-weight="600" fill="#8B2E2E">RecursiveCharacterTextSplitter (LangChain) &middot; longitud fija</text>
+
+  <!-- 4 equal segments, boundaries at fixed x -->
+  <g font-size="11.5">
+    <rect x="30" y="42" width="182" height="46" fill="#FBEAEA" stroke="#D9A3A3" stroke-width="1"/>
+    <rect x="212" y="42" width="182" height="46" fill="#F7F8FA" stroke="#D9A3A3" stroke-width="1"/>
+    <rect x="394" y="42" width="182" height="46" fill="#FBEAEA" stroke="#D9A3A3" stroke-width="1"/>
+    <rect x="576" y="42" width="150" height="46" fill="#F7F8FA" stroke="#D9A3A3" stroke-width="1"/>
+
+    <text x="38" y="60" fill="#1E2430">Un árbol AVL es un árbol</text>
+    <text x="38" y="76" fill="#1E2430">binario auto balan</text>
+
+    <text x="220" y="60" fill="#1E2430">ceado. Cada nodo guarda</text>
+    <text x="220" y="76" fill="#1E2430">un factor de balance</text>
+
+    <text x="402" y="60" fill="#1E2430">. Si ese factor se</text>
+    <text x="402" y="76" fill="#1E2430">desequilibra, se aplica un</text>
+
+    <text x="584" y="60" fill="#1E2430">a rotación para</text>
+    <text x="584" y="76" fill="#1E2430">restaurarlo.</text>
+  </g>
+
+  <!-- overlap bands between consecutive fixed-length chunks -->
+  <g>
+    <rect x="198" y="42" width="28" height="46" fill="url(#hatch)" opacity="0.55"/>
+    <rect x="380" y="42" width="28" height="46" fill="url(#hatch)" opacity="0.55"/>
+    <rect x="562" y="42" width="28" height="46" fill="url(#hatch)" opacity="0.55"/>
+  </g>
+
+  <!-- warning marks at bad cuts (mid-word) -->
+  <g>
+    <circle cx="212" cy="65" r="9" fill="#8B2E2E"/>
+    <text x="212" y="69" text-anchor="middle" font-size="12" font-weight="700" fill="#ffffff" font-family="'IBM Plex Sans',sans-serif">!</text>
+    <circle cx="576" cy="65" r="9" fill="#8B2E2E"/>
+    <text x="576" y="69" text-anchor="middle" font-size="12" font-weight="700" fill="#ffffff" font-family="'IBM Plex Sans',sans-serif">!</text>
+  </g>
+  <text x="30" y="104" font-family="'IBM Plex Sans',sans-serif" font-size="10.5" fill="#8B2E2E" font-style="italic">"balan|ceado", "aplica un|a rotación": la idea se corta a mitad de palabra.</text>
+  <text x="30" y="118" font-family="'IBM Plex Sans',sans-serif" font-size="10.5" fill="#8B2E2E" font-style="italic">Franjas rayadas: overlap de 200 caracteres entre chunks consecutivos.</text>
+
+  <!-- divider -->
+  <line x1="30" y1="140" x2="730" y2="140" stroke="#E3E7ED" stroke-width="1"/>
+
+  <!-- ============ SEMANTIC CHUNKING (bottom, chosen) ============ -->
+  <text x="30" y="166" font-family="'IBM Plex Sans',sans-serif" font-size="13" font-weight="600" fill="#153F35">SemanticChunker (LangChain) &middot; elegido para producción</text>
+
+  <g font-size="11.5">
+    <rect x="30" y="178" width="196" height="60" fill="#EAF6F2" stroke="#1F8A70" stroke-width="1.25"/>
+    <rect x="234" y="178" width="180" height="60" fill="#EAF6F2" stroke="#1F8A70" stroke-width="1.25"/>
+    <rect x="422" y="178" width="304" height="60" fill="#EAF6F2" stroke="#1F8A70" stroke-width="1.25"/>
+
+    <text x="42" y="196" fill="#153F35">Un árbol AVL es un</text>
+    <text x="42" y="212" fill="#153F35">árbol binario auto</text>
+    <text x="42" y="228" fill="#153F35">balanceado.</text>
+
+    <text x="242" y="196" fill="#153F35">Cada nodo guarda un</text>
+    <text x="242" y="212" fill="#153F35">factor de balance.</text>
+
+    <text x="430" y="196" fill="#153F35">Si ese factor se desequilibra,</text>
+    <text x="430" y="212" fill="#153F35">se aplica una rotación para</text>
+    <text x="430" y="228" fill="#153F35">restaurarlo.</text>
+  </g>
+
+  <!-- check marks at good cuts (sentence boundaries) -->
+  <g>
+    <circle cx="230" cy="208" r="9" fill="#1F8A70"/>
+    <path d="M225,208 l4,4 l7,-8" stroke="#ffffff" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="418" cy="208" r="9" fill="#1F8A70"/>
+    <path d="M413,208 l4,4 l7,-8" stroke="#ffffff" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+  <text x="30" y="256" font-family="'IBM Plex Sans',sans-serif" font-size="10.5" fill="#2C6156" font-style="italic">El corte cae donde cambia el tema entre oraciones: cada fragmento encapsula una idea completa.</text>
+
+  <text x="380" y="292" text-anchor="middle" font-family="'IBM Plex Sans',sans-serif" font-size="10" fill="#9AA3AF">threshold_type: percentile · semantic_threshold: 0.6 · min_chunk_size: 400 caracteres</text>
+</svg>
+</div>

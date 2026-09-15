@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1120 620" font-family="'Trebuchet MS', 'Segoe UI', sans-serif">
+  <defs>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="3" stdDeviation="6" flood-opacity="0.18"/>
+    </filter>
+  </defs>
+
+  <!-- dimension labels column -->
+  <g font-size="26" fill="#3a4a54" font-weight="bold" text-anchor="end">
+    <text x="250" y="196">Hardware</text>
+    <text x="250" y="292">Latencia</text>
+    <text x="250" y="388">Privacidad</text>
+    <text x="250" y="484">Mantenimiento</text>
+    <text x="250" y="580">Costo</text>
+  </g>
+
+  <!-- Self-Hosting card -->
+  <g filter="url(#shadow)">
+    <rect x="290" y="70" width="380" height="520" rx="18" fill="#f4f4f2"/>
+    <path d="M290 88 q0 -18 18 -18 h344 q18 0 18 18 v34 h-380 z" fill="#12796a"/>
+  </g>
+  <text x="480" y="112" font-size="30" font-weight="bold" fill="#ffffff" text-anchor="middle">Self-Hosting</text>
+  <g font-size="24" fill="#2f3d46" text-anchor="middle">
+    <text x="480" y="196">GPU con 16 GB de VRAM</text>
+    <text x="480" y="292">Minutos en CPU</text>
+    <text x="480" y="388">Datos en servidores propios</text>
+    <text x="480" y="484">A cargo del equipo</text>
+    <text x="480" y="580">Fijo, predecible</text>
+  </g>
+
+  <!-- Inference as a Service card (chosen) -->
+  <g filter="url(#shadow)">
+    <rect x="700" y="58" width="400" height="532" rx="18" fill="#f4f4f2" stroke="#c0490c" stroke-width="3"/>
+    <path d="M700 76 q0 -18 18 -18 h364 q18 0 18 18 v34 h-400 z" fill="#c0490c"/>
+  </g>
+  <text x="900" y="100" font-size="30" font-weight="bold" fill="#ffffff" text-anchor="middle">Inferencia como servicio</text>
+  <!-- chosen badge -->
+  <g transform="translate(900,132)">
+    <rect x="-70" y="0" width="140" height="30" rx="15" fill="#12796a"/>
+    <text x="0" y="21" font-size="18" font-weight="bold" fill="#ffffff" text-anchor="middle">✓ ELEGIDO</text>
+  </g>
+  <g font-size="24" fill="#2f3d46" text-anchor="middle" font-weight="bold">
+    <text x="900" y="196">Ninguno propio</text>
+    <text x="900" y="292">Segundos</text>
+    <text x="900" y="388" font-weight="normal" fill="#6b7780">Consultas a un tercero</text>
+    <text x="900" y="484">A cargo del proveedor</text>
+    <text x="900" y="580">Proporcional al uso</text>
+  </g>
+
+  <!-- row separators -->
+  <g stroke="#d9d9d5" stroke-width="1.5">
+    <line x1="60" y1="232" x2="1100" y2="232"/>
+    <line x1="60" y1="328" x2="1100" y2="328"/>
+    <line x1="60" y1="424" x2="1100" y2="424"/>
+    <line x1="60" y1="520" x2="1100" y2="520"/>
+  </g>
+</svg>

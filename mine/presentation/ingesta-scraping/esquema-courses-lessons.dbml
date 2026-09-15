@@ -1,0 +1,43 @@
+// Pegar en https://dbdiagram.io/d — Diapo Ingesta / Scraping
+// Esquema real (rag.courses, rag.lessons), simplificado para la lámina.
+// Los bloques "Note" quedan como cajitas sueltas en el canvas: arrastrar
+// cada una debajo de su tabla correspondiente después de pegar.
+
+Table courses {
+  id int [pk, increment]
+  code varchar [unique]
+  name varchar
+  subtitle varchar
+  course_metadata jsonb
+  created_at timestamptz
+  updated_at timestamptz
+}
+
+Table lessons {
+  id int [pk, increment]
+  title varchar
+  number int
+  video_url varchar
+  lesson_metadata jsonb
+  course_id int [ref: > courses.id]
+  created_at timestamptz
+  updated_at timestamptz
+}
+
+Note courses_ejemplo [headercolor: #8676D8] {
+'''
+Ejemplo real (Anexo 2)
+code = "actint2025"
+name = "Actividad Introductoria"
+subtitle = "Charlas 2025"
+'''
+}
+
+Note lessons_ejemplo [headercolor: #4E9BD8] {
+'''
+Ejemplo real (Anexo 2)
+number = 1
+title = "Bienvenida 2025"
+course_id → "actint2025"
+'''
+}

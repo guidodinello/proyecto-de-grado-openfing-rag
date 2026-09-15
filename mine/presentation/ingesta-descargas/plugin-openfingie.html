@@ -1,0 +1,90 @@
+<title>Plugin OpenFingIE</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+  body{ background:#EEF1F5; color:#1E2430; font-family:'IBM Plex Sans', system-ui, sans-serif;
+        display:flex; flex-direction:column; align-items:center; gap:16px; padding-block:40px; }
+  h1{ font-size:15px; font-weight:600; letter-spacing:.02em; color:#5B6472; margin:0; text-transform:uppercase; }
+  .frame{ background:#fff; border-radius:10px; padding:24px; box-shadow:0 2px 10px rgba(30,36,48,.08); max-width:100%; overflow-x:auto; }
+</style>
+<h1>Diapo &middot; Ingesta &mdash; Descargas &middot; plugin OpenFingIE</h1>
+<div class="frame">
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="460" viewBox="0 0 800 460" font-family="'IBM Plex Sans', system-ui, sans-serif">
+  <rect width="800" height="460" fill="#ffffff"/>
+
+  <!-- yt-dlp library boundary -->
+  <rect x="30" y="30" width="480" height="400" rx="10" fill="#F7F8FA" stroke="#C9D1DB" stroke-width="1.25" stroke-dasharray="5,4"/>
+  <text x="46" y="54" font-size="11.5" fill="#8993A3" font-weight="600" letter-spacing="0.4">LIBRERÍA yt-dlp</text>
+
+  <!-- InfoExtractor (base) -->
+  <rect x="150" y="76" width="260" height="52" rx="8" fill="#DFE4EA" stroke="#AEB7C2" stroke-width="1.25"/>
+  <text x="280" y="98" text-anchor="middle" font-size="14" font-weight="600" fill="#3A4250">InfoExtractor</text>
+  <text x="280" y="116" text-anchor="middle" font-size="11" fill="#5B6472">clase base abstracta</text>
+
+  <!-- inheritance arrow down -->
+  <line x1="280" y1="128" x2="280" y2="176" stroke="#5B6472" stroke-width="1.5" marker-end="url(#arrowGray)"/>
+  <text x="292" y="156" font-size="11" fill="#5B6472" font-style="italic">hereda</text>
+
+  <!-- OpenFingIE (own code) -->
+  <rect x="150" y="178" width="260" height="60" rx="8" fill="#28405C"/>
+  <text x="280" y="203" text-anchor="middle" font-size="14.5" font-weight="700" fill="#ffffff">OpenFingIE</text>
+  <text x="280" y="222" text-anchor="middle" font-size="10.5" fill="#C7D3E0">plugin propio &middot; yt_dlp_plugins/extractor/</text>
+
+  <!-- two branches -->
+  <line x1="210" y1="238" x2="110" y2="286" stroke="#28405C" stroke-width="1.5" marker-end="url(#arrowNavy)"/>
+  <line x1="350" y1="238" x2="450" y2="286" stroke="#5B6472" stroke-width="1.5" stroke-dasharray="4,3" marker-end="url(#arrowGray)"/>
+
+  <!-- MP4 directo (own logic) -->
+  <rect x="40" y="288" width="200" height="66" rx="8" fill="#EAF6F2" stroke="#1F8A70" stroke-width="1.25"/>
+  <text x="140" y="311" text-anchor="middle" font-size="12.5" font-weight="600" fill="#153F35">MP4 directo</text>
+  <text x="140" y="328" text-anchor="middle" font-size="10.5" fill="#2C6156">video servido por</text>
+  <text x="140" y="342" text-anchor="middle" font-size="10.5" fill="#2C6156">open.fing.edu.uy</text>
+
+  <!-- YoutubeIE (delegated, library) -->
+  <rect x="360" y="288" width="200" height="66" rx="8" fill="#DFE4EA" stroke="#AEB7C2" stroke-width="1.25"/>
+  <text x="460" y="311" text-anchor="middle" font-size="12.5" font-weight="600" fill="#3A4250">YoutubeIE</text>
+  <text x="460" y="328" text-anchor="middle" font-size="10.5" fill="#5B6472">extractor ya existente</text>
+  <text x="460" y="342" text-anchor="middle" font-size="10.5" fill="#5B6472">en la librería</text>
+
+  <text x="460" y="372" text-anchor="middle" font-size="10.5" fill="#5B6472">delega vía</text>
+  <text x="460" y="386" text-anchor="middle" font-size="9.5" fill="#5B6472" font-family="'IBM Plex Mono',monospace">self.url_result(...)</text>
+
+  <!-- labels for branch conditions (offset away from the arrow lines) -->
+  <text x="125" y="270" text-anchor="end" font-size="10.5" fill="#28405C">si hay un link .mp4</text>
+  <text x="435" y="270" text-anchor="start" font-size="10.5" fill="#5B6472">si hay un embed de YouTube</text>
+
+  <!-- side panel: features gratis -->
+  <rect x="590" y="76" width="170" height="330" rx="8" fill="#EAF6F2" stroke="#1F8A70" stroke-width="1.25"/>
+  <path d="M590,84 a8,8 0 0 1 8,-8 h154 a8,8 0 0 1 8,8 v26 h-170 z" fill="#1F8A70"/>
+  <text x="675" y="102" text-anchor="middle" font-size="11" font-weight="700" fill="#ffffff">DE LA LIBRERÍA</text>
+
+  <g font-size="11" fill="#153F35">
+    <text x="604" y="130" font-weight="600">Sin código propio:</text>
+
+    <text x="604" y="156">&#9656; Postprocesamiento</text>
+    <text x="616" y="170" font-size="10" fill="#2C6156">audio con ffmpeg</text>
+
+    <text x="604" y="196">&#9656; Fragmentos</text>
+    <text x="616" y="210" font-size="10" fill="#2C6156">concurrentes</text>
+
+    <text x="604" y="236">&#9656; Reintentos</text>
+    <text x="616" y="250" font-size="10" fill="#2C6156">automáticos (x3)</text>
+
+    <text x="604" y="276">&#9656; Reanudación de</text>
+    <text x="616" y="290" font-size="10" fill="#2C6156">descargas</text>
+    <text x="616" y="303" font-size="10" fill="#2C6156">interrumpidas</text>
+  </g>
+
+  <line x1="30" y1="440" x2="510" y2="440" stroke="#E3E7ED" stroke-width="1"/>
+  <text x="270" y="455" text-anchor="middle" font-size="10" fill="#9AA3AF">Antes de invocar yt-dlp, el propio DownloaderService evita redescargar lecciones ya existentes.</text>
+
+  <defs>
+    <marker id="arrowGray" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#5B6472"/>
+    </marker>
+    <marker id="arrowNavy" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#28405C"/>
+    </marker>
+  </defs>
+</svg>
+</div>

@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" font-family="'Trebuchet MS', 'Segoe UI', sans-serif">
+  <defs>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="3" stdDeviation="6" flood-opacity="0.16"/>
+    </filter>
+  </defs>
+
+  <rect x="0" y="0" width="1280" height="720" fill="#ffffff"/>
+
+  <!-- Title -->
+  <text x="60" y="76" font-size="42" font-weight="bold" fill="#1c2733">Conclusiones</text>
+  <rect x="60" y="96" width="56" height="6" rx="3" fill="#12796a"/>
+  <rect x="120" y="96" width="56" height="6" rx="3" fill="#c0490c"/>
+
+  <!-- Row of 5 objectives (partial last) -->
+  <g font-size="15" fill="#2f3d46" text-anchor="middle" font-weight="bold">
+    <!-- 1 Pipeline -->
+    <circle cx="185" cy="215" r="30" fill="#12796a"/>
+    <path d="M172 216 l9 9 l19 -20" stroke="#ffffff" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="185" y="266">Pipeline</text>
+
+    <!-- 2 ASR -->
+    <circle cx="447" cy="215" r="30" fill="#12796a"/>
+    <path d="M434 216 l9 9 l19 -20" stroke="#ffffff" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="447" y="266">ASR</text>
+
+    <!-- 3 Chatbot RAG -->
+    <circle cx="640" cy="215" r="30" fill="#12796a"/>
+    <path d="M627 216 l9 9 l19 -20" stroke="#ffffff" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="640" y="266">Chatbot</text>
+    <text x="640" y="286">RAG</text>
+
+    <!-- 4 Arquitectura extensible -->
+    <circle cx="833" cy="215" r="30" fill="#12796a"/>
+    <path d="M820 216 l9 9 l19 -20" stroke="#ffffff" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="833" y="266">Arquitectura</text>
+    <text x="833" y="286">extensible</text>
+
+    <!-- 5 Evaluacion parcial -->
+    <g>
+      <circle cx="1095" cy="215" r="30" fill="none" stroke="#9aa3a8" stroke-width="3"/>
+      <path d="M1095 185 A30 30 0 0 0 1095 245 Z" fill="#9aa3a8"/>
+    </g>
+    <text x="1095" y="266">Evaluación extensiva</text>
+    <text x="1095" y="286">de respuestas</text>
+  </g>
+
+  <!-- two columns -->
+  <g filter="url(#shadow)">
+    <rect x="120" y="330" width="500" height="230" rx="16" fill="#f4f4f2"/>
+    <rect x="660" y="330" width="500" height="230" rx="16" fill="#f4f4f2"/>
+  </g>
+  <rect x="120" y="330" width="500" height="6" rx="3" fill="#12796a"/>
+  <rect x="660" y="330" width="500" height="6" rx="3" fill="#c0490c"/>
+
+  <g font-size="16" fill="#3a464e">
+    <text x="148" y="370">Quedó implementado un sistema que consolida el</text>
+    <text x="148" y="392">conocimiento impartido por el cuerpo docente y lo</text>
+    <text x="148" y="414">expone a los estudiantes mediante una interfaz</text>
+    <text x="148" y="436">simple y moderna, funcionando así como una</text>
+    <text x="148" y="458">herramienta de autoestudio acorde a los tiempos</text>
+    <text x="148" y="480">actuales.</text>
+  </g>
+
+  <g font-size="16" fill="#3a464e">
+    <text x="688" y="370">Más evaluación es el principal camino para</text>
+    <text x="688" y="392">mejorar la herramienta y aprovechar todo su</text>
+    <text x="688" y="414">potencial.</text>
+  </g>
+
+  <!-- closing line -->
+  <text x="640" y="620" font-size="22" font-style="italic" font-weight="bold" fill="#12796a" text-anchor="middle">"Una prueba de concepto totalmente viable y de potencial para la</text>
+  <text x="640" y="650" font-size="22" font-style="italic" font-weight="bold" fill="#12796a" text-anchor="middle">comunidad educativo-universitaria."</text>
+</svg>
